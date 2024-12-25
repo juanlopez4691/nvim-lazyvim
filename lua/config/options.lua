@@ -3,3 +3,12 @@
 -- Add any additional options here
 
 vim.g.lazyvim_php_lsp = "intelephense"
+
+vim.g.root_spec = {
+  "lsp",
+  { ".git", "composer.json" },
+  { ".git", "package.json" },
+  { ".git", "lua" },
+  ".git",
+  "cwd",
+}
