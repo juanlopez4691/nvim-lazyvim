@@ -1,4 +1,6 @@
 return {
+  { "nvim-telescope/telescope-project.nvim" },
+  {
     "nvim-telescope/telescope.nvim",
     opts = {
       defaults = {
@@ -21,5 +23,25 @@ return {
         },
       },
     },
+    extensions = {
+      project = {
+        theme = "dropdown",
+      },
+    },
+    keys = {
+      {
+        "<leader>fp",
+        function()
+          require("telescope").extensions.project.project({
+            display_type = "full",
+            theme = "dropdown",
+          })
+        end,
+        desc = "Find project",
+      },
+    },
+  },
+  dependencies = {
+    { "nvim-telescope/telescope-project.nvim" },
   },
 }
