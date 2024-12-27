@@ -28,3 +28,7 @@ end, { silent = true })
 keymap.set("n", "<A-up>", function()
   split.resize("up")
 end, { silent = true })
+
+-- Buffers
+keymap.del("n", "<leader>be")
+keymap.set("n", "<leader>be", ":Neotree buffers toggle=true<cr>", { desc = "Buffer Explorer", silent = true })
