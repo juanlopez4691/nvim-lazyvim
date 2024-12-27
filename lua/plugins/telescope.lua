@@ -43,5 +43,6 @@ return {
   },
   dependencies = {
     { "nvim-telescope/telescope-project.nvim" },
+    { "nvim-telescope/telescope-file-browser.nvim" },
   },
 }
