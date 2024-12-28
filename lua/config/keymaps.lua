@@ -32,3 +32,9 @@ end, { silent = true })
 -- Buffers
 keymap.del("n", "<leader>be")
 keymap.set("n", "<leader>be", ":Neotree buffers toggle=true<cr>", { desc = "Buffer Explorer", silent = true })
+
+local wk = require("which-key")
+wk.add({
+  -- Replace selected text
+  { mode = "x", "<leader>r", [["_c]], desc = "Replace selection", icon = { icon = "" } },
+})
