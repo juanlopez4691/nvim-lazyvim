@@ -9,7 +9,12 @@
 
 -- Autocommands to toggle line numbers based on mode
 local list = require("helpers.list")
-local skip_filetypes = { "neo-tree", "snacks_dashboard", "noice" }
+local skip_filetypes = {
+  "neo-tree",
+  "snacks_dashboard",
+  "noice",
+  "TelescopePrompt",
+}
 
 vim.api.nvim_create_autocmd({ "InsertEnter" }, {
   pattern = "*",
@@ -57,5 +62,14 @@ vim.api.nvim_create_autocmd("WinEnter", {
     vim.wo.relativenumber = true
     -- Keep absolute numbers enabled
     vim.wo.number = true
+  end,
+})
+
+-- Hide line numbers in Telescope pickers prompt
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "TelescopePrompt",
+  callback = function()
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
   end,
 })
