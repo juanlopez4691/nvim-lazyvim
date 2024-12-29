@@ -119,3 +119,15 @@ wk.add({
     desc = "Terminal (Root Dir)",
   },
 })
+
+-- Code linting
+wk.add({
+  {
+    mode = "n",
+    "<leader>cL",
+    function()
+      require("lint").try_lint()
+    end,
+    desc = "Lint code",
+  },
+})
