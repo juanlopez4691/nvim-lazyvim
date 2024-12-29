@@ -60,8 +60,41 @@ local function resize(direction)
   vim.cmd(resize_command .. resize_amount)
 end
 
+--[[
+  Attempts to jump to a split in the specified direction.
+
+  @param direction (string) The direction to jump ('h', 'j', 'k', or 'l').
+  @param count (number) The number of splits to jump.
+
+  @return (boolean) True if the jump was successful (split changed), false otherwise.
+]]
+local function try_jump_split(direction, count)
+  local prev_win_nr = vim.fn.winnr()
+
+  vim.cmd(count .. "wincmd " .. direction)
+  return vim.fn.winnr() ~= prev_win_nr
+end
+
+--[[
+  Creates a function that jumps to a split in the specified direction, 
+  wrapping around if at the edge.
+
+  @param direction (string) The primary direction to jump ('h', 'j', 'k', or 'l').
+  @param opposite (string) The opposite direction to wrap around ('l' for 'h', 'k' for 'j', etc.).
+
+  @return (function) A function that performs the split jump with wrapping.
+]]
+local function jump_split_with_wrap(direction, opposite)
+  return function()
+    if not try_jump_split(direction, vim.v.count1) then
+      try_jump_split(opposite, 999)
+    end
+  end
+end
+
 return {
   is_rightmost = is_rightmost,
   is_bottommost = is_bottommost,
   resize = resize,
+  jump_split_with_wrap = jump_split_with_wrap,
 }
