@@ -30,7 +30,8 @@ return {
                 return ctx.kind_icon .. ctx.icon_gap
               end,
               highlight = function(ctx)
-                return require("blink.cmp.completion.windows.render.tailwind").get_hl(ctx) or "BlinkCmpKind" .. ctx.kind
+                return require("blink.cmp.completion.windows.render.tailwind").get_hl(ctx)
+                  or ("BlinkCmpKind" .. ctx.kind)
               end,
             },
             label = {
@@ -53,7 +54,8 @@ return {
                 return ctx.kind
               end,
               highlight = function(ctx)
-                return require("blink.cmp.completion.windows.render.tailwind").get_hl(ctx) or "BlinkCmpKind" .. ctx.kind
+                return require("blink.cmp.completion.windows.render.tailwind").get_hl(ctx)
+                  or ("BlinkCmpKind" .. ctx.kind)
               end,
             },
 
