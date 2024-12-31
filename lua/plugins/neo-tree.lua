@@ -46,6 +46,12 @@ return {
         },
       },
     },
+    window = {
+      mappings = {
+        ["P"] = "noop",
+        ["<Tab>"] = { "toggle_preview", config = { use_float = true, use_image_nvim = true } },
+      },
+    },
     event_handlers = {
       {
         event = "neo_tree_window_after_open",
