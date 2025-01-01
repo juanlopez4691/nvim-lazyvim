@@ -131,3 +131,22 @@ wk.add({
     desc = "Lint code",
   },
 })
+
+-- Codeium chat
+wk.add({
+  { mode = "n", "<leader>a", group = "ai" },
+  {
+    mode = "n",
+    "<leader>ac",
+    ":Codeium Chat<cr>",
+    desc = "Codeium Chat",
+    icon = { icon = "", color = "yellow" },
+  },
+  {
+    mode = "n",
+    "<leader>az",
+    ":Codeium Auth<cr>",
+    desc = "Codeium Auth",
+    icon = { icon = "", color = "yellow" },
+  },
+})
