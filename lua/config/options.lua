@@ -12,3 +12,6 @@ vim.g.root_spec = {
   ".git",
   "cwd",
 }
+
+-- Enable AI virtual text
+vim.g.ai_cmp = false
