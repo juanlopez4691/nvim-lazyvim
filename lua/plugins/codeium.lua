@@ -1,6 +1,7 @@
 return {
   "Exafunction/codeium.nvim",
   opts = {
+    enable_chat = true,
     virtual_text = {
       key_bindings = {
         -- Accept the current completion.
