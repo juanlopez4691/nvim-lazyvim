@@ -3,6 +3,14 @@ return {
   opts = {
     servers = {
       intelephense = {
+        filetypes = { "php", "blade", "php_only" },
+        files = {
+          associations = { "*.php", "*.blade.php" },
+          maxSize = 1000000,
+        },
+        environment = {
+          includePaths = vim.fn.expand("~/.composer/vendor/php-stubs/"),
+        },
         stubs = {
           "aerospike",
           "amqp",
