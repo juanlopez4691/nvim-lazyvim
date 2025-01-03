@@ -5,6 +5,16 @@ return {
       preset = "enter",
       ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
       ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+      ["<esc>"] = {
+        function(cmp)
+          if cmp.is_visible() then
+            cmp.cancel()
+            return true
+          end
+          return false
+        end,
+        "fallback",
+      },
     },
     completion = {
       ghost_text = {
