@@ -1,3 +1,5 @@
+local telescope_helpers = require("helpers.telescope")
+
 return {
   { "nvim-telescope/telescope-file-browser.nvim" },
   { "nvim-telescope/telescope-project.nvim" },
@@ -62,24 +64,11 @@ return {
           order_by = "asc",
           search_by = "title",
           mappings = {
-            ["b"] = function()
-              local ok, telescope = pcall(require, "telescope")
-              if not ok then
-                return
-              end
-              telescope.extensions.file_browser.file_browser({
-                grouped = true,
-              })
-            end,
+            n = { ["b"] = telescope_helpers.open_file_browser },
+            i = { ["<C-b>"] = telescope_helpers.open_file_browser },
           },
         },
-        file_browser = {
-          hijack_netrw = true,
-          git_status = true,
-          grouped = true,
-          prompt_path = true,
-          hidden = { file_browser = true, folder_browser = true },
-        },
+        file_browser = telescope_helpers.file_browser_settings(),
       },
     },
   },

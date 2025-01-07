@@ -34,8 +34,8 @@ return {
               action = function()
                 local telescope = require("telescope")
                 local telescope_custom = require("helpers.telescope")
-
                 local custom_theme = telescope_custom.get_dropdown_custom(0.7, 0.5)
+
                 telescope.extensions.project.project(vim.tbl_deep_extend("force", custom_theme, {
                   display_type = "full",
                 }))
