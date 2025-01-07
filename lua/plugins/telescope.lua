@@ -42,13 +42,12 @@ return {
       order_by = "asc",
       search_by = "title",
     },
-    {
-      "nvim-telescope/telescope-file-browser.nvim",
-      config = function()
-        LazyVim.on_load("telescope", function()
-          require("telescope").load_extension("file_browser")
-        end)
-      end,
+    file_browser = {
+      hijack_netrw = true,
+      git_status = true,
+      grouped = true,
+      prompt_path = true,
+      hidden = { file_browser = true, folder_browser = true },
     },
   },
 }
