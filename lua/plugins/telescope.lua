@@ -36,14 +36,11 @@ return {
       desc = "Find project",
     },
   },
-  dependencies = {
-    {
-      "nvim-telescope/telescope-project.nvim",
-      config = function()
-        LazyVim.on_load("telescope", function()
-          require("telescope").load_extension("project")
-        end)
-      end,
+  extensions = {
+    project = {
+      hidden_files = true,
+      order_by = "asc",
+      search_by = "title",
     },
     {
       "nvim-telescope/telescope-file-browser.nvim",
