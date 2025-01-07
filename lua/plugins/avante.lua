@@ -9,6 +9,7 @@ return {
     "MunifTanjim/nui.nvim",
     "echasnovski/mini.icons",
     "zbirenbaum/copilot.lua",
+    "hrsh7th/nvim-cmp",
   },
   opts = {
     provider = "copilot",
