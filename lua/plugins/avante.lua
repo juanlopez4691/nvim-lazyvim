@@ -10,6 +10,15 @@ return {
     "echasnovski/mini.icons",
     "zbirenbaum/copilot.lua",
     "hrsh7th/nvim-cmp",
+    {
+      -- Make sure to set this up properly if you have lazy=true
+      "MeanderingProgrammer/render-markdown.nvim",
+      event = "VeryLazy",
+      opts = {
+        file_types = { "markdown", "Avante" },
+      },
+      ft = { "markdown", "Avante" },
+    },
   },
   opts = {
     provider = "copilot",
