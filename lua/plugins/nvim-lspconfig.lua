@@ -6,7 +6,7 @@ return {
         settings = {
           Lua = {
             diagnostics = {
-              globals = { "vim" },
+              globals = { "vim", "LazyVim" },
             },
             runtime = {
               version = "LuaJIT",
