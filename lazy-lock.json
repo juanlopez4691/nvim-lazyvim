@@ -1,5 +1,5 @@
 {
-  "LazyVim": { "branch": "main", "commit": "d0c366e4d861b848bdc710696d5311dca2c6d540" },
+  "LazyVim": { "branch": "main", "commit": "d1529f650fdd89cb620258bdeca5ed7b558420c7" },
   "SchemaStore.nvim": { "branch": "main", "commit": "438f4f1f1fb890980cb23002597f99c9579834bd" },
   "avante.nvim": { "branch": "main", "commit": "4b4995d6699b6f59c06f5c3f883252c9dd008b53" },
   "blink.cmp": { "branch": "main", "commit": "1cc3b1a908fbcfd15451c4772759549724f38524" },
