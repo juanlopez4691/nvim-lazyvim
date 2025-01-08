@@ -37,6 +37,13 @@ return {
         end,
         desc = "Find project",
       },
+      {
+        "<leader>fx",
+        function()
+          require("telescope").extensions.file_browser.file_browser()
+        end,
+        desc = "File browser",
+      },
     },
     opts = {
       defaults = {
