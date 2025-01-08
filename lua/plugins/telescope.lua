@@ -23,6 +23,21 @@ return {
         end,
       },
     },
+    keys = {
+      {
+        "<leader>fp",
+        function()
+          local telescope = require("telescope")
+          local telescope_custom = require("helpers.telescope")
+          local custom_theme = telescope_custom.get_dropdown_custom(0.7, 0.5)
+
+          telescope.extensions.project.project(vim.tbl_deep_extend("force", custom_theme, {
+            display_type = "full",
+          }))
+        end,
+        desc = "Find project",
+      },
+    },
     opts = {
       defaults = {
         layout_config = {
@@ -41,21 +56,6 @@ return {
             ["k"] = require("telescope.actions").move_selection_previous,
             -- Add more custom normal mode mappings here
           },
-        },
-      },
-      keys = {
-        {
-          "<leader>fp",
-          function()
-            local telescope = require("telescope")
-            local telescope_custom = require("helpers.telescope")
-            local custom_theme = telescope_custom.get_dropdown_custom(0.7, 0.5)
-
-            telescope.extensions.project.project(vim.tbl_deep_extend("force", custom_theme, {
-              display_type = "full",
-            }))
-          end,
-          desc = "Find project",
         },
       },
       extensions = {
