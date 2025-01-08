@@ -1,5 +1,6 @@
 return {
   "saghen/blink.cmp",
+  commit = "1cc3b1a908fbcfd15451c4772759549724f38524",
   opts = {
     keymap = {
       preset = "enter",
@@ -21,7 +22,7 @@ return {
         enabled = true,
       },
       list = {
-        selection = "preselect",
+        selection = { preselect = true, auto_insert = true },
       },
       menu = {
         min_width = 25,
