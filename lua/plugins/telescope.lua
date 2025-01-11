@@ -81,6 +81,16 @@ return {
             ["<C-l>"] = function(bufnr)
               require("telescope.actions").preview_scrolling_right(bufnr)
             end,
+            ["<C-p>"] = function(bufnr)
+              require("telescope-live-grep-args.actions").quote_prompt()(bufnr)
+            end,
+            ["<C-g>"] = function(bufnr)
+              require("telescope-live-grep-args.actions").quote_prompt({ postfix = " --iglob " })(bufnr)
+            end,
+            ["<C-f>"] = function(bufnr)
+              require("telescope-live-grep-args.actions").quote_prompt({ postfix = " -t " })(bufnr)
+            end,
+            ["<C-space>"] = require("telescope.actions").to_fuzzy_refine,
           },
           n = {
             ["j"] = function(bufnr)
