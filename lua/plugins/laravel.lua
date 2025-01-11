@@ -7,7 +7,8 @@ return {
     "kevinhwang91/promise-async",
   },
   cmd = { "Laravel" },
-  event = { "VeryLazy" },
+  event = { "BufRead", "BufNewFile" },
+  ft = { "php" },
   config = true,
   opts = {
     lsp_server = vim.g.lazyvim_php_lsp,
