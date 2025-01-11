@@ -15,17 +15,6 @@ local get_dropdown_custom = function(width, height)
   })
 end
 
-local function file_browser_settings()
-  return {
-    hijack_netrw = true,
-    git_status = true,
-    grouped = true,
-    sorting_strategy = "ascending",
-    prompt_path = true,
-    hidden = { file_browser = true, folder_browser = true },
-  }
-end
-
 --[[
   Opens a file browser in Telescope for the selected entry.
 
@@ -33,15 +22,15 @@ end
 ]]
 local function open_file_browser(prompt_bufnr)
   local selection = require("telescope.actions.state").get_selected_entry()
+  local file_browser_settings = require("plugins.telescope.extensions").file_browser
 
   require("telescope.actions").close(prompt_bufnr)
   require("telescope").extensions.file_browser.file_browser(
-    vim.tbl_extend("force", file_browser_settings(), { path = selection.value, cwd = selection.value })
+    vim.tbl_extend("force", file_browser_settings, { path = selection.value, cwd = selection.value })
   )
 end
 
 return {
   get_dropdown_custom = get_dropdown_custom,
-  file_browser_settings = file_browser_settings,
   open_file_browser = open_file_browser,
 }
