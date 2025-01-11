@@ -1,20 +1,19 @@
 return {
   { "nvim-telescope/telescope-file-browser.nvim" },
   { "nvim-telescope/telescope-project.nvim" },
-  { "nvim-telescope/telescope-live-grep-args.nvim" },
+  {
+    "nvim-telescope/telescope-live-grep-args.nvim",
+    cmd = "Telescope live_grep_args",
+    keys = {
+      { "<leader>/", "<cmd>Telescope live_grep_args<cr>", desc = "Grep (Root Dir)" },
+      { "<leader>sg", "<cmd>Telescope live_grep_args<cr>", desc = "Grep (Root Dir)" },
+      { "<leader>sG", LazyVim.pick("live_grep_args", { root = false }), desc = "Grep (cwd)" },
+    },
+  },
   {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
     dependencies = {
-      {
-        "nvim-telescope/telescope-file-browser.nvim",
-        lazy = true,
-        config = function()
-          LazyVim.on_load("telescope", function()
-            require("telescope").load_extension("file_browser")
-          end)
-        end,
-      },
       {
         "nvim-telescope/telescope-project.nvim",
         lazy = true,
@@ -56,10 +55,6 @@ return {
         end,
         desc = "File browser",
       },
-      -- Updated keybindings for live_grep_args
-      { "<leader>/", "<cmd>Telescope live_grep_args<cr>", desc = "Grep (Root Dir)" }, -- Updated to live_grep_args
-      { "<leader>sg", "<cmd>Telescope live_grep_args<cr>", desc = "Grep (Root Dir)" }, -- Updated to live_grep_args
-      { "<leader>sG", LazyVim.pick("live_grep_args", { root = false }), desc = "Grep (cwd)" }, -- Updated to live_grep_args
     },
     opts = {
       defaults = {
