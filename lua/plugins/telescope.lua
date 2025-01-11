@@ -93,29 +93,9 @@ return {
         },
       },
       extensions = {
-        project = {
-          hidden_files = true,
-          order_by = "asc",
-          search_by = "title",
-          mappings = {
-            n = {
-              ["b"] = function()
-                require("telescope_helpers").open_file_browser()
-              end,
-            },
-            i = {
-              ["<C-b>"] = function()
-                require("telescope_helpers").open_file_browser()
-              end,
-            },
-          },
-        },
-        file_browser = function()
-          return require("telescope_helpers").file_browser_settings()
-        end,
-        live_grep_args = {
-          auto_quoting = true, -- enable/disable auto-quoting
-        },
+        project = require("plugins.telescope.extensions").project,
+        file_browser = require("plugins.telescope.extensions").file_browser,
+        live_grep_args = require("plugins.telescope.extensions").live_grep_args,
       },
     },
   },
