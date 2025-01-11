@@ -1,13 +1,13 @@
-local telescope_helpers = require("helpers.telescope")
-
 return {
   { "nvim-telescope/telescope-file-browser.nvim" },
   { "nvim-telescope/telescope-project.nvim" },
   {
     "nvim-telescope/telescope.nvim",
+    cmd = "Telescope",
     dependencies = {
       {
         "nvim-telescope/telescope-file-browser.nvim",
+        lazy = true,
         config = function()
           LazyVim.on_load("telescope", function()
             require("telescope").load_extension("file_browser")
@@ -16,6 +16,7 @@ return {
       },
       {
         "nvim-telescope/telescope-project.nvim",
+        lazy = true,
         config = function()
           LazyVim.on_load("telescope", function()
             require("telescope").load_extension("project")
@@ -48,20 +49,31 @@ return {
     opts = {
       defaults = {
         layout_config = {
-          height = 0.95,
           width = 0.95,
+          height = 0.95,
         },
         mappings = {
           i = {
-            ["<C-j>"] = require("telescope.actions").move_selection_next,
-            ["<C-k>"] = require("telescope.actions").move_selection_previous,
-            ["<C-h>"] = require("telescope.actions").preview_scrolling_left,
-            ["<C-l>"] = require("telescope.actions").preview_scrolling_right,
+            ["<C-j>"] = function(bufnr)
+              require("telescope.actions").move_selection_next(bufnr)
+            end,
+            ["<C-k>"] = function(bufnr)
+              require("telescope.actions").move_selection_previous(bufnr)
+            end,
+            ["<C-h>"] = function(bufnr)
+              require("telescope.actions").preview_scrolling_left(bufnr)
+            end,
+            ["<C-l>"] = function(bufnr)
+              require("telescope.actions").preview_scrolling_right(bufnr)
+            end,
           },
           n = {
-            ["j"] = require("telescope.actions").move_selection_next,
-            ["k"] = require("telescope.actions").move_selection_previous,
-            -- Add more custom normal mode mappings here
+            ["j"] = function(bufnr)
+              require("telescope.actions").move_selection_next(bufnr)
+            end,
+            ["k"] = function(bufnr)
+              require("telescope.actions").move_selection_previous(bufnr)
+            end,
           },
         },
       },
@@ -71,11 +83,21 @@ return {
           order_by = "asc",
           search_by = "title",
           mappings = {
-            n = { ["b"] = telescope_helpers.open_file_browser },
-            i = { ["<C-b>"] = telescope_helpers.open_file_browser },
+            n = {
+              ["b"] = function()
+                require("telescope_helpers").open_file_browser()
+              end,
+            },
+            i = {
+              ["<C-b>"] = function()
+                require("telescope_helpers").open_file_browser()
+              end,
+            },
           },
         },
-        file_browser = telescope_helpers.file_browser_settings(),
+        file_browser = function()
+          return require("telescope_helpers").file_browser_settings()
+        end,
       },
     },
   },
