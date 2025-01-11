@@ -1,7 +1,8 @@
 return {
   "yetone/avante.nvim",
-  event = "VeryLazy",
   version = false,
+  cmd = "Avante",
+  event = { "BufRead", "BufNewFile" },
   build = "make",
   dependencies = {
     "stevearc/dressing.nvim",
@@ -13,7 +14,6 @@ return {
     {
       -- Support for image pasting
       "HakonHarnes/img-clip.nvim",
-      event = "VeryLazy",
       opts = {
         -- Recommended settings
         default = {
@@ -30,7 +30,6 @@ return {
     {
       -- Make sure to set this up properly if you have lazy=true
       "MeanderingProgrammer/render-markdown.nvim",
-      event = "VeryLazy",
       opts = {
         file_types = { "markdown", "Avante" },
       },
