@@ -1,7 +1,5 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
-  event = { "LazyFile", "VeryLazy" },
   opts = function(_, opts)
     opts.ensure_installed = opts.ensure_installed or {}
     vim.list_extend(opts.ensure_installed, {
