@@ -1,10 +1,10 @@
 return {
   "adalessa/laravel.nvim",
   dependencies = {
-    "tpope/vim-dotenv",
-    "nvim-telescope/telescope.nvim",
-    "MunifTanjim/nui.nvim",
-    "kevinhwang91/promise-async",
+    { "tpope/vim-dotenv", lazy = true },
+    { "nvim-telescope/telescope.nvim", lazy = true },
+    { "MunifTanjim/nui.nvim", lazy = true },
+    { "kevinhwang91/promise-async", lazy = true },
   },
   cmd = { "Laravel" },
   event = { "BufRead", "BufNewFile" },
