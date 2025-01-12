@@ -1,6 +1,6 @@
 return {
-  { "nvim-telescope/telescope-file-browser.nvim" },
-  { "nvim-telescope/telescope-project.nvim" },
+  { "nvim-telescope/telescope-file-browser.nvim", lazy = true },
+  { "nvim-telescope/telescope-project.nvim", lazy = true },
   {
     "nvim-telescope/telescope-live-grep-args.nvim",
     cmd = "Telescope live_grep_args",
@@ -85,7 +85,9 @@ return {
             ["<C-f>"] = function(bufnr)
               require("telescope-live-grep-args.actions").quote_prompt({ postfix = " -t " })(bufnr)
             end,
-            ["<C-space>"] = require("telescope.actions").to_fuzzy_refine,
+            ["<C-space>"] = function(bufnr)
+              require("telescope.actions").to_fuzzy_refine(bufnr)
+            end,
           },
           n = {
             ["j"] = function(bufnr)
