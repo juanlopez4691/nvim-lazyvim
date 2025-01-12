@@ -13,27 +13,6 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
-    dependencies = {
-      {
-        "nvim-telescope/telescope-project.nvim",
-        lazy = true,
-        config = function()
-          LazyVim.on_load("telescope", function()
-            require("telescope").load_extension("project")
-          end)
-        end,
-      },
-      {
-        "nvim-telescope/telescope-live-grep-args.nvim",
-        lazy = true,
-        version = "^1.0.0",
-        config = function()
-          LazyVim.on_load("telescope.nvim", function()
-            require("telescope").load_extension("live_grep_args")
-          end)
-        end,
-      },
-    },
     keys = {
       {
         "<leader>fp",
