@@ -20,18 +20,39 @@ keymap.del("n", "<C-Left>")
 keymap.del("n", "<C-Right>")
 
 -- Resize window splits
+local list = require("helpers.list")
+local skip_filetypes = {
+  "neo-tree",
+  "snacks_dashboard",
+  "noice",
+  "TelescopePrompt",
+  "lazy",
+}
+
 keymap.set("n", "<A-right>", function()
+  if list.contains_value(skip_filetypes, vim.bo.filetype) then
+    return
+  end
   split.resize("right")
 end, { silent = true })
 
 keymap.set("n", "<A-left>", function()
+  if list.contains_value(skip_filetypes, vim.bo.filetype) then
+    return
+  end
   split.resize("left")
 end, { silent = true })
 
 keymap.set("n", "<A-down>", function()
+  if list.contains_value(skip_filetypes, vim.bo.filetype) then
+    return
+  end
   split.resize("down")
 end, { silent = true })
 
 keymap.set("n", "<A-up>", function()
+  if list.contains_value(skip_filetypes, vim.bo.filetype) then
+    return
+  end
   split.resize("up")
 end, { silent = true })
