@@ -29,6 +29,18 @@ local function require_dir(directory)
   scan_dir(target_dir)
 end
 
+--[[
+-- Function to check if a file exists
+--
+-- @param file The file to check
+--
+-- @return boolean
+--]]
+local function file_exists(file)
+  return vim.fn.filereadable(file) == 1
+end
+
 return {
   require_dir = require_dir,
+  file_exists = file_exists,
 }
