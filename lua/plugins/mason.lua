@@ -6,6 +6,7 @@ return {
         "phpcs",
         "phpcbf",
         "phpstan",
+        "pint",
         "prettierd",
       },
     }
