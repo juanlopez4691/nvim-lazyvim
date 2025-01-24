@@ -16,6 +16,7 @@ local skip_filetypes = {
   "noice",
   "TelescopePrompt",
   "lazy",
+  "trouble",
 }
 
 vim.api.nvim_create_autocmd({ "InsertEnter" }, {
