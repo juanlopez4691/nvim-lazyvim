@@ -11,7 +11,7 @@
   "flash.nvim": { "branch": "main", "commit": "34c7be146a91fec3555c33fe89c7d643f6ef5cf1" },
   "friendly-snippets": { "branch": "main", "commit": "efff286dd74c22f731cdec26a70b46e5b203c619" },
   "gitsigns.nvim": { "branch": "main", "commit": "d8918f06624dd53b9a82bd0e29c31bcfd541b40d" },
-  "grug-far.nvim": { "branch": "main", "commit": "635e69adf3a714621bd0a289314bc23c5848babb" },
+  "grug-far.nvim": { "branch": "main", "commit": "82a81e0b5638667893d0d89f232dbb510cc5ab14" },
   "img-clip.nvim": { "branch": "main", "commit": "da61a81872276b75a2971b056da1b849e0c1870b" },
   "inc-rename.nvim": { "branch": "main", "commit": "f9b9e5b9a75074810f40881b7e254b5bbeaf122e" },
   "laravel.nvim": { "branch": "main", "commit": "51a067dcbecdb2b2c9b1c0ecf906fe76902da182" },
