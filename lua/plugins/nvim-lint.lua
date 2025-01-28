@@ -8,13 +8,12 @@
 local function get_php_linters()
   local fs = require("helpers.filesystem")
   local project_root = vim.fn.getcwd()
-  local linters = { "phpcs", "phpstan" }
 
   if fs.file_exists(project_root .. "/pint.json") and fs.file_exists(project_root .. "/vendor/bin/pint") then
-    linters = {}
+    return {}
+  else
+    return { "phpcs", "phpstan" }
   end
-
-  return linters
 end
 
 return {
