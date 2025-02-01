@@ -1,7 +1,8 @@
 --[[
 --- Configure PHP formatters dynamically based on project setup.
 ---
---- Prevents phpcbf from being used if the project is using pint.
+--- Formatter is chosen based on the presence of pint or phpcbf
+--- in the project.
 ---
 --- @return table Linter names for PHP files
 ---]]
@@ -11,8 +12,10 @@ local function get_php_formatters()
 
   if fs.file_exists(project_root .. "/pint.json") and fs.file_exists(project_root .. "/vendor/bin/pint") then
     return { "pint" }
-  else
+  elseif fs.file_exists(project_root .. "/vendor/bin/phpcbf") then
     return { "phpcbf" }
+  else
+    return { "php-cs-fixer" }
   end
 end
 
@@ -27,9 +30,8 @@ return {
       formatters_by_ft = {
         javascript = { "prettierd", "prettier", stop_after_first = true },
         php = function()
-          return vim.tbl_deep_extend("force", opts.formatters_by_ft or {}, get_php_formatters())
+          return vim.tbl_deep_extend("force", opts.formatters_by_ft.php or {}, get_php_formatters())
         end,
-        -- php = { "pint", "phpcbf", stop_after_first = true },
         python = { "isort", "black", stop_after_first = true },
       },
       formatters = {
