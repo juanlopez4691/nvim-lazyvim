@@ -1,18 +1,19 @@
 --[[
 --- Configure PHP linters dynamically based on project setup.
 ---
---- Prevents phpcs and phpstan from being used if the project is using pint.
----
 --- @return table Linter names for PHP files
 ---]]
 local function get_php_linters()
   local fs = require("helpers.filesystem")
   local project_root = vim.fn.getcwd()
+  local linters = {}
 
-  if fs.file_exists(project_root .. "/pint.json") and fs.file_exists(project_root .. "/vendor/bin/pint") then
-    return {}
-  else
-    return { "phpcs", "phpstan" }
+  if fs.file_exists(project_root .. "/vendor/bin/phpcs") then
+    table.insert(linters, "phpcs")
+  end
+
+  if fs.file_exists(project_root .. "/vendor/bin/phpstan") then
+    table.insert(linters, "phpstan")
   end
 end
 
