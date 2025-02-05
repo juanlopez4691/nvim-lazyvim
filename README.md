@@ -6,4 +6,4 @@ In Catalonia, we have a proverb: "Qui no té feina, el gat pentina", which trans
 
 I guess sometimes Neovim is like my cat to brush.
 
-Refer to the [documentation](https://lazyvim.github.io/installation) learn how to start brushing your own feline.
+Refer to the [LazyVim documentation](https://lazyvim.github.io/installation) to learn how to start brushing your own feline.
