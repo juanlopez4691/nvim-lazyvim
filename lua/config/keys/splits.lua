@@ -24,6 +24,7 @@ local list = require("helpers.list")
 local skip_filetypes = {
   "neo-tree",
   "snacks_dashboard",
+  "snacks_picker_list",
   "noice",
   "TelescopePrompt",
   "lazy",
