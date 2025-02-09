@@ -5,14 +5,15 @@
 ---]]
 local function get_php_linters()
   local fs = require("helpers.filesystem")
-  local project_root = vim.fn.getcwd()
+  local vendor_dir = vim.fn.getcwd() .. "/vendor"
   local linters = {}
 
-  if fs.file_exists(project_root .. "/vendor/bin/phpcs") then
+  -- Skip phpcs if pint is present
+  if fs.file_exists(vendor_dir .. "/bin/pint") and fs.file_exists(vendor_dir .. "/bin/phpcs") then
     table.insert(linters, "phpcs")
   end
 
-  if fs.file_exists(project_root .. "/vendor/bin/phpstan") then
+  if fs.file_exists(vendor_dir .. "/bin/phpstan") then
     table.insert(linters, "phpstan")
   end
 end
