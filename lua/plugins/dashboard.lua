@@ -22,38 +22,24 @@ return {
           return ("Good %s, %s"):format(day_part, username)
         end
 
-          -- stylua: ignore
-          return {
-            { padding = 0, align = "center", text = { header, hl = "header" } },
-            { padding = 2, align = "center", text = { greeting(), hl = "header" } },
-            { title = "Builtin Actions", indent = 2, padding = 1,
-            {
-              icon = " ",
-              key = "p",
-              desc = "Find Project",
-              action = function()
-                local telescope = require("telescope")
-                local telescope_custom = require("helpers.telescope")
-                local custom_theme = telescope_custom.get_dropdown_custom(0.7, 0.5)
-
-                telescope.extensions.project.project(vim.tbl_deep_extend("force", custom_theme, {
-                  display_type = "full",
-                }))
-              end,
-            },
-              { icon = " ", key = "f", desc = "Find File",       action = ":lua Snacks.dashboard.pick('files')" },
-              { icon = " ", key = "n", desc = "New File",        action = ":ene | startinsert" },
-              { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
-              { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
-              { icon = " ", key = "s", desc = "Restore Session", section = "session" },
-              { icon = " ", key = "q", desc = "Quit",            action = ":qa" } },
-            { title = "Maintenance Actions", indent = 2, padding = 2,
-              { icon = " ", key = "c", desc = "Config",      action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})", },
-              { icon = "󰒲 ", key = "l", desc = "Lazy",        action = ":Lazy" },
-              { icon = " ", key = "x", desc = "Lazy Extras", action = ":LazyExtras" },
-              { icon = "󱁤 ", key = "m", desc = "Mason",       action = ":Mason" },                          },
-            { section = "startup" },
-          }
+        -- stylua: ignore
+        return {
+          { padding = 0, align = "center", text = { header, hl = "header" } },
+          { padding = 2, align = "center", text = { greeting(), hl = "header" } },
+          { title = "Builtin Actions", indent = 2, padding = 1,
+            { icon = " ", key = "f", desc = "Find File",       action = ":lua Snacks.dashboard.pick('files')" },
+            { icon = " ", key = "n", desc = "New File",        action = ":ene | startinsert" },
+            { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
+            { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+            { icon = " ", key = "s", desc = "Restore Session", section = "session" },
+            { icon = " ", key = "q", desc = "Quit",            action = ":qa" } },
+          { title = "Maintenance Actions", indent = 2, padding = 2,
+            { icon = " ", key = "c", desc = "Config",      action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})", },
+            { icon = "󰒲 ", key = "l", desc = "Lazy",        action = ":Lazy" },
+            { icon = " ", key = "x", desc = "Lazy Extras", action = ":LazyExtras" },
+            { icon = "󱁤 ", key = "m", desc = "Mason",       action = ":Mason" },                          },
+          { section = "startup" },
+        }
       end,
     },
   },
