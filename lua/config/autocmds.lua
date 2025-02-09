@@ -13,6 +13,7 @@ local skip_filetypes = {
   "neo-tree",
   "snacks_dashboard",
   "snacks_terminal",
+  "snacks_picker_list",
   "noice",
   "TelescopePrompt",
   "lazy",
