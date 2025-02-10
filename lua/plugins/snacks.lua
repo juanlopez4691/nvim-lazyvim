@@ -8,5 +8,11 @@ return {
         },
       },
     },
+    lazygit = {
+      win = {
+        width = 0,
+        heigth = 0,
+      },
+    },
   },
 }
