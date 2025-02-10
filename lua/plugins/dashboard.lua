@@ -27,6 +27,17 @@ return {
           { padding = 0, align = "center", text = { header, hl = "header" } },
           { padding = 2, align = "center", text = { greeting(), hl = "header" } },
           { title = "Builtin Actions", indent = 2, padding = 1,
+          {
+            icon = " ",
+            key = "p",
+            desc = "Find Project",
+            action = function()
+              local project_base_path = vim.fn.expand("~/Projects")
+              Snacks.picker.projects({
+                dev = { project_base_path, project_base_path .. "/Sites/personal/", project_base_path .. "/Sites/somoscuatro/" },
+              })
+            end,
+          },
             { icon = " ", key = "f", desc = "Find File",       action = ":lua Snacks.dashboard.pick('files')" },
             { icon = " ", key = "n", desc = "New File",        action = ":ene | startinsert" },
             { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
