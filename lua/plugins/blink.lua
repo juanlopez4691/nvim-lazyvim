@@ -1,6 +1,5 @@
 return {
   "saghen/blink.cmp",
-  commit = "1cc3b1a908fbcfd15451c4772759549724f38524",
   opts = {
     keymap = {
       preset = "enter",
