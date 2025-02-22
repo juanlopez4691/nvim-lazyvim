@@ -1,5 +1,11 @@
 return {
   {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = vim.g.colorscheme,
+    },
+  },
+  {
     "catppuccin/nvim",
     name = "catppuccin",
     lazy = true,

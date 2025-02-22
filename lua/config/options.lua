@@ -26,3 +26,5 @@ vim.g.root_spec = {
 
 -- Enable AI virtual text
 vim.g.ai_cmp = false
+
+vim.g.colorscheme = "catppuccin"
