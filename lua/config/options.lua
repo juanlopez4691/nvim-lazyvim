@@ -2,6 +2,13 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
+-- Each split has his own linestatus
+-- vim.opt.laststatus = 2
+
+-- Show filename on winbar
+vim.o.winbar = "%=%m %t"
+
+-- intelephense as PHP LSP
 vim.g.lazyvim_php_lsp = "intelephense"
 
 if vim.fn.executable("pyenv") == 1 then
