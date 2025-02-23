@@ -5,17 +5,28 @@
 ---]]
 local function get_php_linters()
   local fs = require("helpers.filesystem")
-  local vendor_dir = vim.fn.getcwd() .. "/vendor"
+  local work_dir = vim.fn.expand("$PWD")
+  local vendor_dir = work_dir .. "/vendor"
   local linters = {}
 
-  -- Skip phpcs if pint is present
-  if fs.file_exists(vendor_dir .. "/bin/pint") and fs.file_exists(vendor_dir .. "/bin/phpcs") then
-    table.insert(linters, "phpcs")
-  end
-
-  if fs.file_exists(vendor_dir .. "/bin/phpstan") then
+  -- Add phpstan if config file exists
+  if
+    fs.file_exists(work_dir .. "/phpstan.neon")
+    or fs.file_exists(work_dir .. "/phpstan.neon.dist")
+    or fs.file_exists(work_dir .. "/phpstan.dist.neon")
+  then
     table.insert(linters, "phpstan")
   end
+
+  -- Skip phpcs if pint formatter is installed
+  if fs.file_exists(vendor_dir .. "/bin/pint") then
+    return linters
+  end
+
+  -- Add phpcs
+  table.insert(linters, "phpcs")
+
+  return linters
 end
 
 return {
