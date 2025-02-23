@@ -16,6 +16,7 @@ return {
             WinSeparator = { fg = "#4b6f9e" },
             CopilotSuggestion = { fg = "#4b6f9e" },
             SnacksIndentScope = { fg = "#5e5e87" },
+            WinBar = { fg = "#4b6f9e" },
           }
         end,
       },
