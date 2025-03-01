@@ -11,12 +11,16 @@ return {
     lazy = true,
     opts = {
       highlight_overrides = {
-        all = function()
+        all = function(colors)
           return {
             WinSeparator = { fg = "#4b6f9e" },
             CopilotSuggestion = { fg = "#4b6f9e" },
             SnacksIndentScope = { fg = "#5e5e87" },
             WinBar = { fg = "#4b6f9e" },
+            WinBar = { fg = colors.text, bg = "NONE" },
+            WinBarNC = { fg = colors.text, bg = colors.base },
+            WinBarContent = { fg = colors.text, bg = "#405e86" },
+            WinBarContentNC = { fg = colors.surface2, bg = colors.base },
           }
         end,
       },
