@@ -10,14 +10,14 @@
 -- Autocommands to toggle line numbers based on mode
 local list = require("helpers.list")
 local skip_filetypes = {
+  "lazy",
   "neo-tree",
+  "noice",
   "snacks_dashboard",
-  "snacks_terminal",
   "snacks_picker_input",
   "snacks_picker_list",
-  "noice",
+  "snacks_terminal",
   "TelescopePrompt",
-  "lazy",
   "trouble",
 }
 
