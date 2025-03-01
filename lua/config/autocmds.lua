@@ -13,6 +13,7 @@ local skip_filetypes = {
   "neo-tree",
   "snacks_dashboard",
   "snacks_terminal",
+  "snacks_picker_input",
   "snacks_picker_list",
   "noice",
   "TelescopePrompt",
@@ -83,5 +84,31 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = { "php", "javascript", "typescript" },
   callback = function()
     vim.opt_local.iskeyword:append("$")
+  end,
+})
+
+-- Set winbar for active window split
+vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
+  callback = function()
+    if list.contains_value(skip_filetypes, vim.bo.filetype) then
+      return
+    end
+
+    vim.wo.winbar = "%=%#WinBarContent#%m %t [%n]"
+  end,
+})
+
+-- Set winbar for inactive window split
+vim.api.nvim_create_autocmd({ "BufLeave", "WinLeave" }, {
+  callback = function()
+    if list.contains_value(skip_filetypes, vim.bo.filetype) then
+      return
+    end
+
+    local vim_bar = vim.wo.winbar
+
+    if vim_bar ~= "" then
+      vim.wo.winbar = vim_bar:gsub("WinBarContent", "WinBarContentNC")
+    end
   end,
 })
