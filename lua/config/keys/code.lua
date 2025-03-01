@@ -43,6 +43,7 @@ wk.add({
     mode = "n",
     "<leader>cs",
     function()
+      vim.wo.winbar = ""
       Snacks.picker("lsp_symbols", {
         layout = {
           preset = "right",
