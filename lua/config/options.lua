@@ -5,9 +5,6 @@
 -- Each split has his own linestatus
 -- vim.opt.laststatus = 2
 
--- Show filename on winbar
-vim.o.winbar = "%=%m %t"
-
 -- intelephense as PHP LSP
 vim.g.lazyvim_php_lsp = "intelephense"
 
