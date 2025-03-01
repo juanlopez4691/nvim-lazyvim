@@ -14,5 +14,11 @@ return {
         heigth = 0,
       },
     },
+    statuscolumn = {
+      folds = {
+        open = true,
+        git_hl = true,
+      },
+    },
   },
 }
