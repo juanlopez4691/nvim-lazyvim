@@ -71,6 +71,27 @@ vim.api.nvim_create_autocmd("WinEnter", {
   end,
 })
 
+-- Set cursor line only in active window.
+local setCursorLine = function(enable)
+  if not list.contains_value(skip_filetypes, vim.bo.filetype) then
+    vim.opt.cursorline = enable
+  end
+end
+
+vim.api.nvim_create_autocmd("WinLeave", {
+  pattern = "*",
+  callback = function()
+    setCursorLine(false)
+  end,
+})
+
+vim.api.nvim_create_autocmd("WinEnter", {
+  pattern = "*",
+  callback = function()
+    setCursorLine(true)
+  end,
+})
+
 -- Hide line numbers in Telescope pickers prompt
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "TelescopePrompt",
