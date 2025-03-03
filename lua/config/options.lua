@@ -19,6 +19,9 @@ else
   vim.g.python3_host_prog = "/opt/homebrew/opt/python@3.13/bin/python3"
 end
 
+-- Disable PERL provider
+vim.g.loaded_perl_provider = 0
+
 vim.g.root_spec = {
   "lsp",
   { ".git", "composer.json" },
