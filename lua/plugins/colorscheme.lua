@@ -13,15 +13,15 @@ return {
       highlight_overrides = {
         all = function(colors)
           return {
-            WinSeparator = { fg = "#4b6f9e" },
-            CopilotSuggestion = { fg = "#4b6f9e" },
+            WinSeparator = { fg = "#809dc2" },
+            CopilotSuggestion = { fg = "#809dc2" },
             SnacksIndentScope = { fg = "#5e5e87" },
             Normal = { bg = colors.mantle },
             NormalNC = { bg = colors.base },
             WinBar = { fg = colors.text, bg = "NONE" },
             WinBarNC = { fg = colors.text, bg = colors.base },
             WinBarContent = { fg = colors.text, bg = "#405e86" },
-            WinBarContentNC = { fg = colors.surface2, bg = colors.base },
+            WinBarContentNC = { fg = "#809dc2", bg = colors.base },
           }
         end,
       },
