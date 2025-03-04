@@ -1,4 +1,10 @@
+local keymap = vim.keymap
 local wk = require("which-key")
+
+-- Move cursor while in insert mode (naughty boy!)
+-- Should not start a new undo sequence
+keymap.set("i", "<A-h>", "<C-G>U<Left>")
+keymap.set("i", "<A-l>", "<C-G>U<Right>")
 
 wk.add({
   -- Replace selected text
