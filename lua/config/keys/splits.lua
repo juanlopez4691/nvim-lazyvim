@@ -22,12 +22,14 @@ keymap.del("n", "<C-Right>")
 -- Resize window splits
 local list = require("helpers.list")
 local skip_filetypes = {
-  "neo-tree",
-  "snacks_dashboard",
-  "snacks_picker_list",
-  "noice",
-  "TelescopePrompt",
   "lazy",
+  "neo-tree",
+  "noice",
+  "snacks_dashboard",
+  "snacks_picker_input",
+  "snacks_picker_list",
+  "snacks_picker_preview",
+  "TelescopePrompt",
 }
 
 keymap.set("n", "<A-right>", function()
