@@ -22,6 +22,16 @@ end
 -- Disable PERL provider
 vim.g.loaded_perl_provider = 0
 
+-- Set the backup directory, create it if it doesn't exist
+local backup_dir = vim.fn.expand("~/.nvim/backupdir")
+
+if vim.fn.isdirectory(backup_dir) == 0 then
+  vim.fn.mkdir(backup_dir, "p")
+end
+
+vim.opt.backupdir = backup_dir
+vim.opt.backup = true
+
 vim.g.root_spec = {
   "lsp",
   { ".git", "composer.json" },
