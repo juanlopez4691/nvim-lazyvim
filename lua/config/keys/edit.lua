@@ -20,6 +20,12 @@ keymap.set("i", "<C-p>", "<C-p>+", { noremap = true, silent = true, desc = "Past
 -- Select all
 keymap.set({ "n", "v", "x" }, "<C-a>", "0ggVG", { noremap = true, silent = true, desc = "Select all" })
 
+-- Increments/decrement numbers
+keymap.set("n", "+", "<C-a>", { noremap = true, silent = true, desc = "Increment numbers" })
+keymap.set("n", "-", "<C-x>", { noremap = true, silent = true, desc = "Decrement numbers" })
+keymap.set("v", "+", "<C-a>gv", { noremap = true, silent = true, desc = "Increment numbers" })
+keymap.set("v", "-", "<C-x>gv", { noremap = true, silent = true, desc = "Decrement numbers" })
+
 -- Paste over selection keeping yanked text
 keymap.set(
   "x",
