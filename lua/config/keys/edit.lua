@@ -17,6 +17,9 @@ keymap.set({ "n" }, "<leader>Y", '"+y$', { noremap = true, silent = true, desc =
 keymap.set({ "n", "v", "x" }, "<leader>p", '"+p', { noremap = true, silent = true, desc = "Paste from clipboard" })
 keymap.set("i", "<C-p>", "<C-p>+", { noremap = true, silent = true, desc = "Paste from clipboard in insert mode" })
 
+-- Select all
+keymap.set({ "n", "v", "x" }, "<C-a>", "0ggVG", { noremap = true, silent = true, desc = "Select all" })
+
 -- Paste over selection keeping yanked text
 keymap.set(
   "x",
