@@ -9,6 +9,14 @@ keymap.set("i", "<A-l>", "<C-G>U<Right>")
 -- Redefine backspace to start a new undo sequence
 keymap.set("i", "<C-H>", "<C-G>u<C-H>")
 
+-- Paste over selection keeping yanked text
+keymap.set(
+  "x",
+  "<leader>P",
+  '"_dP',
+  { noremap = true, silent = true, desc = "Paste over selection keeping yanked text" }
+)
+
 wk.add({
   -- Replace selected text
   { mode = "x", "<leader>r", [["_c]], desc = "Replace selection", icon = { icon = "" } },
