@@ -9,6 +9,14 @@ keymap.set("i", "<A-l>", "<C-G>U<Right>")
 -- Redefine backspace to start a new undo sequence
 keymap.set("i", "<C-H>", "<C-G>u<C-H>")
 
+-- Yank to unnamed register, paste from unnamed register
+keymap.set("n", "<leader>y", '"+y', { noremap = true, silent = true, desc = "Yank to clipboard" })
+keymap.set({ "v", "x" }, "<leader>y", '"+y', { noremap = true, silent = true, desc = "Yank selection to clipboard" })
+keymap.set({ "n", "v", "x" }, "<leader>yy", '"+yy', { noremap = true, silent = true, desc = "Yank line to clipboard" })
+keymap.set({ "n" }, "<leader>Y", '"+y$', { noremap = true, silent = true, desc = "Yank to end of line to clipboard" })
+keymap.set({ "n", "v", "x" }, "<leader>p", '"+p', { noremap = true, silent = true, desc = "Paste from clipboard" })
+keymap.set("i", "<C-p>", "<C-p>+", { noremap = true, silent = true, desc = "Paste from clipboard in insert mode" })
+
 -- Paste over selection keeping yanked text
 keymap.set(
   "x",
