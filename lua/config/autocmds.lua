@@ -10,6 +10,7 @@
 -- Autocommands to toggle line numbers based on mode
 local list = require("helpers.list")
 local skip_filetypes = {
+  "Avante",
   "lazy",
   "neo-tree",
   "noice",
