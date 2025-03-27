@@ -38,20 +38,43 @@ local symbols_filter = {
   "Variable",
 }
 
+local toggleDocumentSymbols = function()
+  vim.wo.winbar = ""
+  Snacks.picker("lsp_symbols", {
+    layout = {
+      preset = "right",
+    },
+    filter = {
+      default = symbols_filter,
+    },
+  })
+end
+
+local toggleWorkspaceSymbols = function()
+  Snacks.picker("lsp_workspace_symbols", {
+    layout = {
+      preset = "vertical",
+      layout = {
+        width = 0.9,
+      },
+    },
+    filter = {
+      default = symbols_filter,
+    },
+  })
+end
+
+-- Override original mapping for LSP symbols
+keymap.set("n", "gO", function()
+  toggleDocumentSymbols()
+end, { desc = "Symbols in document" })
+
 wk.add({
   {
     mode = "n",
     "<leader>cs",
     function()
-      vim.wo.winbar = ""
-      Snacks.picker("lsp_symbols", {
-        layout = {
-          preset = "right",
-        },
-        filter = {
-          default = symbols_filter,
-        },
-      })
+      toggleDocumentSymbols()
     end,
     desc = "Symbols in document",
   },
@@ -59,17 +82,7 @@ wk.add({
     mode = "n",
     "<leader>cS",
     function()
-      Snacks.picker("lsp_workspace_symbols", {
-        layout = {
-          preset = "vertical",
-          layout = {
-            width = 0.9,
-          },
-        },
-        filter = {
-          default = symbols_filter,
-        },
-      })
+      toggleWorkspaceSymbols()
     end,
     desc = "Symbols in workspace",
   },
