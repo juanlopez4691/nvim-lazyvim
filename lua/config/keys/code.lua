@@ -53,6 +53,7 @@ wk.add({
         },
       })
     end,
+    desc = "Symbols in document",
   },
   {
     mode = "n",
@@ -70,5 +71,6 @@ wk.add({
         },
       })
     end,
+    desc = "Symbols in workspace",
   },
 })
