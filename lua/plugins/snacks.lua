@@ -1,6 +1,21 @@
 return {
   "folke/snacks.nvim",
   opts = {
+    styles = {
+      zen = {
+        width = math.max(140, vim.api.nvim_win_get_width(0) * 0.7),
+        backdrop = { transparent = true, blend = 25 },
+      },
+    },
+    zen = {
+      toggles = {
+        dim = false,
+        git_signs = true,
+        mini_diff_signs = true,
+        diagnostics = true,
+        inlay_hints = true,
+      },
+    },
     terminal = {
       win = {
         wo = {
