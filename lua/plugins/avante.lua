@@ -43,6 +43,8 @@ return {
       -- Options override for custom providers
       provider_opts = {},
     },
+    web_search_engine = {
+      provider = "brave", -- tavily, serpapi, searchapi, google or kagi
     },
   },
 }
