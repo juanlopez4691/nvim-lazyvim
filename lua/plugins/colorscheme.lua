@@ -22,6 +22,7 @@ return {
             WinBarNC = { fg = colors.text, bg = colors.base },
             WinBarContent = { fg = colors.text, bg = "#405e86" },
             WinBarContentNC = { fg = "#809dc2", bg = colors.base },
+            AvanteSidebarWinSeparator = { fg = "#809dc2" },
           }
         end,
       },
