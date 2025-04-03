@@ -1,6 +1,13 @@
 return {
   "folke/snacks.nvim",
   opts = {
+    -- picker = {
+    --   formatters = {
+    --     file = {
+    --       filename_first = true,
+    --     },
+    --   },
+    -- },
     styles = {
       zen = {
         width = math.max(140, vim.api.nvim_win_get_width(0) * 0.7),
