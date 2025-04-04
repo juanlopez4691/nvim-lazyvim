@@ -14,6 +14,11 @@ return {
         backdrop = { transparent = true, blend = 25 },
       },
     },
+    scroll = {
+      animate = {
+        easing = "inQuad",
+      },
+    },
     zen = {
       toggles = {
         dim = false,
