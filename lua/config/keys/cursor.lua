@@ -19,3 +19,6 @@ vim.keymap.set("n", "<C-u>", function()
 end, { expr = true, desc = "Scroll half page down" })
 
 keymap.set("n", "G", "GGzz", { desc = "Scroll to end" })
+
+keymap.set("n", "n", "nzz", { desc = "Next occurrence" })
+keymap.set("n", "N", "Nzz", { desc = "Previous occurrence" })
