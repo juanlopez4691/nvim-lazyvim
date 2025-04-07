@@ -12,12 +12,15 @@ return {
     opts = {
       highlight_overrides = {
         all = function(colors)
+          local u = require("catppuccin.utils.colors")
+
           return {
+            CursorLine = { bg = u.lighten(colors.mantle, 0.40, colors.base) },
             WinSeparator = { fg = "#809dc2" },
             CopilotSuggestion = { fg = "#809dc2" },
             SnacksIndentScope = { fg = "#5e5e87" },
-            Normal = { bg = colors.mantle },
-            NormalNC = { bg = colors.base },
+            Normal = { bg = colors.crust },
+            NormalNC = { bg = colors.mantle },
             WinBar = { fg = colors.text, bg = "NONE" },
             WinBarNC = { fg = colors.text, bg = colors.base },
             WinBarContent = { fg = colors.text, bg = "#405e86" },
