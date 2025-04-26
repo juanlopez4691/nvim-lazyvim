@@ -55,8 +55,21 @@ return {
                 Snacks.picker.recent({ filter = { cwd = true } })
               end,
             },
-            { icon = " ", key = "s", desc = "Restore Session", section = "session" },
             { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+          },
+          {
+            title = "Sessions",
+            indent = 2,
+            padding = 1,
+            {
+              icon = "󱐋 ",
+              key = "S",
+              desc = "List Sessions",
+              action = function()
+                require("persistence").select()
+              end,
+            },
+            { icon = " ", key = "s", desc = "Restore Session", section = "session" },
           },
           {
             title = "Maintenance Actions",
