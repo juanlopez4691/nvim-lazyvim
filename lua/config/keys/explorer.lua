@@ -4,7 +4,7 @@ local wk = require("which-key")
 wk.add({
   {
     mode = "n",
-    "\\",
+    "\\\\",
     function()
       Snacks.explorer({ cwd = LazyVim.root() })
     end,
