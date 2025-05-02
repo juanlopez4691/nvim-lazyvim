@@ -10,5 +10,17 @@ return {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
   },
-  opts = {},
+  opts = {
+    strategies = {
+      chat = {
+        adapter = "gemini",
+      },
+      inline = {
+        adapter = "gemini",
+      },
+      cmd = {
+        adapter = "gemini",
+      },
+    },
+  },
 }
