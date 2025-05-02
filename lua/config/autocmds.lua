@@ -11,6 +11,7 @@
 local list = require("helpers.list")
 local skip_filetypes = {
   "Avante",
+  "codecompanion",
   "DressingInput",
   "grug-far",
   "lazy",
