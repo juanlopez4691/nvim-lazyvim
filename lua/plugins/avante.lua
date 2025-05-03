@@ -25,9 +25,8 @@ return {
     provider = "gemini",
     gemini = {
       -- @see https://ai.google.dev/gemini-api/docs/models/gemini
-      model = "gemini-2.0-flash-thinking-exp-01-21",
-      -- model = "gemini-1.5-pro-exp-0827",
-      -- model = "gemini-1.5-flash",
+      model = "gemini/gemini-2.5-flash-preview-04-17",
+      -- model = "gemini-2.0-flash-thinking-exp-01-21",
       temperature = 0,
       max_tokens = 8192,
     },
