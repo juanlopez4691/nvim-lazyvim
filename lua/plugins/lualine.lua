@@ -10,10 +10,20 @@ local filename = {
   },
 }
 
+local disabled_filetypes = {
+  "dap-repl",
+}
+
 return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
   opts = {
+    options = {
+      disabled_filetypes = {
+        winbar = disabled_filetypes,
+        inactive_winbar = disabled_filetypes,
+      },
+    },
     sections = {
       lualine_c = {
         LazyVim.lualine.root_dir(),
