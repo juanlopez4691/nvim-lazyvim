@@ -9,6 +9,15 @@ return {
     { "xzbdmw/colorful-menu.nvim" },
   },
   opts = {
+    sources = {
+      default = { "lsp", "laravel", "buffer", "snippets", "path" },
+      providers = {
+        laravel = {
+          name = "laravel",
+          module = "blink.compat.source",
+        },
+      },
+    },
     keymap = {
       preset = "enter",
       ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
