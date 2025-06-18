@@ -1,7 +1,12 @@
 return {
   "saghen/blink.cmp",
   dependencies = {
-    "xzbdmw/colorful-menu.nvim",
+    {
+      "saghen/blink.compat",
+      lazy = true,
+      opts = {},
+    },
+    { "xzbdmw/colorful-menu.nvim" },
   },
   opts = {
     keymap = {
