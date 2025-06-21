@@ -69,6 +69,15 @@ keymap.set("n", "gO", function()
   toggleDocumentSymbols()
 end, { desc = "Symbols in document" })
 
+-- Override original mapping for go-to-file
+keymap.set("n", "gf", function()
+  if require("laravel").app("gf").cursor_on_resource() then
+    return "<cmd>Laravel gf<CR>"
+  else
+    return "gf"
+  end
+end, { desc = "Go to file", noremap = false, expr = true })
+
 wk.add({
   {
     mode = "n",
