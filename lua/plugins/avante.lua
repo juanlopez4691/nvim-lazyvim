@@ -33,6 +33,14 @@ return {
           max_tokens = 8192,
         },
       },
+      mistral = {
+        __inherited_from = "openai",
+        api_key_name = "MISTRAL_API_KEY",
+        endpoint = "https://api.mistral.ai/v1/",
+        model = "mistral-large-latest",
+        extra_request_body = {
+          max_tokens = 4096, -- to avoid using max_completion_tokens
+        },
       },
     },
     behaviour = {
