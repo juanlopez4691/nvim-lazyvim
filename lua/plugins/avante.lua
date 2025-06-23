@@ -26,7 +26,7 @@ return {
     providers = {
       gemini = {
         -- @see https://ai.google.dev/gemini-api/docs/models/gemini
-        model = "gemini/gemini-2.5-flash-preview-04-17",
+        model = "gemini-2.5-flash-preview-04-17",
         -- model = "gemini-2.0-flash-thinking-exp-01-21",
         extra_request_body = {
           temperature = 0,
