@@ -33,21 +33,22 @@ return {
           max_tokens = 8192,
         },
       },
-      behaviour = {
-        auto_suggestions = false, -- Experimental stage
-        auto_set_highlight_group = true,
-        auto_set_keymaps = true,
-        auto_apply_diff_after_generation = false,
-        support_paste_from_clipboard = true,
       },
-      file_selector = {
-        provider = "snacks",
-        -- Options override for custom providers
-        provider_opts = {},
-      },
-      web_search_engine = {
-        provider = "brave", -- tavily, serpapi, searchapi, google or kagi
-      },
+    },
+    behaviour = {
+      auto_suggestions = false, -- Experimental stage
+      auto_set_highlight_group = true,
+      auto_set_keymaps = true,
+      auto_apply_diff_after_generation = false,
+      support_paste_from_clipboard = true,
+    },
+    file_selector = {
+      provider = "snacks",
+      -- Options override for custom providers
+      provider_opts = {},
+    },
+    web_search_engine = {
+      provider = "brave", -- tavily, serpapi, searchapi, google or kagi
     },
   },
 }
