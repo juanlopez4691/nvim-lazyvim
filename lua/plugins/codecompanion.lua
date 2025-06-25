@@ -11,6 +11,16 @@ return {
     "nvim-treesitter/nvim-treesitter",
   },
   opts = {
+    display = {
+      chat = {
+        window = {
+          opts = {
+            number = false,
+            relativenumber = false,
+          },
+        },
+      },
+    },
     strategies = {
       chat = {
         adapter = "gemini",
