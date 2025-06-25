@@ -20,6 +20,16 @@ return {
           },
         },
       },
+      action_palette = {
+        width = 95,
+        height = 20,
+        prompt = "Prompt ",
+        provider = "snacks",
+        opts = {
+          show_default_actions = true,
+          show_default_prompt_library = true,
+        },
+      },
     },
     strategies = {
       chat = {
