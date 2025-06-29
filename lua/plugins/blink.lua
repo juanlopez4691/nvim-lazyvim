@@ -10,11 +10,12 @@ return {
   },
   opts = {
     sources = {
-      default = { "lsp", "laravel", "buffer", "snippets", "path" },
+      default = { "laravel", "lsp", "buffer", "snippets", "path" },
       providers = {
         laravel = {
           name = "laravel",
-          module = "blink.compat.source",
+          module = "laravel.blink_source",
+          score_offset = 1000, -- High priority for Laravel completions
         },
       },
     },
