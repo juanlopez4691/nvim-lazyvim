@@ -1,3 +1,5 @@
+local copilot_suggestion = require("copilot.suggestion")
+
 return {
   "saghen/blink.cmp",
   dependencies = {
@@ -21,14 +23,65 @@ return {
     },
     keymap = {
       preset = "enter",
-      ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
-      ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+      ["<CR>"] = {
+        function(cmp)
+          if cmp.is_visible() then
+            cmp.accept()
+            return true
+          end
+
+          if copilot_suggestion.is_visible() then
+            copilot_suggestion.accept()
+            return true
+          end
+          return false
+        end,
+        "fallback",
+      },
+      ["<Tab>"] = {
+        function(cmp)
+          if cmp.is_visible() then
+            cmp.select_next()
+            return true
+          end
+
+          if copilot_suggestion.is_visible() then
+            copilot_suggestion.next()
+            return true
+          end
+
+          return false
+        end,
+        "fallback",
+      },
+      ["<S-Tab>"] = {
+        function(cmp)
+          if cmp.is_visible() then
+            cmp.select_prev()
+            return true
+          end
+
+          if copilot_suggestion.is_visible() then
+            copilot_suggestion.prev()
+            return true
+          end
+
+          return false
+        end,
+        "fallback",
+      },
       ["<esc>"] = {
         function(cmp)
           if cmp.is_visible() then
             cmp.cancel()
             return true
           end
+
+          if copilot_suggestion.is_visible() then
+            copilot_suggestion.dismiss()
+            return true
+          end
+
           return false
         end,
         "fallback",
