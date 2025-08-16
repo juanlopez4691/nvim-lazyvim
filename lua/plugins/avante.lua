@@ -65,7 +65,7 @@ return {
       auto_apply_diff_after_generation = false,
       support_paste_from_clipboard = true,
     },
-    file_selector = {
+    selector = {
       provider = "snacks",
       -- Options override for custom providers
       provider_opts = {},
