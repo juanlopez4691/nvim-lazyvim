@@ -9,11 +9,19 @@ return {
       opts = {},
     },
     { "xzbdmw/colorful-menu.nvim" },
+    {
+      "Kaiser-Yang/blink-cmp-avante",
+    },
   },
   opts = {
     sources = {
-      default = { "laravel", "lsp", "buffer", "snippets", "path" },
+      default = { "avante", "laravel", "lsp", "buffer", "snippets", "path" },
       providers = {
+        avante = {
+          module = "blink-cmp-avante",
+          name = "Avante",
+          opts = {},
+        },
         laravel = {
           name = "laravel",
           module = "laravel.blink_source",
