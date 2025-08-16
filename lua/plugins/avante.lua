@@ -20,10 +20,12 @@ return {
       },
       ft = { "markdown", "Avante" },
     },
+    "zbirenbaum/copilot.lua",
   },
   opts = {
     provider = "gemini",
     providers = {
+      copilot = {}, -- leverages copilot.lua session internally
       gemini = {
         -- @see https://ai.google.dev/gemini-api/docs/models/gemini
         model = "gemini-2.5-flash-preview-04-17",
@@ -41,6 +43,11 @@ return {
         extra_request_body = {
           max_tokens = 4096, -- to avoid using max_completion_tokens
         },
+      },
+      openai = {
+        __inherited_from = "openai",
+        api_key_name = "OPENAI_API_KEY",
+        model = "gpt-4o",
       },
     },
     behaviour = {
