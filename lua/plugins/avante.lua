@@ -23,6 +23,15 @@ return {
     "zbirenbaum/copilot.lua",
   },
   opts = {
+    input = {
+      provider = "snacks", -- "native" | "dressing" | "snacks"
+      provider_opts = {
+        -- Snacks input configuration
+        title = "Avante Input",
+        icon = " ",
+        placeholder = "Enter your API key...",
+      },
+    },
     provider = "gemini",
     providers = {
       copilot = {}, -- leverages copilot.lua session internally
