@@ -1,5 +1,6 @@
 return {
   "zbirenbaum/copilot.lua",
+  event = "LazyFile",
   opts = {
     server_opts_overrides = {
       settings = {
