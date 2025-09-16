@@ -41,6 +41,13 @@ vim.g.root_spec = {
   "cwd",
 }
 
+vim.opt.listchars = {
+  tab = "» ",
+  trail = "·",
+  nbsp = "␣",
+  extends = "…",
+}
+
 -- Enable AI virtual text
 vim.g.ai_cmp = false
 
