@@ -22,9 +22,11 @@ return {
           return ("Good %s, %s"):format(day_part, username)
         end
 
+        vim.api.nvim_set_hl(0, "SnacksDashboardHeader", { fg = "#0dd95b" })
+
         return {
-          { padding = 0, align = "center", text = { header, hl = "header" } },
-          { padding = 2, align = "center", text = { greeting(), hl = "header" } },
+          { padding = 0, align = "center", text = { header, hl = "SnacksDashboardHeader" } },
+          { padding = 2, align = "center", text = { greeting(), hl = "SnacksDashboardHeader" } },
           {
             title = "Builtin Actions",
             indent = 2,
