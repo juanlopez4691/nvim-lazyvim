@@ -11,33 +11,23 @@ return {
       "phpdoc",
       "vue",
     },
+    highlight = {
+      enable = true,
+      additional_vim_regex_highlighting = false,
+    },
   },
   config = function(_, opts)
     if type(opts.ensure_installed) == "table" then
       opts.ensure_installed = LazyVim.dedup(opts.ensure_installed)
     end
 
-    require("nvim-treesitter.configs").setup(opts)
+    require("nvim-treesitter").setup(opts)
 
-    -- Defer Blade parser configuration
-    vim.defer_fn(function()
-      local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-      if not parser_config.blade then
-        parser_config.blade = {
-          install_info = {
-            url = "https://github.com/EmranMR/tree-sitter-blade",
-            files = { "src/parser.c" },
-            branch = "main",
-          },
-          filetype = "blade",
-        }
-
-        vim.filetype.add({
-          pattern = {
-            [".*%.blade%.php"] = "blade",
-          },
-        })
-      end
-    end, 100)
+    vim.filetype.add({
+      pattern = {
+        [".*%.blade%.php"] = "blade",
+        [".*%.blade"] = "blade",
+      },
+    })
   end,
 }
