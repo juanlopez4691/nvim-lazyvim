@@ -3,11 +3,6 @@ local copilot_suggestion = require("copilot.suggestion")
 return {
   "saghen/blink.cmp",
   dependencies = {
-    {
-      "saghen/blink.compat",
-      lazy = true,
-      opts = {},
-    },
     { "xzbdmw/colorful-menu.nvim" },
     {
       "Kaiser-Yang/blink-cmp-avante",
