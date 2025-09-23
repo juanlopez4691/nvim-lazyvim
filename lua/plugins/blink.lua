@@ -1,5 +1,13 @@
 local copilot_suggestion = require("copilot.suggestion")
 
+local transform_items = function(items, icon, name)
+  for _, item in ipairs(items) do
+    item.kind_icon = icon
+    item.kind_name = name
+  end
+  return items
+end
+
 return {
   "saghen/blink.cmp",
   dependencies = {
@@ -21,6 +29,9 @@ return {
           name = "laravel",
           module = "laravel.blink_source",
           score_offset = 1000, -- High priority for Laravel completions
+          transform_items = function(_, items)
+            return transform_items(items, "", "Laravel")
+          end,
         },
       },
     },
