@@ -1,4 +1,4 @@
-local copilot_suggestion = require("copilot.suggestion")
+local copilot_ok, copilot_suggestion = pcall(require, "copilot.suggestion")
 
 local transform_items = function(items, icon, name)
   for _, item in ipairs(items) do
@@ -44,10 +44,11 @@ return {
             return true
           end
 
-          if copilot_suggestion.is_visible() then
+          if copilot_ok and copilot_suggestion.is_visible() then
             copilot_suggestion.accept()
             return true
           end
+
           return false
         end,
         "fallback",
@@ -59,7 +60,7 @@ return {
             return true
           end
 
-          if copilot_suggestion.is_visible() then
+          if copilot_ok and copilot_suggestion.is_visible() then
             copilot_suggestion.next()
             return true
           end
@@ -75,7 +76,7 @@ return {
             return true
           end
 
-          if copilot_suggestion.is_visible() then
+          if copilot_ok and copilot_suggestion.is_visible() then
             copilot_suggestion.prev()
             return true
           end
@@ -91,7 +92,7 @@ return {
             return true
           end
 
-          if copilot_suggestion.is_visible() then
+          if copilot_ok and copilot_suggestion.is_visible() then
             copilot_suggestion.dismiss()
             return true
           end
