@@ -3,11 +3,22 @@ return {
   opts = function()
     return {
       ensure_installed = {
-        "phpcs",
+        "blade-formatter",
+        "docker-compose-language-service",
+        "dockerfile-language-server",
+        "intelephense",
+        "json-lsp",
+        "lua-language-server",
+        "marksman",
+        "php-debug-adapter",
         "phpcbf",
+        "phpcs",
         "phpstan",
         "pint",
         "prettierd",
+        "tailwindcss-language-server",
+        "taplo",
+        "vtsls",
       },
     }
   end,
