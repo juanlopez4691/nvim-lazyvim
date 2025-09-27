@@ -33,6 +33,7 @@ return {
           return vim.tbl_deep_extend("force", opts.formatters_by_ft.php or {}, get_php_formatters())
         end,
         python = { "isort", "black", stop_after_first = true },
+        blade = { "blade-formatter" },
       },
       formatters = {
         injected = { options = { ignore_errors = true } },
