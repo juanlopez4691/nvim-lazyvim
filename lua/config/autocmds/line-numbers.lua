@@ -43,7 +43,7 @@ vim.api.nvim_create_autocmd({ "InsertLeave" }, {
 })
 
 -- Automatically switch to absolute line numbers for inactive windows
-vim.api.nvim_create_autocmd("WinLeave", {
+vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
   pattern = "*",
   callback = function()
     if list.contains_value(skip_filetypes, vim.bo.filetype) then
@@ -56,7 +56,7 @@ vim.api.nvim_create_autocmd("WinLeave", {
   end,
 })
 
-vim.api.nvim_create_autocmd("WinEnter", {
+vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
   pattern = "*",
   callback = function()
     if list.contains_value(skip_filetypes, vim.bo.filetype) then
