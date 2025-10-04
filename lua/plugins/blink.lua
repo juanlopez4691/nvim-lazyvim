@@ -18,13 +18,8 @@ return {
   },
   opts = {
     sources = {
-      default = { "avante", "laravel", "lsp", "buffer", "snippets", "path" },
+      default = { "laravel", "lsp", "buffer", "snippets", "path" },
       providers = {
-        avante = {
-          module = "blink-cmp-avante",
-          name = "Avante",
-          opts = {},
-        },
         laravel = {
           name = "laravel",
           module = "laravel.blink_source",
