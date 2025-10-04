@@ -1,7 +1,6 @@
 {
   "LazyVim": { "branch": "main", "commit": "dc1ffa5bcb66f46284f91a8593dda5c7c54a1824" },
   "SchemaStore.nvim": { "branch": "main", "commit": "8e17e50b519ba360bcfd5dfb5843ccac9be500ba" },
-  "avante.nvim": { "branch": "main", "commit": "5e4bb50ddaa8c4688675df6f437712c0e793a51c" },
   "blink-cmp-avante": { "branch": "master", "commit": "4f494c6e124acbe31a8f5d58effa0c14aa38a6d5" },
   "blink.cmp": { "branch": "main", "commit": "327fff91fe6af358e990be7be1ec8b78037d2138" },
   "bufferline.nvim": { "branch": "main", "commit": "17083c826a004bcb87d3a830c7710d0796a73bbf" },
@@ -39,7 +38,6 @@
   "nvim-treesitter": { "branch": "main", "commit": "01ced7499fb07f6c94abd316414ef198bd6e7058" },
   "nvim-treesitter-textobjects": { "branch": "main", "commit": "1b2d85d3de6114c4bcea89ffb2cd1ce9e3a19931" },
   "nvim-ts-autotag": { "branch": "main", "commit": "c4ca798ab95b316a768d51eaaaee48f64a4a46bc" },
-  "nvim-web-devicons": { "branch": "master", "commit": "b8221e42cf7287c4dcde81f232f58d7b947c210d" },
   "one-small-step-for-vimkind": { "branch": "main", "commit": "99c22f1fa83eb9aa442cf13a23aed7197a2d4456" },
   "persistence.nvim": { "branch": "main", "commit": "166a79a55bfa7a4db3e26fc031b4d92af71d0b51" },
   "plenary.nvim": { "branch": "master", "commit": "b9fd5226c2f76c951fc8ed5923d85e4de065e509" },
