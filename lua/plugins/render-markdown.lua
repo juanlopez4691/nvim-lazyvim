@@ -6,7 +6,6 @@ return {
       "norg",
       "rmd",
       "org",
-      "codecompanion",
     },
   },
 }
