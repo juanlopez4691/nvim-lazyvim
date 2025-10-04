@@ -12,9 +12,6 @@ return {
   "saghen/blink.cmp",
   dependencies = {
     { "xzbdmw/colorful-menu.nvim" },
-    {
-      "Kaiser-Yang/blink-cmp-avante",
-    },
   },
   opts = {
     sources = {
