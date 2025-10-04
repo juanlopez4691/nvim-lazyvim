@@ -7,7 +7,6 @@ return {
       "rmd",
       "org",
       "codecompanion",
-      "avante",
     },
   },
 }
