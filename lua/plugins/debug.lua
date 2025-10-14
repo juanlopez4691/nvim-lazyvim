@@ -19,4 +19,14 @@ return {
 
     return opts
   end,
+  dependencies = {
+    {
+      "jay-babu/mason-nvim-dap.nvim",
+      opts = {
+        handlers = {
+          php = function() end,
+        },
+      },
+    },
+  },
 }
