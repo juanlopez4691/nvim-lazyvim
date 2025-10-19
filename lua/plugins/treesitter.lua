@@ -4,7 +4,9 @@ return {
     ensure_installed = {
       "blade",
       "css",
+      "html",
       "http",
+      "javascript",
       "markdown",
       "php",
       "php_only",
