@@ -18,6 +18,8 @@ return {
         "prettierd",
         "tailwindcss-language-server",
         "taplo",
+        "twigcs",
+        "twig-cs-fixer",
         "vtsls",
       },
     }
