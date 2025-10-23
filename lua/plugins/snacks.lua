@@ -1,6 +1,17 @@
 return {
   "folke/snacks.nvim",
   opts = {
+    lazygit = {
+      win = {
+        width = 0,
+        heigth = 0,
+      },
+      config = {
+        os = {
+          edit = '[ -z ""$NVIM"" ] && (nvim -- {{filename}}) || (nvim --server ""$NVIM"" --remote-send ""q"" && nvim --server ""$NVIM"" --remote {{filename}})',
+        },
+      },
+    },
     picker = {
       -- formatters = {
       --   file = {
@@ -18,6 +29,12 @@ return {
         },
       },
     },
+    statuscolumn = {
+      folds = {
+        open = true,
+        git_hl = true,
+      },
+    },
     styles = {
       zen = {
         width = math.max(140, vim.api.nvim_win_get_width(0) * 0.7),
@@ -29,15 +46,6 @@ return {
         easing = "inQuad",
       },
     },
-    zen = {
-      toggles = {
-        dim = false,
-        git_signs = true,
-        mini_diff_signs = true,
-        diagnostics = true,
-        inlay_hints = true,
-      },
-    },
     terminal = {
       win = {
         wo = {
@@ -45,21 +53,13 @@ return {
         },
       },
     },
-    lazygit = {
-      win = {
-        width = 0,
-        heigth = 0,
-      },
-      config = {
-        os = {
-          edit = '[ -z ""$NVIM"" ] && (nvim -- {{filename}}) || (nvim --server ""$NVIM"" --remote-send ""q"" && nvim --server ""$NVIM"" --remote {{filename}})',
-        },
-      },
-    },
-    statuscolumn = {
-      folds = {
-        open = true,
-        git_hl = true,
+    zen = {
+      toggles = {
+        dim = false,
+        git_signs = true,
+        mini_diff_signs = true,
+        diagnostics = true,
+        inlay_hints = true,
       },
     },
   },
