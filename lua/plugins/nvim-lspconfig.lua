@@ -1,16 +1,8 @@
--- Restore c-k original functionality to enter digraphs
-local getKeys = function()
-  local keys = require("lazyvim.plugins.lsp.keymaps").get()
-  keys[#keys + 1] = { "<c-k>", false, mode = "i" }
-
-  return keys
-end
-
 return {
   "neovim/nvim-lspconfig",
   opts = {
-    keys = getKeys(),
     servers = {
+      ["*"] = { "i", "<c-k>", false },
       lua_ls = {
         settings = {
           Lua = {
