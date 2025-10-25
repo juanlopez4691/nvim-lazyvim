@@ -20,52 +20,56 @@ local skip_filetypes = {
   "trouble",
 }
 
+-- Check if current filetype should be skipped
+local function should_skip_filetype()
+  return list.contains_value(skip_filetypes, vim.bo.filetype)
+end
+
+-- Set line numbers based on mode
+local function set_line_numbers(enable_line_numbers, enable_relative_line_numbers)
+  if not should_skip_filetype() then
+    vim.wo.number = enable_line_numbers
+    vim.wo.relativenumber = enable_relative_line_numbers
+  end
+end
+
+-- Switch to absolute line numbers in insert mode
 vim.api.nvim_create_autocmd({ "InsertEnter" }, {
   pattern = "*",
   callback = function()
-    if list.contains_value(skip_filetypes, vim.bo.filetype) then
-      return
-    end
-    -- Disable relative numbers in Insert mode
-    vim.wo.relativenumber = false
+    set_line_numbers(true, false)
   end,
 })
 
+-- Switch to relative line numbers in normal mode
 vim.api.nvim_create_autocmd({ "InsertLeave" }, {
   pattern = "*",
   callback = function()
-    if list.contains_value(skip_filetypes, vim.bo.filetype) then
-      return
-    end
-    -- Re-enable relative numbers when leaving Insert mode
-    vim.wo.relativenumber = true
+    set_line_numbers(true, true)
   end,
 })
 
--- Automatically switch to absolute line numbers for inactive windows
+-- Switch to absolute line numbers for inactive windows
 vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
   pattern = "*",
   callback = function()
-    if list.contains_value(skip_filetypes, vim.bo.filetype) then
-      return
+    if not list.contains_value(skip_filetypes, vim.bo.filetype) then
+      -- Keep absolute numbers for inactive windows
+      set_line_numbers(true, false)
     end
-    -- Keep absolute numbers for inactive windows
-    vim.wo.number = true
-    -- Disable relative numbers in inactive windows
-    vim.wo.relativenumber = false
   end,
 })
 
+-- Switch to relative line numbers for active windows
 vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
   pattern = "*",
   callback = function()
-    if list.contains_value(skip_filetypes, vim.bo.filetype) then
-      return
+    if not list.contains_value(skip_filetypes, vim.bo.filetype) then
+      -- Enable relative numbers when entering a window
+      set_line_numbers(true, true)
+      -- Keep absolute numbers enabled
+      vim.wo.number = true
     end
-    -- Enable relative numbers when entering a window
-    vim.wo.relativenumber = true
-    -- Keep absolute numbers enabled
-    vim.wo.number = true
   end,
 })
 
@@ -73,8 +77,7 @@ vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "TelescopePrompt",
   callback = function()
-    vim.opt_local.number = false
-    vim.opt_local.relativenumber = false
+    set_line_numbers(false, false)
   end,
 })
 
@@ -85,6 +88,7 @@ local setCursorLine = function(enable)
   end
 end
 
+-- Unset cursor line when leaving a window
 vim.api.nvim_create_autocmd("WinLeave", {
   pattern = "*",
   callback = function()
@@ -92,6 +96,7 @@ vim.api.nvim_create_autocmd("WinLeave", {
   end,
 })
 
+-- Set cursor line when entering a window
 vim.api.nvim_create_autocmd("WinEnter", {
   pattern = "*",
   callback = function()
