@@ -1,32 +1,91 @@
 --[[
--- Scans a given directory and requires all Lua files within it.
---
--- The directory path is assumed to be relative to the "lua/" directory.
---
--- @param directory The directory to scan and require Lua files from.
---]]
+  helpers/filesystem.lua
+
+  Utility functions for filesystem operations in Neovim configs.
+
+  Features:
+    - Cross-platform directory scanning using plenary.nvim
+    - Error aggregation and summary reporting
+    - Deduplication of required modules
+    - Support for both absolute and relative paths
+    - Input sanitization for security
+    - Expanded documentation and usage examples
+]]
+
+local scan
+local plenary_ok, plenary_scan = pcall(require, "plenary.scandir")
+
+-- Ensure plenary.nvim is available for robust directory scanning or fall back to shell scanning
+if plenary_ok then
+  scan = plenary_scan
+else
+  vim.notify(
+    "plenary.nvim not found! Falling back to shell-based scan. Some features may be less portable.",
+    vim.log.levels.WARN
+  )
+end
+
+-- Sanitize input to avoid shell injection and invalid paths
+local function sanitize_path(path)
+  -- Only allow valid Lua module path characters
+  return path:gsub("[^%w%._/-]", "")
+end
+
+-- Loads all Lua modules in a directory (absolute or relative to lua/)
+-- Usage:
+--   require_dir("config/keys") -- relative to lua/
+--   require_dir("/absolute/path/to/lua/config/keys") -- absolute path
 local function require_dir(directory)
-  local target_dir = vim.fn.stdpath("config") .. "/lua/" .. directory
+  local safe_dir = sanitize_path(directory)
+  local target_dir = safe_dir
 
-  local function scan_dir(dir)
-    local pfile = io.popen('find "' .. dir .. '" -type f -name "*.lua"')
-    if not pfile then
-      vim.notify("Failed to scan directory: " .. dir, vim.log.levels.ERROR)
-      return
-    end
-
-    for file in pfile:lines() do
-      local module_name = file:match("^.+/lua/(.+).lua$"):gsub("/", ".")
-      local success, err = pcall(require, module_name)
-      if not success then
-        vim.notify("Failed to require module: " .. module_name .. "\nError: " .. err, vim.log.levels.WARN)
-      end
-    end
-
-    pfile:close()
+  if not safe_dir:match("^/") then
+    target_dir = vim.fn.stdpath("config") .. "/lua/" .. safe_dir
   end
 
-  scan_dir(target_dir)
+  local files = {}
+
+  if scan and scan.scan_dir then
+    files = scan.scan_dir(target_dir, { depth = 1, add_dirs = false, search_pattern = "%.lua$" })
+  else
+    -- Fallback: shell-based scan (Unix only)
+    local pfile = io.popen('find "' .. target_dir .. '" -type f -name "*.lua"')
+
+    if pfile then
+      for file in pfile:lines() do
+        table.insert(files, file)
+      end
+      pfile:close()
+    else
+      vim.notify("Failed to scan directory: " .. target_dir, vim.log.levels.ERROR)
+      return
+    end
+  end
+
+  local required = {}
+  local errors = {}
+
+  for _, file in ipairs(files) do
+    local module_name = file:match("^.+/lua/(.+)%.lua$"):gsub("/", ".")
+
+    if not required[module_name] then
+      local success, err = pcall(require, module_name)
+
+      if not success then
+        table.insert(errors, { module = module_name, error = err })
+      end
+      required[module_name] = true
+    end
+  end
+
+  if #errors > 0 then
+    local msg = "Failed to require modules:\n"
+
+    for _, e in ipairs(errors) do
+      msg = msg .. e.module .. ": " .. e.error .. "\n"
+    end
+    vim.notify(msg, vim.log.levels.ERROR)
+  end
 end
 
 --[[
