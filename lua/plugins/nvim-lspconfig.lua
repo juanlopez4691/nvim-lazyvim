@@ -22,6 +22,12 @@ return {
           },
         },
       },
+      antlersls = {
+        filetypes = { "antlers", "html" },
+        files = {
+          associations = { "*.antlers", "*.antlers.html" },
+        },
+      },
       intelephense = {
         filetypes = { "php", "blade", "php_only" },
         files = {
