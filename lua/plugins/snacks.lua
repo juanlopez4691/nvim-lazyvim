@@ -12,6 +12,15 @@ return {
         },
       },
     },
+    input = {
+      enabled = true,
+    },
+    select = {
+      enabled = true,
+    },
+    image = {
+      enabled = true,
+    },
     picker = {
       -- formatters = {
       --   file = {
@@ -30,6 +39,7 @@ return {
       },
     },
     statuscolumn = {
+      enabled = true,
       folds = {
         open = true,
         git_hl = true,
@@ -63,4 +73,11 @@ return {
       },
     },
   },
+  config = function(_, opts)
+    require("snacks").setup(opts)
+
+    -- Hook Snacks UI into Neovim
+    vim.ui.input = require("snacks.input").input
+    vim.ui.select = require("snacks.picker").select
+  end,
 }
