@@ -4,7 +4,7 @@ return {
     lazygit = {
       win = {
         width = 0,
-        heigth = 0,
+        height = 0,
       },
       config = {
         os = {
