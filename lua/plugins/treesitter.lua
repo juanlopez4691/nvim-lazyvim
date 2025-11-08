@@ -2,21 +2,27 @@ return {
   "nvim-treesitter/nvim-treesitter",
   opts = {
     ensure_installed = {
+      -- Core Neovim related
+      "lua",
+      "vim",
+      "vimdoc",
+      "query",
+      -- Common languages
       "bash",
-      "blade",
       "css",
-      "go",
       "html",
       "javascript",
       "json",
-      "lua",
       "markdown",
+      "markdown_inline", -- inline code blocks in md
       "php",
-      "php_doc",
-      "php_only",
+      "phpdoc", -- phpdoc comments
       "typescript",
-      "vue",
+      "tsx", -- TSX / React
       "yaml",
+      -- Framework / extra
+      "blade", -- Laravel Blade templates
+      "vue", -- Vue single-file components
     },
   },
 }
