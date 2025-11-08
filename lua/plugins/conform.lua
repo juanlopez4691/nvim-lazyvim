@@ -1,37 +1,13 @@
---[[
---- Configure PHP formatters dynamically based on project setup.
----
---- Formatter is chosen based on the presence of pint or phpcbf
---- in the project.
----
---- @return table Linter names for PHP files
----]]
-local function get_php_formatters()
-  local fs = require("helpers.filesystem")
-  local project_root = vim.fn.getcwd()
-
-  if fs.file_exists(project_root .. "/pint.json") and fs.file_exists(project_root .. "/vendor/bin/pint") then
-    return { "pint" }
-  elseif fs.file_exists(project_root .. "/vendor/bin/phpcbf") then
-    return { "phpcbf" }
-  else
-    return { "php-cs-fixer" }
-  end
-end
-
 return {
   "stevearc/conform.nvim",
   lazy = true,
   event = { "BufWritePre" },
   cmd = { "ConformInfo" },
   opts = function(_, opts)
-    -- Merge new options with existing ones
     return vim.tbl_deep_extend("force", opts or {}, {
       formatters_by_ft = {
         javascript = { "prettierd", "prettier", stop_after_first = true },
-        php = function()
-          return vim.tbl_deep_extend("force", opts.formatters_by_ft.php or {}, get_php_formatters())
-        end,
+        php = { "pint", "phpcbf", "php-cs-fixer", stop_after_first = true },
         python = { "isort", "black", stop_after_first = true },
         blade = { "blade-formatter" },
       },
@@ -43,11 +19,24 @@ return {
             description = "Laravel Pint is an opinionated PHP code style fixer for minimalists. Pint is built on top of PHP-CS-Fixer and makes it simple to ensure that your code style stays clean and consistent.",
           },
           command = require("conform.util").find_executable({
-            vim.fn.stdpath("data") .. "/mason/bin/pint",
-            "vendor/bin/pint",
-          }, "pint"),
+            "vendor/bin/pint", -- Project-local first
+            vim.fn.stdpath("data") .. "/mason/bin/pint", -- Mason second
+          }, "pint"), -- Fallback to PATH
           args = { "$FILENAME" },
           stdin = false,
+          -- Only use pint if pint.json exists or vendor/bin/pint exists
+          condition = function(_, ctx)
+            local root = vim.fs.root(ctx.buf, { "pint.json", "vendor" }) or ctx.dirname
+            return vim.fn.filereadable(root .. "/pint.json") == 1
+              or vim.fn.filereadable(root .. "/vendor/bin/pint") == 1
+          end,
+        },
+        phpcbf = {
+          -- Only use phpcbf if vendor/bin/phpcbf exists
+          condition = function(_, ctx)
+            local root = vim.fs.root(ctx.buf, { "vendor" }) or ctx.dirname
+            return vim.fn.filereadable(root .. "/vendor/bin/phpcbf") == 1
+          end,
         },
       },
     })
