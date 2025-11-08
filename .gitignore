@@ -8,3 +8,4 @@ foo.*
 data
 *.cache
 cache/
+node_modules/
