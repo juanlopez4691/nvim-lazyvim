@@ -22,12 +22,11 @@ vim.opt.backupdir = backup_dir
 vim.opt.backup = true
 
 vim.g.root_spec = {
-  "lsp",
-  { ".git", "composer.json" },
-  { ".git", "package.json" },
-  { ".git", "lua" },
-  ".git",
-  "cwd",
+  "lsp", -- use LSP workspace folders first
+  { "composer.json", ".git" }, -- PHP projects
+  { "package.json", ".git" }, -- JS/TS projects
+  ".git", -- fallback to git root
+  "cwd", -- finally current working dir
 }
 
 vim.opt.listchars = {
