@@ -1,6 +1,19 @@
 local keymap = vim.keymap
 local wk = require("which-key")
 
+-- Add semi-colon at the end of the line in insert and normal modes
+keymap.set({ "n", "i" }, ";;", function()
+  local line = vim.api.nvim_get_current_line()
+  if line:sub(-1) ~= ";" then
+    local keys = vim.api.nvim_replace_termcodes("<esc>A;", true, false, true)
+    vim.api.nvim_feedkeys(keys, "n", false)
+  end
+end, {
+  noremap = true,
+  silent = true,
+  desc = "Append semicolon and switch to insert mode",
+})
+
 -- Accents and other special characters for Spanish and Catalan
 keymap.set("i", "<A-e>", "<C-k>'")
 keymap.set("i", "<A-`>", "<C-k>`")
