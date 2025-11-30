@@ -15,16 +15,18 @@ end, {
 })
 
 -- Accents and other special characters for Spanish and Catalan
-keymap.set("i", "<A-e>", "<C-k>'")
+keymap.set("i", "<A-e>", "<C-k>Eu")
+keymap.set("i", "<A-'>", "<C-k>'")
 keymap.set("i", "<A-`>", "<C-k>`")
-keymap.set("i", "<A-:>", "<C-k>:")
+keymap.set("i", "<A-;>", "<C-k>:")
 keymap.set("i", "<A-n>", "<C-k>~n")
 keymap.set("i", "<A-N>", "<C-k>~N")
 keymap.set("i", "<A-c>", "<C-k>,c")
 keymap.set("i", "<A-C>", "<C-k>,C")
-keymap.set("i", "<A-!>", "<C-k>~!")
-keymap.set("i", "<A-?>", "<C-k>~?")
+keymap.set("i", "<A-1>", "<C-k>~!")
+keymap.set("i", "<A-/>", "<C-k>~?")
 keymap.set("i", "<A-.>", "<C-k>~.")
+keymap.set("i", '<A-">', "<C-k:>")
 
 -- Move cursor while in insert mode (naughty boy!)
 -- Should not start a new undo sequence
