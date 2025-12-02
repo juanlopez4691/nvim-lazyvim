@@ -7,7 +7,16 @@ return {
         "ravitemer/mcphub.nvim",
         build = "npm install -g mcp-hub@latest",
         config = function()
-          require("mcphub").setup()
+          require("mcphub").setup({
+            -- Automatically approve safe tool calls
+            auto_approve = function(params)
+              if params.tool_name == "read_file" or params.tool_name == "list_files" then
+                return true
+              end
+              -- Show confirmation for all other tools
+              return false
+            end,
+          })
         end,
       },
     },
