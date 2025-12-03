@@ -42,7 +42,7 @@ keymap.set({ "v", "x" }, "<leader>y", '"+y', { noremap = true, silent = true, de
 keymap.set({ "n", "v", "x" }, "<leader>yy", '"+yy', { noremap = true, silent = true, desc = "Yank line to clipboard" })
 keymap.set({ "n" }, "<leader>Y", '"+y$', { noremap = true, silent = true, desc = "Yank to end of line to clipboard" })
 keymap.set({ "n", "v", "x" }, "<leader>p", '"+p', { noremap = true, silent = true, desc = "Paste from clipboard" })
-keymap.set("i", "<C-p>", "<C-p>+", { noremap = true, silent = true, desc = "Paste from clipboard in insert mode" })
+keymap.set("i", "<C-p>", "<C-r>+", { noremap = true, silent = true, desc = "Paste from clipboard in insert mode" })
 
 -- Select all
 keymap.set({ "n", "v", "x" }, "<C-a>", "0ggVG", { noremap = true, silent = true, desc = "Select all" })
