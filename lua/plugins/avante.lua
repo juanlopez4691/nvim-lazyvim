@@ -5,10 +5,9 @@ return {
       "nvim-lua/plenary.nvim",
       {
         "ravitemer/mcphub.nvim",
-        build = "bundled_build.lua",
+        build = "npm install -g mcp-hub@latest",
         config = function()
           require("mcphub").setup({
-            use_bundled_binary = true,
             -- Automatically approve safe tool calls
             auto_approve = function(params)
               if params.tool_name == "read_file" or params.tool_name == "list_files" then
