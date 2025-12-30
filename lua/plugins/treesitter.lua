@@ -14,15 +14,15 @@ return {
       "javascript",
       "json",
       "markdown",
-      "markdown_inline", -- inline code blocks in md
+      "markdown_inline",
       "php",
-      "phpdoc", -- phpdoc comments
+      "phpdoc",
       "typescript",
-      "tsx", -- TSX / React
+      "tsx",
       "yaml",
       -- Framework / extra
-      "blade", -- Laravel Blade templates
-      "vue", -- Vue single-file components
+      "blade",
+      "vue",
     },
   },
 }
