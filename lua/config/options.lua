@@ -5,12 +5,6 @@
 -- Use default clipboard for yank/paste
 vim.opt.clipboard = ""
 
--- intelephense as PHP LSP
-vim.g.lazyvim_php_lsp = "intelephense"
-
--- Disable PERL provider
-vim.g.loaded_perl_provider = 0
-
 -- Set the backup directory, create it if it doesn't exist
 local backup_dir = vim.fn.expand("~/.nvim/backupdir")
 
@@ -21,6 +15,13 @@ end
 vim.opt.backupdir = backup_dir
 vim.opt.backup = true
 
+vim.opt.listchars = {
+  tab = "» ",
+  trail = "·",
+  nbsp = "␣",
+  extends = "…",
+}
+
 vim.g.root_spec = {
   "lsp", -- use LSP workspace folders first
   { "composer.json", ".git" }, -- PHP projects
@@ -29,12 +30,11 @@ vim.g.root_spec = {
   "cwd", -- finally current working dir
 }
 
-vim.opt.listchars = {
-  tab = "» ",
-  trail = "·",
-  nbsp = "␣",
-  extends = "…",
-}
+-- intelephense as PHP LSP
+vim.g.lazyvim_php_lsp = "intelephense"
+
+-- Disable PERL provider
+vim.g.loaded_perl_provider = 0
 
 -- Enable AI virtual text
 vim.g.ai_cmp = false
