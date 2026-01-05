@@ -2,7 +2,6 @@ return {
   "neovim/nvim-lspconfig",
   opts = {
     servers = {
-      ["*"] = { "i", "<c-k>", false },
       lua_ls = {
         settings = {
           Lua = {
