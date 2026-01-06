@@ -30,6 +30,15 @@ local function lsp_clients()
   )
 end
 
+-- Show current macro recording register (if any)
+local function macro_recording()
+  local reg = vim.fn.reg_recording()
+  if reg == "" then
+    return ""
+  end
+  return "recording @" .. reg
+end
+
 local filename = {
   "filename",
   path = 4,
@@ -49,6 +58,21 @@ local disabled_filetypes = {
 return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
+  -- Refresh lualine when macro recording starts/stops
+  init = function()
+    local function refresh()
+      local ok, lualine = pcall(require, "lualine")
+      if ok then
+        lualine.refresh({ place = { "statusline" } })
+      end
+    end
+    vim.api.nvim_create_autocmd("RecordingEnter", { callback = refresh })
+    vim.api.nvim_create_autocmd("RecordingLeave", {
+      callback = function()
+        vim.defer_fn(refresh, 50)
+      end,
+    })
+  end,
   opts = {
     options = {
       disabled_filetypes = {
@@ -64,6 +88,14 @@ return {
       },
       lualine_x = {
         { lsp_clients, color = { fg = "#7aa2f7" } }, -- Subtle bluish color
+        {
+          macro_recording,
+          cond = function()
+            return vim.fn.reg_recording() ~= ""
+          end,
+          separator = { left = "" },
+          color = { fg = "#000000", bg = "#f5a524" },
+        },
       },
     },
     winbar = {
