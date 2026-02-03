@@ -15,17 +15,7 @@ return {
   },
   opts = {
     sources = {
-      default = { "laravel", "lsp", "buffer", "snippets", "path" },
-      providers = {
-        laravel = {
-          name = "laravel",
-          module = "laravel.blink_source",
-          score_offset = 1000, -- High priority for Laravel completions
-          transform_items = function(_, items)
-            return transform_items(items, "", "Laravel")
-          end,
-        },
-      },
+      default = { "lsp", "buffer", "snippets", "path" },
     },
     keymap = {
       preset = "enter",
