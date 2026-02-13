@@ -1,3 +1,4 @@
+local snacks_helper = require("helpers.snacks")
 local keymap = vim.keymap
 local wk = require("which-key")
 
@@ -22,5 +23,23 @@ wk.add({
       Snacks.terminal(nil, { cwd = LazyVim.root() })
     end,
     desc = "Terminal (Root Dir)",
+  },
+  {
+    mode = "n",
+    "<leader>tv",
+    function()
+      snacks_helper.close_snacks_explorer()
+      Snacks.terminal(nil, { win = { style = "vertical_terminal" } })
+    end,
+    desc = "Terminal (vertical, cwd)",
+  },
+  {
+    mode = "n",
+    "<leader>tV",
+    function()
+      snacks_helper.close_snacks_explorer()
+      Snacks.terminal(nil, { cwd = LazyVim.root(), win = { style = "vertical_terminal" } })
+    end,
+    desc = "Terminal (vertical, root)",
   },
 })
