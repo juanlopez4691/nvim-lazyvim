@@ -50,6 +50,18 @@ return {
         width = math.max(140, vim.api.nvim_win_get_width(0) * 0.7),
         backdrop = { transparent = true, blend = 25 },
       },
+      vertical_terminal = {
+        position = "right",
+        width = function()
+          local win_width = vim.api.nvim_win_get_width(0)
+
+          if win_width > 150 then
+            return win_width * 0.4
+          else
+            return win_width * 0.5
+          end
+        end,
+      },
     },
     scroll = {
       animate = {
