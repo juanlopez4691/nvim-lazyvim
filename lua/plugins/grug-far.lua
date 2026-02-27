@@ -1,4 +1,4 @@
 return {
   "MagicDuck/grug-far.nvim",
-  cmd = { "GrugFar", "GrugFarWithin" },
+  enabled = false,
 }
