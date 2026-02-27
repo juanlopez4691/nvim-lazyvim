@@ -2,8 +2,10 @@ return {
   {
     "yetone/avante.nvim",
     dependencies = {
-      "nvim-lua/plenary.nvim",
       {
+        dependencies = {
+          "nvim-lua/plenary.nvim",
+        },
         "ravitemer/mcphub.nvim",
         build = "npm install -g mcp-hub@latest",
         config = function()
