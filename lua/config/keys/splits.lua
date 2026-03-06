@@ -1,4 +1,4 @@
-local keymap = vim.keymap
+local keymap = require("helpers.keymap")
 local split = require("helpers.split")
 
 -- Remove original keymaps
@@ -32,28 +32,28 @@ local skip_filetypes = {
   "TelescopePrompt",
 }
 
-keymap.set("n", "<A-right>", function()
+keymap.set_multi_keys("n", { "<A-right>", "<C-A-l>" }, function()
   if list.contains_value(skip_filetypes, vim.bo.filetype) then
     return
   end
   split.resize("right")
 end, { silent = true })
 
-keymap.set("n", "<A-left>", function()
+keymap.set_multi_keys("n", { "<A-left>", "<C-A-h>" }, function()
   if list.contains_value(skip_filetypes, vim.bo.filetype) then
     return
   end
   split.resize("left")
 end, { silent = true })
 
-keymap.set("n", "<A-down>", function()
+keymap.set_multi_keys("n", { "<A-down>", "<C-A-j>" }, function()
   if list.contains_value(skip_filetypes, vim.bo.filetype) then
     return
   end
   split.resize("down")
 end, { silent = true })
 
-keymap.set("n", "<A-up>", function()
+keymap.set_multi_keys("n", { "<A-up>", "<C-A-k>" }, function()
   if list.contains_value(skip_filetypes, vim.bo.filetype) then
     return
   end
