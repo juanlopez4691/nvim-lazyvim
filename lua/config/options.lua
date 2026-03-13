@@ -39,4 +39,4 @@ vim.g.loaded_perl_provider = 0
 -- Enable AI virtual text
 vim.g.ai_cmp = false
 
-vim.g.colorscheme = "catppuccin"
+vim.g.colorscheme = "catppuccin-mocha"

@@ -7,33 +7,35 @@ return {
   },
   {
     "catppuccin/nvim",
-    name = "catppuccin",
+    name = "catppuccin-nvim",
     lazy = true,
-    opts = {
-      highlight_overrides = {
-        all = function(colors)
-          local u = require("catppuccin.utils.colors")
+    config = function()
+      require("catppuccin").setup({
+        highlight_overrides = {
+          all = function(colors)
+            local u = require("catppuccin.utils.colors")
 
-          return {
-            CursorLine = { bg = u.lighten(colors.mantle, 0.40, colors.base) },
-            WinSeparator = { fg = "#809dc2" },
-            CopilotSuggestion = { fg = "#809dc2" },
-            SnacksIndentScope = { fg = "#5e5e87" },
-            Normal = { bg = colors.crust },
-            NormalNC = { bg = colors.mantle },
-            WinBar = { fg = colors.text, bg = "NONE" },
-            WinBarNC = { fg = colors.text, bg = colors.base },
-            WinBarContent = { fg = colors.text, bg = "#405e86" },
-            WinBarContentNC = { fg = "#809dc2", bg = colors.base },
-            AvanteSidebarWinSeparator = { fg = "#809dc2" },
-            DiffAdd = { bg = "#006400" },
-            DiffChange = { bg = "#184e77" },
-            DiffDelete = { bg = "#a4161a" },
-            DiffText = { bg = "#003566" },
-          }
-        end,
-      },
-    },
+            return {
+              CursorLine = { bg = u.lighten(colors.mantle, 0.40, colors.base) },
+              WinSeparator = { fg = "#809dc2" },
+              CopilotSuggestion = { fg = "#809dc2" },
+              SnacksIndentScope = { fg = "#5e5e87" },
+              Normal = { bg = colors.crust },
+              NormalNC = { bg = colors.mantle },
+              WinBar = { fg = colors.text, bg = "NONE" },
+              WinBarNC = { fg = colors.text, bg = colors.base },
+              WinBarContent = { fg = colors.text, bg = "#405e86" },
+              WinBarContentNC = { fg = "#809dc2", bg = colors.base },
+              AvanteSidebarWinSeparator = { fg = "#809dc2" },
+              DiffAdd = { bg = "#006400" },
+              DiffChange = { bg = "#184e77" },
+              DiffDelete = { bg = "#a4161a" },
+              DiffText = { bg = "#003566" },
+            }
+          end,
+        },
+      })
+    end,
   },
   {
     "folke/tokyonight.nvim",
