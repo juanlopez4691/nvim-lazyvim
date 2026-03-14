@@ -4,6 +4,7 @@ return {
     dependencies = {
       "sindrets/diffview.nvim",
     },
+    event = "VeryLazy",
     config = function()
       require("gitlineage").setup({})
     end,
@@ -11,6 +12,7 @@ return {
   {
     "sindrets/diffview.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    event = "VeryLazy",
     keys = {
       {
         "<leader>gv",
