@@ -14,7 +14,11 @@ return {
         integrations = {
           gitsigns = true,
           treesitter = true,
-          indent_blankline = true,
+          indent_blankline = {
+            enabled = false,
+            scope_color = "",
+            colored_indent_levels = true,
+          },
         },
         highlight_overrides = {
           all = function(colors)
