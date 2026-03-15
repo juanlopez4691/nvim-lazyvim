@@ -11,6 +11,11 @@ return {
     lazy = true,
     config = function()
       require("catppuccin").setup({
+        integrations = {
+          gitsigns = true,
+          treesitter = true,
+          indent_blankline = true,
+        },
         highlight_overrides = {
           all = function(colors)
             local u = require("catppuccin.utils.colors")
