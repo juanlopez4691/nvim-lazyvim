@@ -30,6 +30,9 @@ vim.g.root_spec = {
   "cwd", -- finally current working dir
 }
 
+-- Enable editorconfig support
+vim.g.editorconfig = true
+
 -- intelephense as PHP LSP
 vim.g.lazyvim_php_lsp = "intelephense"
 
