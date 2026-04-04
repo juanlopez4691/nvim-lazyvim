@@ -1,25 +1,24 @@
 return {
   "mason-org/mason.nvim",
-  opts = function()
-    return {
-      ensure_installed = {
-        "blade-formatter",
-        "docker-compose-language-service",
-        "dockerfile-language-server",
-        "intelephense",
-        "json-lsp",
-        "lua-language-server",
-        "marksman",
-        "php-debug-adapter",
-        "phpcbf",
-        "phpcs",
-        "phpstan",
-        "pint",
-        "prettierd",
-        "tailwindcss-language-server",
-        "taplo",
-        "vtsls",
-      },
-    }
+  opts = function(_, opts)
+    opts.ensure_installed = opts.ensure_installed or {}
+    vim.list_extend(opts.ensure_installed, {
+      "blade-formatter",
+      "docker-compose-language-service",
+      "dockerfile-language-server",
+      "intelephense",
+      "json-lsp",
+      "lua-language-server",
+      "marksman",
+      "php-debug-adapter",
+      "phpcbf",
+      "phpcs",
+      "phpstan",
+      "pint",
+      "prettierd",
+      "tailwindcss-language-server",
+      "taplo",
+      "vtsls",
+    })
   end,
 }
