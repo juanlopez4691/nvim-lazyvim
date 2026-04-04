@@ -2,6 +2,7 @@
   "diagnostics.globals": [
     "vim",
     "LazyVim",
+    "Laravel",
     "Snacks"
   ]
 }
