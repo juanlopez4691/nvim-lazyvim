@@ -43,5 +43,9 @@ return {
         provider = "snacks",
       },
     },
+    environments = {
+      default = "sail",
+      ask_on_boot = true,
+    },
   },
 }
