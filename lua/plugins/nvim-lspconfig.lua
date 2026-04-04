@@ -120,7 +120,6 @@ return {
       marksman = {
         filetypes = { "markdown" },
       },
-      twiggy_language_server = false,
       vtsls = {
         filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
       },
