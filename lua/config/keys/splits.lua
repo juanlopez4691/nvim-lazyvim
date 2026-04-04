@@ -9,9 +9,9 @@ keymap.del("n", "<C-k>")
 
 -- Navigate splits
 keymap.set("n", "<C-h>", split.jump_split_with_wrap("h", "l"), { desc = "Jump to split left" })
-keymap.set("n", "<C-l>", split.jump_split_with_wrap("l", "h"), { desc = "Jump to split left" })
-keymap.set("n", "<C-j>", split.jump_split_with_wrap("j", "k"), { desc = "Jump to split left" })
-keymap.set("n", "<C-k>", split.jump_split_with_wrap("k", "j"), { desc = "Jump to split left" })
+keymap.set("n", "<C-l>", split.jump_split_with_wrap("l", "h"), { desc = "Jump to split right" })
+keymap.set("n", "<C-j>", split.jump_split_with_wrap("j", "k"), { desc = "Jump to split down" })
+keymap.set("n", "<C-k>", split.jump_split_with_wrap("k", "j"), { desc = "Jump to split up" })
 
 -- Remove original keymaps
 keymap.del("n", "<C-Up>")
