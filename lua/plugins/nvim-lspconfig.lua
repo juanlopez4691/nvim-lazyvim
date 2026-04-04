@@ -114,9 +114,6 @@ return {
           },
         },
       },
-      docker_compose_language_service = {
-        filetypes = { "yaml" },
-      },
       marksman = {
         filetypes = { "markdown" },
       },
