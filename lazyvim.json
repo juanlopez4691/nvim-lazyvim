@@ -17,6 +17,7 @@
     "lazyvim.plugins.extras.lang.toml",
     "lazyvim.plugins.extras.lang.twig",
     "lazyvim.plugins.extras.lang.typescript",
+    "lazyvim.plugins.extras.linting.eslint",
     "lazyvim.plugins.extras.ui.indent-blankline",
     "lazyvim.plugins.extras.util.mini-hipatterns"
   ],
