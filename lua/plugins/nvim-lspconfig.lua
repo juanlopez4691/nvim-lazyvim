@@ -100,15 +100,19 @@ return {
       },
       intelephense = {
         filetypes = { "php" },
-        files = {
-          exclude = { "node_modules", "vendor" },
-          associations = { "*.php", "*.blade.php", "*.twig" },
-          maxSize = 1000000,
+        settings = {
+          intelephense = {
+            files = {
+              exclude = { "node_modules", "vendor" },
+              associations = { "*.php", "*.blade.php", "*.twig" },
+              maxSize = 1000000,
+            },
+            environment = {
+              includePaths = vim.fn.expand("~/.composer/vendor/php-stubs/"),
+            },
+            stubs = require("config.intelephense.stubs"),
+          },
         },
-        environment = {
-          includePaths = vim.fn.expand("~/.composer/vendor/php-stubs/"),
-        },
-        stubs = require("config.intelephense.stubs"),
       },
       docker_compose_language_service = {
         filetypes = { "yaml" },
