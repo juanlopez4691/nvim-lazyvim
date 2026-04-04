@@ -83,7 +83,7 @@ return {
               desc = "Config",
               action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
             },
-            { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
+            { icon = "󰒲 ", key = "z", desc = "Lazy", action = ":Lazy" },
             { icon = " ", key = "x", desc = "Lazy Extras", action = ":LazyExtras" },
             { icon = "󱁤 ", key = "m", desc = "Mason", action = ":Mason" },
           },
