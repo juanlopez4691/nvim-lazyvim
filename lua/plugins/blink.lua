@@ -1,11 +1,26 @@
-local copilot_ok, copilot_suggestion = pcall(require, "copilot.suggestion")
+local copilot_suggestion
 
-local transform_items = function(items, icon, name)
-  for _, item in ipairs(items) do
-    item.kind_icon = icon
-    item.kind_name = name
+--[[
+  Gets copilot suggestions.
+
+  Prevents loading the copilot.suggestion module until
+  it's needed, and caches the result.
+]]
+local function get_copilot_suggestion()
+  if copilot_suggestion == false then
+    return nil
   end
-  return items
+
+  if not copilot_suggestion then
+    local ok, suggestion = pcall(require, "copilot.suggestion")
+    if not ok then
+      copilot_suggestion = false
+      return nil
+    end
+    copilot_suggestion = suggestion
+  end
+
+  return copilot_suggestion
 end
 
 return {
@@ -26,8 +41,9 @@ return {
             return true
           end
 
-          if copilot_ok and copilot_suggestion.is_visible() then
-            copilot_suggestion.accept()
+          local suggestion = get_copilot_suggestion()
+          if suggestion and suggestion.is_visible() then
+            suggestion.accept()
             return true
           end
 
@@ -42,8 +58,9 @@ return {
             return true
           end
 
-          if copilot_ok and copilot_suggestion.is_visible() then
-            copilot_suggestion.next()
+          local suggestion = get_copilot_suggestion()
+          if suggestion and suggestion.is_visible() then
+            suggestion.next()
             return true
           end
 
@@ -58,8 +75,9 @@ return {
             return true
           end
 
-          if copilot_ok and copilot_suggestion.is_visible() then
-            copilot_suggestion.prev()
+          local suggestion = get_copilot_suggestion()
+          if suggestion and suggestion.is_visible() then
+            suggestion.prev()
             return true
           end
 
@@ -74,8 +92,9 @@ return {
             return true
           end
 
-          if copilot_ok and copilot_suggestion.is_visible() then
-            copilot_suggestion.dismiss()
+          local suggestion = get_copilot_suggestion()
+          if suggestion and suggestion.is_visible() then
+            suggestion.dismiss()
             return true
           end
 
