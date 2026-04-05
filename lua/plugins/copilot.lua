@@ -1,6 +1,10 @@
 return {
   "zbirenbaum/copilot.lua",
-  event = "LazyFile",
+  requires = {
+    "copilotlsp-nvim/copilot-lsp",
+  },
+  cmd = "Copilot",
+  event = "InsertEnter",
   opts = {
     server_opts_overrides = {
       settings = {
