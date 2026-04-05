@@ -12,7 +12,7 @@ return {
   {
     "sindrets/diffview.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    event = "VeryLazy",
+    optional = true,
     keys = {
       {
         "<leader>gv",
