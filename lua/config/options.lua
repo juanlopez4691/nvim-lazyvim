@@ -36,6 +36,9 @@ vim.g.editorconfig = true
 -- intelephense as PHP LSP
 vim.g.lazyvim_php_lsp = "intelephense"
 
+-- Enable LSP code lens
+vim.lsp.codelens.enable(true)
+
 -- Disable PERL provider
 vim.g.loaded_perl_provider = 0
 
