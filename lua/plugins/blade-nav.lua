@@ -17,7 +17,7 @@ return {
       end
       opts.sources.providers = opts.sources.providers or {}
       opts.sources.providers["blade-nav"] = {
-        module = "blade-nav.blink",
+        module = "blade-nav.integrations.blink",
         opts = {
           close_tag_on_complete = true,
         },
