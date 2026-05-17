@@ -4,6 +4,9 @@ return {
     ft = { "blade", "php" },
     opts = {
       close_tag_on_complete = true,
+      integrations = {
+        cmp = false,
+      },
     },
   },
   {
