@@ -2,10 +2,8 @@ return {
   "neovim/nvim-lspconfig",
   opts = function(_, opts)
     opts = opts or {}
-    opts.setup = opts.setup or {}
     opts.servers = opts.servers or {}
 
-    -- Force TailwindCSS to only the filetypes Neovim actually reports (Blade/Twig/PostCSS are mapped)
     local tailwind_filetypes = {
       "php",
       "html",
@@ -19,50 +17,33 @@ return {
       "typescriptreact",
     }
 
-    opts.servers.tailwindcss = vim.tbl_deep_extend("force", opts.servers.tailwindcss or {}, {
-      filetypes = tailwind_filetypes,
-      init_options = {
-        userLanguages = {
-          php = "html",
-          blade = "html",
-          twig = "html",
-          postcss = "css",
-        },
-      },
-    })
-
-    opts.setup.tailwindcss = function(_, cfg)
-      cfg.filetypes = tailwind_filetypes
-      cfg.on_new_config = function(new_config)
-        new_config.filetypes = tailwind_filetypes
-      end
-      cfg.init_options = vim.tbl_deep_extend("force", cfg.init_options or {}, {
-        userLanguages = {
-          php = "html",
-          blade = "html",
-          twig = "html",
-          postcss = "css",
-        },
-      })
-      require("lspconfig").tailwindcss.setup(cfg)
-      return true
-    end
-
-    opts.servers.twiggy_language_server = {
-      filetypes = { "twig" },
-    }
-
-    opts.setup.twiggy_language_server = function(_, cfg)
-      cfg.filetypes = { "twig" }
-      cfg.on_new_config = function(new_config)
-        new_config.filetypes = { "twig" }
-      end
-      require("lspconfig").twiggy_language_server.setup(cfg)
-      return true
-    end
-
-    -- Keep existing server configs
     opts.servers = vim.tbl_deep_extend("force", {
+      tailwindcss = {
+        filetypes = tailwind_filetypes,
+        init_options = {
+          userLanguages = {
+            php = "html",
+            blade = "html",
+            twig = "html",
+            postcss = "css",
+          },
+        },
+        on_new_config = function(new_config)
+          new_config.filetypes = tailwind_filetypes
+        end,
+      },
+      twiggy_language_server = {
+        filetypes = { "twig" },
+        on_new_config = function(new_config)
+          new_config.filetypes = { "twig" }
+        end,
+      },
+      vtsls = {
+        filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+        on_new_config = function(new_config)
+          new_config.filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" }
+        end,
+      },
       lua_ls = {
         settings = {
           Lua = {
@@ -114,34 +95,7 @@ return {
       marksman = {
         filetypes = { "markdown" },
       },
-      vtsls = {
-        filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-      },
     }, opts.servers)
-
-    opts.setup.vtsls = function(_, cfg)
-      local vts_filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" }
-      cfg.filetypes = vts_filetypes
-      cfg.on_new_config = function(new_config)
-        new_config.filetypes = vts_filetypes
-      end
-      require("lspconfig").vtsls.setup(cfg)
-      return true
-    end
-
-    opts.setup.antlersls = function(_, cfg)
-      cfg.filetypes = { "antlers", "html" }
-      require("lspconfig").antlersls.setup(cfg)
-      return true
-    end
-
-    opts.setup.laravel_ls = function(_, cfg)
-      local util = require("lspconfig.util")
-      cfg.root_dir = cfg.root_dir or util.root_pattern("composer.json", "artisan", ".git")
-      cfg.single_file_support = false
-      require("lspconfig").laravel_ls.setup(cfg)
-      return true
-    end
 
     return opts
   end,
