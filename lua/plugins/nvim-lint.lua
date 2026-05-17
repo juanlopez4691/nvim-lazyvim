@@ -1,18 +1,18 @@
---[[
+local fs = require("helpers.filesystem")
+
 --- Determine which PHP linters to enable based on project setup.
+--- @param buf number Buffer handle
 --- @return table Linter names for PHP files
---]]
-local function get_php_linters()
-  local fs = require("helpers.filesystem")
-  local work_dir = vim.fn.expand("$PWD")
-  local vendor_dir = work_dir .. "/vendor"
+local function get_php_linters(buf)
+  local root = vim.fs.root(buf, { "composer.json", ".git" }) or vim.fn.expand("%:p:h")
+  local vendor_dir = root .. "/vendor"
   local linters = {}
 
   -- Add phpstan if config file exists
   if
-    fs.file_exists(work_dir .. "/phpstan.neon")
-    or fs.file_exists(work_dir .. "/phpstan.neon.dist")
-    or fs.file_exists(work_dir .. "/phpstan.dist.neon")
+    fs.file_exists(root .. "/phpstan.neon")
+    or fs.file_exists(root .. "/phpstan.neon.dist")
+    or fs.file_exists(root .. "/phpstan.dist.neon")
   then
     table.insert(linters, "phpstan")
   end
@@ -28,11 +28,9 @@ local function get_php_linters()
   return linters
 end
 
---[[
 --- Safely decode JSON output from phpcs.
 --- @param output string Raw phpcs output
 --- @return table Decoded table or empty table on failure
---]]
 local function decode_phpcs_output(output)
   local ok, decoded = pcall(vim.json.decode, output)
   if not ok or type(decoded) ~= "table" then
@@ -46,11 +44,9 @@ local function decode_phpcs_output(output)
   return decoded
 end
 
---[[
 --- Convert decoded phpcs JSON into Neovim diagnostics.
 --- @param decoded table Decoded phpcs output
 --- @return table List of diagnostic items
---]]
 local function parse_diagnostics_from_phpcs(decoded)
   local diagnostics = {}
   if not decoded.files then
@@ -103,7 +99,7 @@ return {
       stream = "stdout",
       ignore_exitcode = true,
       parser = function(output)
-        -- 🧹 Clean up stray PHP warnings/deprecations before decoding
+        -- Clean up stray PHP warnings/deprecations before decoding
         output = output:gsub("^[^\n]*Deprecated:[^\n]*\n", "")
         output = output:gsub("^[^\n]*Warning:[^\n]*\n", "")
         output = output:gsub("^[^\n]*Notice:[^\n]*\n", "")
@@ -113,9 +109,12 @@ return {
       end,
     }
 
-    -- Dynamically assign linters for PHP
-    opts.linters_by_ft = vim.tbl_deep_extend("force", opts.linters_by_ft or {}, {
-      php = get_php_linters(),
+    -- Dynamically assign linters for PHP per buffer
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "php",
+      callback = function(args)
+        lint.linters_by_ft.php = get_php_linters(args.buf)
+      end,
     })
 
     return opts
