@@ -3,7 +3,7 @@ local group = vim.api.nvim_create_augroup("BigFileDisable", { clear = true })
 local MAX_FILESIZE = 1.5 * 1024 * 1024 -- 1.5 MB
 local MAX_LINES = 5000
 
-vim.api.nvim_create_autocmd("BufReadPre", {
+vim.api.nvim_create_autocmd("BufReadPost", {
   group = group,
   pattern = "*",
   callback = function(args)
