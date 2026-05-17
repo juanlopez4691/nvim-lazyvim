@@ -1,6 +1,6 @@
 return {
   "zbirenbaum/copilot.lua",
-  requires = {
+  dependencies = {
     "copilotlsp-nvim/copilot-lsp",
   },
   cmd = "Copilot",
