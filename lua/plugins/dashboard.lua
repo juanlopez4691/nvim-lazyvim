@@ -1,5 +1,6 @@
 return {
   "snacks.nvim",
+  dependencies = { "folke/persistence.nvim" },
   opts = {
     dashboard = {
       width = 40,
