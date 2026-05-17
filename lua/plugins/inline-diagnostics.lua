@@ -1,10 +1,6 @@
 return {
   "rachartier/tiny-inline-diagnostic.nvim",
   event = "VeryLazy",
-  dependencies = {
-    "neovim/nvim-lspconfig",
-    opts = { diagnostics = { virtual_text = false } },
-  },
   config = function()
     require("tiny-inline-diagnostic").setup({
       preset = "powerline",
