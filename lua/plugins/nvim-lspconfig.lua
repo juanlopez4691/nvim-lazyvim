@@ -5,9 +5,6 @@ return {
     opts.setup = opts.setup or {}
     opts.servers = opts.servers or {}
 
-    -- Ensure filetypes are registered before configuring servers that rely on them
-    require("config.filetypes")
-
     -- Force TailwindCSS to only the filetypes Neovim actually reports (Blade/Twig/PostCSS are mapped)
     local tailwind_filetypes = {
       "php",
