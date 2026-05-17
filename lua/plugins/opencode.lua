@@ -44,16 +44,6 @@ return {
     -- Required for `opts.events.reload`
     vim.o.autoread = true
 
-    require("lualine").setup({
-      sections = {
-        lualine_z = {
-          {
-            require("opencode").statusline,
-          },
-        },
-      },
-    })
-
     local wk = require("which-key")
     wk.add({
       -- OpenCode main group

@@ -118,6 +118,17 @@ return {
           color = { fg = "#000000", bg = "#f5a524" },
         },
       },
+      lualine_z = {
+        {
+          function()
+            local ok, opencode = pcall(require, "opencode")
+            if ok and opencode.statusline then
+              return opencode.statusline()
+            end
+            return ""
+          end,
+        },
+      },
     },
     winbar = {
       lualine_a = {
