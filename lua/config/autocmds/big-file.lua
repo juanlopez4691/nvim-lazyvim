@@ -15,14 +15,19 @@ vim.api.nvim_create_autocmd("BufReadPost", {
       vim.cmd("syntax off")
 
       pcall(function()
-        vim.treesitter.stop(vim.api.nvim_get_current_buf())
+        vim.treesitter.stop(args.buf)
       end)
 
-      vim.cmd("silent! LspStop")
+      -- Stop LSP clients attached to this buffer only
+      local clients = vim.lsp.get_clients({ bufnr = args.buf })
+      for _, client in ipairs(clients) do
+        vim.lsp.stop_client(client.id)
+      end
+
       vim.opt_local.spell = false
       vim.opt_local.swapfile = false
       vim.opt_local.foldmethod = "manual"
-      vim.opt.cursorline = false
+      vim.opt_local.cursorline = false
     end
   end,
 })
