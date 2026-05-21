@@ -22,11 +22,6 @@ return {
       enabled = true,
     },
     picker = {
-      -- formatters = {
-      --   file = {
-      --     filename_first = true,
-      --   },
-      -- },
       sources = {
         explorer = {
           auto_close = false,
