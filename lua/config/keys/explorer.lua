@@ -1,6 +1,6 @@
 local wk = require("which-key")
 
--- Force code linting
+-- Explorer Snacks (root dir)
 wk.add({
   {
     mode = "n",
