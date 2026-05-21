@@ -65,10 +65,7 @@ vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
   pattern = "*",
   callback = function()
     if not list.contains_value(skip_filetypes, vim.bo.filetype) then
-      -- Enable relative numbers when entering a window
       set_line_numbers(true, true)
-      -- Keep absolute numbers enabled
-      vim.wo.number = true
     end
   end,
 })
