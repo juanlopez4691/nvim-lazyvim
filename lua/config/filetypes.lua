@@ -19,7 +19,6 @@ vim.filetype.add({
 })
 
 vim.treesitter.language.register("html", "blade")
-vim.treesitter.language.register("html", "twig")
 vim.treesitter.language.register("twig", "twig")
 pcall(function()
   vim.treesitter.language.register("html", "antlers")
