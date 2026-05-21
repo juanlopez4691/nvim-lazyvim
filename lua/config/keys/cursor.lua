@@ -2,10 +2,15 @@ local keymap = vim.keymap
 
 -- Fixes issues with Snacks smooth scroll and centering on screen
 -- See https://github.com/folke/snacks.nvim/discussions/1030#discussioncomment-12109404
+local smoothScroll_timer = nil
 local smoothScroll = function(keys)
+  if smoothScroll_timer then
+    smoothScroll_timer:close()
+  end
   vim.wo.scrolloff = 999
-  vim.defer_fn(function()
+  smoothScroll_timer = vim.defer_fn(function()
     vim.wo.scrolloff = 8
+    smoothScroll_timer = nil
   end, 500)
   return keys
 end
