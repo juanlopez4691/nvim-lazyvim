@@ -81,7 +81,7 @@ return {
     },
   },
   config = function(_, opts)
-    require("snacks").setup(opts)
+    Snacks.setup(opts)
 
     -- Hook Snacks UI into Neovim
     vim.ui.input = require("snacks.input").input

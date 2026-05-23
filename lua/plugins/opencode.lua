@@ -11,8 +11,9 @@ return {
     },
   },
   config = function()
+    ---@diagnostic disable: undefined-field
     local opencode_cmd = "opencode --port"
-    ---@diagnostic disable-next-line: undefined-doc-name
+    ---@diagnostic disable-next-line: undefined-doc-name, type-not-found
     ---@type snacks.terminal.Opts
     local snacks_terminal_opts = {
       win = {
@@ -25,7 +26,7 @@ return {
       },
     }
 
-    ---@diagnostic disable-next-line: undefined-doc-name
+    ---@diagnostic disable-next-line: undefined-doc-name, type-not-found
     ---@type opencode.Opts
     vim.g.opencode_opts = {
       server = {
@@ -289,5 +290,6 @@ return {
         desc = "Scroll Opencode down",
       },
     })
+    ---@diagnostic enable: undefined-field
   end,
 }

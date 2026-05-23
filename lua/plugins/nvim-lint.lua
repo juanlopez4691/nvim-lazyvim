@@ -1,7 +1,7 @@
 local fs = require("helpers.filesystem")
 
 --- Determine which PHP linters to enable based on project setup.
---- @param buf number Buffer handle
+--- @param buf integer Buffer handle
 --- @return table Linter names for PHP files
 local function get_php_linters(buf)
   local root = vim.fs.root(buf, { "composer.json", ".git" }) or vim.fn.expand("%:p:h")

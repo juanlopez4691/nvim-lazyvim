@@ -4,6 +4,7 @@
 -- Sets up package management and loads the main configuration
 
 -- Enable the loader for improved performance
+---@diagnostic disable-next-line: unnecessary-if
 if vim.loader then
   vim.loader.enable()
 end

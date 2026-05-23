@@ -15,7 +15,7 @@ return {
 ██████  █████████████████████ ████ █████ █████ ████ ██████
 ]]
         local function greeting()
-          local hour = tonumber(vim.fn.strftime("%H"))
+          local hour = assert(tonumber(vim.fn.strftime("%H")))
           -- [02:00, 10:00) - morning, [10:00, 18:00) - day, [18:00, 02:00) - evening
           local part_id = math.floor((hour + 6) / 8) + 1
           local day_part = ({ "evening", "morning", "afternoon", "evening" })[part_id]

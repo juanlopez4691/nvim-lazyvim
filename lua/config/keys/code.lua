@@ -54,6 +54,7 @@ local toggleWorkspaceSymbols = function()
   Snacks.picker("lsp_workspace_symbols", {
     layout = {
       preset = "vertical",
+      ---@diagnostic disable-next-line: missing-fields
       layout = {
         width = 0.9,
       },

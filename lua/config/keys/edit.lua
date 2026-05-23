@@ -76,6 +76,10 @@ wk.add({
       -- Get the contents of the 'v' register
       local selected_text = vim.fn.getreg("v")
 
+      if type(selected_text) ~= "string" then
+        return
+      end
+
       -- Check if selected text is empty
       if selected_text == "" then
         print("No text selected")

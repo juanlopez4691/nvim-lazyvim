@@ -4,6 +4,7 @@ local keymap = vim.keymap
 -- See https://github.com/folke/snacks.nvim/discussions/1030#discussioncomment-12109404
 local smoothScroll_timer = nil
 local smoothScroll = function(keys)
+  ---@diagnostic disable-next-line: unnecessary-if
   if smoothScroll_timer then
     smoothScroll_timer:close()
   end

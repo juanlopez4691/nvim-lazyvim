@@ -9,13 +9,13 @@
 ]]
 
 local wk = require("which-key")
-local snacks = require("snacks")
 local scooter_term = nil
 
 --[[
   Open scooter terminal window
 --]]
 local function open_scooter()
+  ---@diagnostic disable-next-line: unnecessary-if
   if scooter_term and scooter_term:buf_valid() then
     local channel = vim.fn.getbufvar(scooter_term.buf, "terminal_job_id")
     if channel and vim.fn.jobwait({ channel }, 0)[1] == -1 then
@@ -23,7 +23,7 @@ local function open_scooter()
       return
     end
   end
-  scooter_term = snacks.terminal.open("scooter", { win = { position = "float" } })
+  scooter_term = Snacks.terminal.open("scooter", { win = { position = "float" } })
 end
 
 --[[
@@ -32,12 +32,13 @@ end
   @param search-text The text to search for in scooter. Newlines will be replaced with spaces.
 -- ]]
 local function open_scooter_with_text(search_text)
+  ---@diagnostic disable-next-line: unnecessary-if
   if scooter_term and scooter_term:buf_valid() then
     scooter_term:close()
   end
   local escaped = vim.fn.shellescape(search_text:gsub("\r?\n", " "))
   scooter_term =
-    snacks.terminal.open("scooter --fixed-strings --search-text " .. escaped, { win = { position = "float" } })
+    Snacks.terminal.open("scooter --fixed-strings --search-text " .. escaped, { win = { position = "float" } })
 end
 
 --[[
@@ -47,6 +48,7 @@ end
   @param line The line number to jump to in the file
 ]]
 _G.EditLineFromScooter = function(file_path, line)
+  ---@diagnostic disable-next-line: unnecessary-if
   if scooter_term and scooter_term:buf_valid() then
     scooter_term:hide()
   end
