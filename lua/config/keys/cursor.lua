@@ -24,7 +24,7 @@ vim.keymap.set("n", "<C-u>", function()
   return smoothScroll("<C-u>")
 end, { expr = true, desc = "Scroll half page up" })
 
-keymap.set("n", "G", "GGzz", { desc = "Scroll to end" })
+keymap.set("n", "G", "Gzz", { desc = "Scroll to end" })
 
 keymap.set("n", "n", "nzz", { desc = "Next occurrence" })
 keymap.set("n", "N", "Nzz", { desc = "Previous occurrence" })
