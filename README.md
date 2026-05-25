@@ -75,6 +75,7 @@ lua/
 │   ├── autocmds/      # Autocommands by category
 │   ├── intelephense/  # PHP LSP stubs
 │   ├── keys/          # Keymaps by category
+│   ├── autocmds.lua   # Autocommand entry point
 │   ├── filetypes.lua  # Filetype detection
 │   ├── keymaps.lua    # Keymap entry point
 │   ├── lazy.lua       # LazyVim bootstrap
