@@ -19,17 +19,17 @@ return {
               -- Show confirmation for all other tools
               return false
             end,
+            extensions = {
+              avante = {
+                make_slash_commands = true,
+              },
+            },
           })
         end,
       },
     },
     opts = {
       web_search_engine = "Brave",
-      extensions = {
-        avante = {
-          make_slash_commands = true,
-        },
-      },
 
       -- Ensure no tool conflicts by disabling redundant Avante tools
       disabled_tools = {
