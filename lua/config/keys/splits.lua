@@ -2,10 +2,10 @@ local keymap = require("helpers.keymap")
 local split = require("helpers.split")
 
 -- Remove original keymaps
-keymap.del("n", "<C-h>")
-keymap.del("n", "<C-l>")
-keymap.del("n", "<C-j>")
-keymap.del("n", "<C-k>")
+pcall(keymap.del, "n", "<C-h>")
+pcall(keymap.del, "n", "<C-l>")
+pcall(keymap.del, "n", "<C-j>")
+pcall(keymap.del, "n", "<C-k>")
 
 -- Navigate splits
 keymap.set("n", "<C-h>", split.jump_split_with_wrap("h", "l"), { desc = "Jump to split left" })
@@ -14,10 +14,10 @@ keymap.set("n", "<C-j>", split.jump_split_with_wrap("j", "k"), { desc = "Jump to
 keymap.set("n", "<C-k>", split.jump_split_with_wrap("k", "j"), { desc = "Jump to split up" })
 
 -- Remove original keymaps
-keymap.del("n", "<C-Up>")
-keymap.del("n", "<C-Down>")
-keymap.del("n", "<C-Left>")
-keymap.del("n", "<C-Right>")
+pcall(keymap.del, "n", "<C-Up>")
+pcall(keymap.del, "n", "<C-Down>")
+pcall(keymap.del, "n", "<C-Left>")
+pcall(keymap.del, "n", "<C-Right>")
 
 -- Resize window splits
 local list = require("helpers.list")

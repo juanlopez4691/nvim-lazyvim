@@ -2,8 +2,8 @@ local keymap = vim.keymap
 local wk = require("which-key")
 
 -- Unmap old Lazy keys (in case these are imported by LazyVim/themes/plugins)
-keymap.del("n", "<leader>l")
-keymap.del("n", "<leader>L")
+pcall(keymap.del, "n", "<leader>l")
+pcall(keymap.del, "n", "<leader>L")
 
 -- Assign new Lazy keys to avoid conflicts with laravel.nvim plugin keymaps.
 wk.add({
@@ -19,7 +19,9 @@ wk.add({
     mode = "n",
     "<leader>Z",
     function()
-      LazyVim.news.changelog()
+      if LazyVim then
+        LazyVim.news.changelog()
+      end
     end,
     desc = "LazyVim Changelog",
   },
