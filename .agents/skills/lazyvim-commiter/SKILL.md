@@ -43,12 +43,14 @@ after review and validation.
 Maintain a **linear history**. Avoid merge commits.
 
 - Rebase feature branches onto `main` before merging:
+
   ```bash
   git checkout feat/my-branch
   git rebase main
   git checkout main
   git merge --ff-only feat/my-branch
   ```
+
 - Never use `git merge --no-ff`.
 - Never merge `main` into a feature branch; always rebase.
 
