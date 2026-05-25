@@ -23,6 +23,7 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
   self-contained subject that makes the body redundant.
 - One logical change per commit. Never mix unrelated topics. A commit subject
   that reads "do X and Y" must be split into (at least) two commits.
+- Changes to `.md` files (README, AGENTS.md, skills) must use `docs:` type.
 
 ## Branching
 
