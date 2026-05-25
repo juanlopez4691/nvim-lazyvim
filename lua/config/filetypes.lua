@@ -26,10 +26,11 @@ pcall(function()
   vim.treesitter.language.register("html", "antlers")
 end)
 
--- Force antlers filetype for common Statamic template patterns even if filetype detection
--- runs late; also correct buffers that still land on html.
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile", "FileType" }, {
-  pattern = { "*.antlers.html", "*.antlers.php", "html" },
+-- Correct buffers that incorrectly land on html for antlers files.
+-- vim.filetype.add already handles BufRead/BufNewFile, so we only need
+-- to catch late FileType assignments here.
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "html",
   callback = function(event)
     local name = vim.api.nvim_buf_get_name(event.buf)
     if name:match("%.antlers%.html$") or name:match("%.antlers%.php$") or name:match("%.antlers$") then
