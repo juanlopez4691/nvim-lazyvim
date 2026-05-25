@@ -42,7 +42,9 @@ return {
     },
     styles = {
       zen = {
-        width = math.max(140, vim.api.nvim_win_get_width(0) * 0.7),
+        width = function()
+          return math.max(140, vim.api.nvim_win_get_width(0) * 0.7)
+        end,
         backdrop = { transparent = true, blend = 25 },
       },
       vertical_terminal = {
