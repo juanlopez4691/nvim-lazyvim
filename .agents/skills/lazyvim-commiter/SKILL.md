@@ -37,6 +37,20 @@ Examples: `feat/remove-avante`, `fix/keymap-typo`, `docs/update-readme`.
 Keep branches focused on a single logical change. Merge via PR or fast-forward
 after review and validation.
 
+## Git History
+
+Maintain a **linear history**. Avoid merge commits.
+
+- Rebase feature branches onto `main` before merging:
+  ```bash
+  git checkout feat/my-branch
+  git rebase main
+  git checkout main
+  git merge --ff-only feat/my-branch
+  ```
+- Never use `git merge --no-ff`.
+- Never merge `main` into a feature branch; always rebase.
+
 ## Examples
 
 - ❌ `docs: fix markdownlint in README and AGENTS`
