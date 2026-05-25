@@ -3,8 +3,8 @@ local keymap = vim.keymap
 local wk = require("which-key")
 
 -- Remove some original keymaps
-keymap.del("n", "<leader>fT")
-keymap.del("n", "<leader>ft")
+pcall(keymap.del, "n", "<leader>fT")
+pcall(keymap.del, "n", "<leader>ft")
 
 wk.add({
   { mode = "n", "<leader>t", group = "Terminal" },
@@ -12,7 +12,9 @@ wk.add({
     mode = "n",
     "<leader>tt",
     function()
-      Snacks.terminal()
+      if Snacks then
+        Snacks.terminal()
+      end
     end,
     desc = "Terminal (cwd)",
   },
@@ -20,7 +22,9 @@ wk.add({
     mode = "n",
     "<leader>tT",
     function()
-      Snacks.terminal(nil, { cwd = LazyVim.root() })
+      if Snacks and LazyVim then
+        Snacks.terminal(nil, { cwd = LazyVim.root() })
+      end
     end,
     desc = "Terminal (Root Dir)",
   },
@@ -29,7 +33,9 @@ wk.add({
     "<leader>tv",
     function()
       snacks_helper.close_snacks_explorer()
-      Snacks.terminal(nil, { win = { style = "vertical_terminal" } })
+      if Snacks then
+        Snacks.terminal(nil, { win = { style = "vertical_terminal" } })
+      end
     end,
     desc = "Terminal (vertical, cwd)",
   },
@@ -38,7 +44,9 @@ wk.add({
     "<leader>tV",
     function()
       snacks_helper.close_snacks_explorer()
-      Snacks.terminal(nil, { cwd = LazyVim.root(), win = { style = "vertical_terminal" } })
+      if Snacks and LazyVim then
+        Snacks.terminal(nil, { cwd = LazyVim.root(), win = { style = "vertical_terminal" } })
+      end
     end,
     desc = "Terminal (vertical, root)",
   },

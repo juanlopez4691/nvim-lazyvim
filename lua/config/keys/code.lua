@@ -14,8 +14,8 @@ wk.add({
 })
 
 -- Remove default keymaps
-keymap.del("n", "<leader>cs")
-keymap.del("n", "<leader>cS")
+pcall(keymap.del, "n", "<leader>cs")
+pcall(keymap.del, "n", "<leader>cS")
 
 -- Symbols outline for current buffer and workspace
 local symbols_filter = {
@@ -39,30 +39,33 @@ local symbols_filter = {
 }
 
 local toggleDocumentSymbols = function()
-  vim.wo.winbar = ""
-  Snacks.picker("lsp_symbols", {
-    layout = {
-      preset = "right",
-    },
-    filter = {
-      default = symbols_filter,
-    },
-  })
+  if Snacks then
+    Snacks.picker("lsp_symbols", {
+      layout = {
+        preset = "right",
+      },
+      filter = {
+        default = symbols_filter,
+      },
+    })
+  end
 end
 
 local toggleWorkspaceSymbols = function()
-  Snacks.picker("lsp_workspace_symbols", {
-    layout = {
-      preset = "vertical",
-      ---@diagnostic disable-next-line: missing-fields
+  if Snacks then
+    Snacks.picker("lsp_workspace_symbols", {
       layout = {
-        width = 0.9,
+        preset = "vertical",
+        ---@diagnostic disable-next-line: missing-fields
+        layout = {
+          width = 0.9,
+        },
       },
-    },
-    filter = {
-      default = symbols_filter,
-    },
-  })
+      filter = {
+        default = symbols_filter,
+      },
+    })
+  end
 end
 
 -- Override original mapping for LSP symbols
