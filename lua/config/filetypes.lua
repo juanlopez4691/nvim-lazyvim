@@ -1,5 +1,5 @@
 -- Map various template/markup extensions and patterns to known filetypes
--- to silence LSP “unknown filetype” warnings for supported language servers.
+-- to silence LSP "unknown filetype" warnings for supported language servers.
 
 vim.filetype.add({
   extension = {
@@ -18,8 +18,10 @@ vim.filetype.add({
   },
 })
 
-vim.treesitter.language.register("html", "blade")
-vim.treesitter.language.register("twig", "twig")
+pcall(function()
+  vim.treesitter.language.register("html", "blade")
+end)
+
 pcall(function()
   vim.treesitter.language.register("html", "antlers")
 end)
