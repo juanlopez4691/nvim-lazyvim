@@ -132,7 +132,7 @@ style and structure conventions.
 ## Repo Notes and File Map
 
 - Stylua: `stylua.toml` (2-space indent, width 120).
-- Lua LS globals: `.luarc.json` (`vim`, `LazyVim`, `Snacks`).
+- Lua LS globals: `.luarc.json` (`vim`, `LazyVim`, `Snacks`, `Laravel`).
 - PHP linting logic: `lua/plugins/nvim-lint.lua`.
 - Formatting adapters: `lua/plugins/conform.lua`.
 - LSP setup: `lua/plugins/nvim-lspconfig.lua`.
