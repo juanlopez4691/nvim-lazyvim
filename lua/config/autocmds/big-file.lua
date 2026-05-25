@@ -12,16 +12,16 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     local is_big_file = filesize >= MAX_FILESIZE or lines >= MAX_LINES
 
     if is_big_file then
-      vim.cmd("syntax off")
+      vim.bo[args.buf].syntax = "off"
 
       pcall(function()
         vim.treesitter.stop(args.buf)
       end)
 
-      -- Stop LSP clients attached to this buffer only
+      -- Detach LSP clients from this buffer only
       local clients = vim.lsp.get_clients({ bufnr = args.buf })
       for _, client in ipairs(clients) do
-        vim.lsp.stop_client(client.id)
+        vim.lsp.buf_detach_client(args.buf, client.id)
       end
 
       vim.opt_local.spell = false
