@@ -7,10 +7,12 @@ vim.opt.clipboard = ""
 
 -- Set the backup directory, create it if it doesn't exist
 local backup_dir = vim.fn.expand("~/.nvim/backupdir")
-assert(type(backup_dir) == "string")
 
 if vim.fn.isdirectory(backup_dir) == 0 then
-  vim.fn.mkdir(backup_dir, "p")
+  local ok = vim.fn.mkdir(backup_dir, "p")
+  if ok == -1 then
+    vim.notify("Failed to create backup directory: " .. backup_dir, vim.log.levels.WARN)
+  end
 end
 
 vim.opt.backupdir = backup_dir
@@ -31,9 +33,6 @@ vim.g.root_spec = {
   "cwd", -- finally current working dir
 }
 
--- Enable editorconfig support
-vim.g.editorconfig = true
-
 -- intelephense as PHP LSP
 vim.g.lazyvim_php_lsp = "intelephense"
 
@@ -45,5 +44,8 @@ vim.g.loaded_perl_provider = 0
 
 -- Enable AI virtual text
 vim.g.ai_cmp = false
+
+-- Disable native diagnostic virtual text in favor of tiny-inline-diagnostic
+vim.diagnostic.config({ virtual_text = false })
 
 vim.g.colorscheme = "catppuccin-mocha"
