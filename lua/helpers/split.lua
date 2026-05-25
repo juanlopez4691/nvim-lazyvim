@@ -4,7 +4,8 @@
   @param win_id (integer) The window ID
 ]]
 local function is_bottommost(win_id)
-  local win_bottom = vim.api.nvim_win_get_position(win_id)[1] + vim.api.nvim_win_get_height(win_id)
+  local win = win_id or vim.api.nvim_get_current_win()
+  local win_bottom = vim.api.nvim_win_get_position(win)[1] + vim.api.nvim_win_get_height(win)
   local screen_bottom = vim.o.lines - vim.o.cmdheight - 1
   return win_bottom >= screen_bottom
 end
