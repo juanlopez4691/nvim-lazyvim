@@ -71,7 +71,7 @@ wk.add({
     "<leader>R",
     function()
       -- Yank the selected text into the 'v' register
-      vim.cmd('normal! "vy')
+      vim.cmd('normal! gv"vy')
 
       -- Get the contents of the 'v' register
       local selected_text = vim.fn.getreg("v")
@@ -82,7 +82,7 @@ wk.add({
 
       -- Check if selected text is empty
       if selected_text == "" then
-        print("No text selected")
+        vim.notify("No text selected", vim.log.levels.WARN)
         return
       end
 
@@ -99,7 +99,7 @@ wk.add({
       local cmd = string.format("%%s/%s/%s/gc", escaped_text, vim.fn.escape(replacement_text, "/\\"))
 
       -- Provide information about confirmation options
-      print("Options: [y]es, [n]o, [a]ll, [q]uit, [l]ast")
+      vim.notify("Options: [y]es, [n]o, [a]ll, [q]uit, [l]ast", vim.log.levels.INFO)
 
       -- Execute the command safely
       local success, err = pcall(function()
@@ -107,7 +107,7 @@ wk.add({
       end)
 
       if not success then
-        print("Error executing substitution: " .. err)
+        vim.notify("Error executing substitution: " .. err, vim.log.levels.ERROR)
       end
     end,
     desc = "Replace occurrences of selection",
