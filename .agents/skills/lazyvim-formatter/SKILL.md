@@ -8,6 +8,12 @@ description: >
 
 # LazyVim Formatting Conventions (This Repo)
 
+## Scope
+
+This skill covers **formatting only** — running `stylua` and verifying format.
+It does NOT cover code correctness, linting, or commit style. Do NOT run
+`:checkhealth`, `:messages`, or `:Lint` unless explicitly asked.
+
 ## Lua
 
 Run `stylua .` before committing Lua changes.

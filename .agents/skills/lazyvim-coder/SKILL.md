@@ -9,6 +9,12 @@ description: >
 
 # LazyVim Coding Conventions
 
+## Scope
+
+This skill covers **code changes only** — writing and editing Lua in this repo.
+It does NOT cover formatting (see `lazyvim-formatter`), linting (see
+`lazyvim-linter`), or commit style (see `lazyvim-commiter`).
+
 ## Hard Constraints (NEVER violate)
 
 - Don't `require` autoloaded config files: `config/options.lua`,

@@ -8,6 +8,12 @@ description: >
 
 # LazyVim Commit Conventions
 
+## Scope
+
+This skill covers **commits and branching only** — commit message style and
+branch workflow. It does NOT cover code patterns (see `lazyvim-coder`),
+formatting (see `lazyvim-formatter`), or linting (see `lazyvim-linter`).
+
 Follow [Conventional Commits](https://www.conventionalcommits.org/):
 `type: subject`.
 
