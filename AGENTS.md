@@ -4,7 +4,7 @@
 
 Practical, repo-specific guidance for agents and human contributors working on
 this [LazyVim](https://github.com/LazyVim/LazyVim) based Neovim configuration.
-Covers reload, format/lint, "single tests," and local code
+Covers reload, format/lint, validation, and local code
 style and structure conventions.
 
 ## For AI Agents
@@ -21,10 +21,9 @@ Agents should prefer the skill when available; fall back to this file.
   2. This file
   3. Direct user instructions that express **intent or preference**
      (e.g., "use tabs instead of spaces")
-- **Routine commands do NOT override conventions.** When a user says "commit
-  this" or "fix that," apply commit conventions, formatting rules, and code
-  style automatically. Do not bundle unrelated changes into a single commit
-  just because the user mentioned them together.
+- Note: routine commands ("commit this", "fix that") do NOT constitute intent
+  overrides. Apply commit conventions, formatting, and code style automatically.
+  Do not bundle unrelated changes because the user mentioned them together.
 - Intent: Clarify how to work here without duplicating LazyVim docs.
 
 ## Build, Reload, and Health
@@ -94,7 +93,7 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
   - Python: `isort --check-only <file>`; `black --check <file>`
   - Blade: `npx blade-formatter --check <file>`
 
-## Tests and Single-Test Guidance
+## Validation
 
 - No formal automated tests in this repo. Validation is interactive:
   - `:source %` or restart; confirm no errors in `:messages` and
@@ -142,7 +141,7 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
   `snake_case`.
 - Files: lowercase with hyphens/underscores where appropriate.
 - Functions: verb_noun (for example, `parse_diagnostics_from_phpcs`).
-- Globals: only `vim`, `LazyVim`, `Snacks` (see `.luarc.json`).
+- Globals: only `vim`, `LazyVim`, `Snacks`, `Laravel` (see `.luarc.json`).
 
 ## Error Handling and Logging
 
@@ -179,7 +178,7 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 - PHP linting logic: `lua/plugins/nvim-lint.lua`.
 - Formatting adapters: `lua/plugins/conform.lua`.
 - LSP setup: `lua/plugins/nvim-lspconfig.lua`.
-- Helpers reference: `lua/helpers/filesystem.lua`.
+- Helpers reference: `lua/helpers/` (filesystem, keymap, list, snacks, split).
 - Project skill: `.agents/skills/lazyvim-config/SKILL.md`
 
 ## Cursor and Copilot Rules
