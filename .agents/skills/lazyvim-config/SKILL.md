@@ -3,92 +3,52 @@ name: lazyvim-config
 description: >
   LazyVim Neovim configuration conventions. Use when editing Lua files,
   plugin specs, keymaps, or options in this LazyVim-based Neovim config.
-  Enforces commit rules, Lua/Stylua formatting, and unbreakable constraints.
-  For full details, manual CLI commands, and extended explanations, see
-  AGENTS.md in the repository root.
+  For full details see AGENTS.md in the repository root.
 ---
 
-## Triggers
+# LazyVim Config Conventions
 
-Load this skill when:
-- Creating or editing files under `lua/`
-- Modifying `stylua.toml`, `.luarc.json`, plugin specs, or skill files
-- Editing `README.md`, `AGENTS.md`, or other markdown files in this repo
-- The user says "commit", "format", "lint", or "reload" in the context of
-  this Neovim config
+## Hard Constraints (NEVER violate)
 
-## Commit Rules
+- Don't `require` autoloaded config files: `config/options.lua`,
+  `config/keymaps.lua`, `config/autocmds.lua`, or anything under
+  `config/keys/`, `config/autocmds/`.
+- Don't create new globals. Existing: `vim`, `LazyVim`, `Snacks`, `Laravel`
+  (see `.luarc.json`).
+- Don't bundle unrelated changes in a single commit.
 
-- One logical change per commit. Never mix unrelated topics.
-- Conventional Commits: `type: subject`. No scopes. No issue references.
-- No commit body unless the "why" is non-obvious.
-- A subject reading "do X and Y" → split into (at least) two commits.
+## Before Committing Lua
 
-### Examples
+Run `stylua .`. Lua uses 2-space indent, column width 120 (see `stylua.toml`).
 
-- ❌ `docs: fix markdownlint in README and AGENTS`
-  → Two unrelated files; split.
-- ❌ `feat: add linter and update keymaps`
-  → "and" signals two changes; split.
-- ✅ `docs: fix markdownlint errors in README`
-  → Single topic.
-- ✅ `docs: fix markdownlint line-length`
-  → Single topic, no body needed.
+## Commits
 
-## Formatting
+`type: subject`. No scopes. No body unless "why" isn't obvious. One logical
+change per commit. Split anything that reads "X and Y". See AGENTS.md.
 
-- Run `stylua .` before submitting Lua changes.
-- Lua: 2-space indent, max width 120.
-- Prefer project-local binaries (`vendor/bin/...`) for PHP.
+## Code Patterns
 
-## Linting
+- Plugin specs: `lua/plugins/<name>.lua`, extend with
+  `vim.tbl_deep_extend("force", ...)`.
+- Helpers: `lua/helpers/`, require as `require("helpers.<module>")`.
+- Init in setup functions, not at require time.
 
-- Uses `mfussenegger/nvim-lint` (see `lua/plugins/nvim-lint.lua`).
-- PHP: dynamic selection per project (see AGENTS.md for full rules).
+## Verify
 
-## Unbreakable Constraints
+```text
+:source %      # Reload current file
+:messages      # Check for errors
+:checkhealth   # LSP/linter diagnostics
+```
 
-- Do NOT manually `require` autoloaded config files (`config/options.lua`,
-  `config/keymaps.lua`, `config/autocmds.lua`, or files under `config/keys/`
-  and `config/autocmds/`).
-- Do NOT introduce new globals.
-- Do not bundle unrelated changes into a single commit just because the user
-  mentioned them together.
+Format: `:ConformInfo` or:
 
-## Code Structure
-
-- Plugin specs live in `lua/plugins/*.lua` and return a spec table. Extend with
-  `vim.tbl_deep_extend("force", ...)` rather than rewriting.
-- Local helpers live in `lua/helpers/` and are imported via
-  `require("helpers.<module>")`.
-- Keep modules light on side effects; initialize in setup functions where
-  possible, not at require time.
-
-## Quick Workflows
-
-### Reload config
-- `:source %` (current buffer) or restart Neovim.
-- Headless sanity: `nvim --headless +qa`
-- After reload, check `:messages` and `:checkhealth`
-
-### Add a plugin
-1. Create `lua/plugins/<name>.lua` returning a Lazy plugin spec table.
-2. Use `vim.tbl_deep_extend("force", ...)` to extend existing specs.
-3. Run `stylua .` before committing.
-
-### Format buffer
 ```lua
 require("conform").format({ async = false, lsp_fallback = true })
 ```
 
-### Run linter
-```
-:Lint
-```
+Lint: `:Lint`
 
-## Naming Conventions
+## Naming
 
-- Locals/fields: `snake_case`.
-- Functions: `verb_noun`.
-- Globals: only `vim`, `LazyVim`, `Snacks` (see `.luarc.json`).
-- Files: lowercase with hyphens/underscores where appropriate.
+Locals/fields: `snake_case`. Functions: `verb_noun`. Files: lowercase, hyphens.
