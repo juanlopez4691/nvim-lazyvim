@@ -16,6 +16,11 @@
 local function require_dir(directory)
   local target_dir = vim.fn.stdpath("config") .. "/lua/" .. directory
 
+  if vim.fn.isdirectory(target_dir) == 0 then
+    vim.notify("Directory not found: " .. target_dir, vim.log.levels.WARN)
+    return
+  end
+
   local files = {}
   for name in vim.fs.dir(target_dir) do
     if name:match("%.lua$") then
