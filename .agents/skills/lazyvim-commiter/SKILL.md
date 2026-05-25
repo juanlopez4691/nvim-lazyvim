@@ -18,6 +18,19 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 - One logical change per commit. Never mix unrelated topics. A commit subject
   that reads "do X and Y" must be split into (at least) two commits.
 
+## Branching
+
+For non-trivial or risky changes, create a dedicated branch:
+
+```bash
+git checkout -b <type>/<brief-description>
+```
+
+Examples: `feat/remove-avante`, `fix/keymap-typo`, `docs/update-readme`.
+
+Keep branches focused on a single logical change. Merge via PR or fast-forward
+after review and validation.
+
 ## Examples
 
 - ❌ `docs: fix markdownlint in README and AGENTS`
