@@ -161,8 +161,13 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 - Options: configure in `lua/config/options.lua` and let LazyVim autoload.
 - LSP servers (see `lua/plugins/nvim-lspconfig.lua`):
   - `lua_ls` (LuaJIT; globals include `vim`, `LazyVim`)
-  - `antlersls` (Antlers/HTML)
+  - `vtsls` (JavaScript/TypeScript)
   - `intelephense` (PHP/Blade; stubs via `config/intelephense/stubs.lua`)
+  - `laravel_ls` (PHP/Laravel)
+  - `tailwindcss` (CSS frameworks, including Blade/Twig)
+  - `antlersls` (Antlers/HTML)
+  - `twiggy_language_server` (Twig)
+  - `marksman` (Markdown)
 - Treesitter and Mason: `lua/plugins/treesitter.lua`, `lua/plugins/mason.lua`.
 - Conform (formatting): event `BufWritePre`; see `:ConformInfo` for resolution.
 - nvim-lint (linting): dynamic PHP rules above; use `:Lint`.
