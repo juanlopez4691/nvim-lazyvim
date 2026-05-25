@@ -4,55 +4,46 @@ description: >
   LazyVim Neovim configuration conventions. Use when editing Lua files,
   plugin specs, keymaps, or options in this LazyVim-based Neovim config.
   Enforces commit rules, Lua/Stylua formatting, and unbreakable constraints.
+  For full details, manual CLI commands, and extended explanations, see
+  AGENTS.md in the repository root.
 ---
 
-## Commit Conventions
+## Triggers
 
-- Follow [Conventional Commits](https://www.conventionalcommits.org/):
-  `type: subject`.
-- No scope or context suffix (e.g., no `(fixes #123)` or issue references)
-  appended to the subject.
-- No commit body unless absolutely necessary to explain the "why."
-- One logical change per commit. Never mix unrelated topics. A commit subject
-  that reads "do X and Y" must be split into (at least) two commits.
+Load this skill when:
+- Creating or editing files under `lua/`
+- Modifying `stylua.toml`, `.luarc.json`, or plugin specs
+- The user says "commit", "format", "lint", or "reload" in the context of
+  this Neovim config
+
+## Commit Rules
+
+- One logical change per commit. Never mix unrelated topics.
+- Conventional Commits: `type: subject`. No scopes. No issue references.
+- No commit body unless the "why" is non-obvious.
+- A subject reading "do X and Y" → split into (at least) two commits.
 
 ### Examples
 
 - ❌ `docs: fix markdownlint in README and AGENTS`
-  → Two unrelated files; split into two commits.
+  → Two unrelated files; split.
+- ❌ `feat: add linter and update keymaps`
+  → "and" signals two changes; split.
 - ✅ `docs: fix markdownlint errors in README`
-  → Single topic, self-contained.
+  → Single topic.
 - ✅ `docs: fix markdownlint line-length`
   → Single topic, no body needed.
-- ❌ `feat: add linter and update keymaps`
-  → "and" signals two changes; must be split.
 
 ## Formatting
 
-- Lua via Stylua (see `stylua.toml`): 2-space indent, width 120.
-  - Format all Lua: `stylua .`
-- Other languages via Conform (`stevearc/conform.nvim`):
-  - PHP: `pint`, `phpcbf`, `php-cs-fixer` (stop after first available)
-  - JavaScript: `prettierd`, `prettier`
-  - Python: `isort`, `black`
-  - Blade: `blade-formatter`
-- In Neovim, format buffer:
-
-  ```lua
-  require("conform").format({ async = false, lsp_fallback = true })
-  ```
-
-- Inspect formatter setup: `:ConformInfo`.
+- Run `stylua .` before any Lua change.
+- Lua: 2-space indent, max width 120.
+- Prefer project-local binaries (`vendor/bin/...`) for PHP.
 
 ## Linting
 
-- Uses `mfussenegger/nvim-lint` (see `lua/plugins/nvim-lint.lua`). Triggers on
-  `BufWritePost`, `BufReadPost`, `InsertLeave`. Run on demand: `:Lint`.
-- PHP dynamic selection (per project):
-  - If `phpstan.neon` (or `.dist` variants) exists -> enable `phpstan`.
-  - If `vendor/bin/pint` exists -> skip `phpcs`.
-  - Else -> enable `phpcs`.
-- PHPCS resolution: prefers `./vendor/bin/phpcs`, falls back to `phpcs` in PATH.
+- Uses `mfussenegger/nvim-lint` (see `lua/plugins/nvim-lint.lua`).
+- PHP: dynamic selection per project (see AGENTS.md for full rules).
 
 ## Unbreakable Constraints
 
@@ -60,31 +51,19 @@ description: >
   `config/keymaps.lua`, `config/autocmds.lua`, or files under `config/keys/`
   and `config/autocmds/`).
 - Do NOT introduce new globals.
-- Do not: bundle unrelated changes into a single commit just because the user
+- Do not bundle unrelated changes into a single commit just because the user
   mentioned them together.
 
 ## Code Structure
 
-- Do not manually `require` LazyVim autoloaded files under `lua/config/`:
-  - `config/options.lua`, `config/keymaps.lua`, `config/autocmds.lua`
-  - Files under `config/keys/` and `config/autocmds/`
 - Plugin specs live in `lua/plugins/*.lua` and return a spec table. Extend with
   `vim.tbl_deep_extend("force", ...)` rather than rewriting.
-- Local helpers/utilities live in `lua/helpers/` and are imported via
+- Local helpers live in `lua/helpers/` and are imported via
   `require("helpers.<module>")`.
 - Keep modules light on side effects; initialize in setup functions where
   possible, not at require time.
 
-## Project File Map
-
-- `stylua.toml` — 2-space indent, width 120
-- `.luarc.json` — Lua LS globals (`vim`, `LazyVim`, `Snacks`, `Laravel`)
-- `lua/plugins/nvim-lint.lua` — PHP linting logic
-- `lua/plugins/conform.lua` — Formatting adapters
-- `lua/plugins/nvim-lspconfig.lua` — LSP setup
-- `lua/helpers/filesystem.lua` — Shared utilities
-
-## Common Workflows
+## Quick Workflows
 
 ### Reload config
 - `:source %` (current buffer) or restart Neovim.
@@ -109,16 +88,6 @@ require("conform").format({ async = false, lsp_fallback = true })
 ## Naming Conventions
 
 - Locals/fields: `snake_case`.
-- Modules/plugins: follow upstream names (for example, `Snacks`) or
-  `snake_case`.
-- Files: lowercase with hyphens/underscores where appropriate.
-- Functions: verb_noun (for example, `parse_diagnostics_from_phpcs`).
+- Functions: `verb_noun`.
 - Globals: only `vim`, `LazyVim`, `Snacks` (see `.luarc.json`).
-
-## Error Handling
-
-- Wrap risky calls with `pcall` or guard checks (for example, binaries).
-- Fail fast on hard misconfigurations; fallback gracefully for optional tools.
-- Notify via `vim.notify` or `vim.notify_once` with levels from
-  `vim.log.levels`.
-- Use `vim.schedule` for notifications from callbacks or async contexts.
+- Files: lowercase with hyphens/underscores where appropriate.
