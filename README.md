@@ -18,7 +18,8 @@ to learn how to start brushing your own feline.
 ## Prerequisites
 
 - **Neovim** >= 0.12
-- **Nerd Font** (e.g. [JetBrainsMono Nerd Font](https://www.nerdfonts.com/font-downloads))
+- **Nerd Font** (e.g.
+  [JetBrainsMono Nerd Font](https://www.nerdfonts.com/font-downloads))
 - **External tools**: `git`, `fzf`, `ripgrep`, `fd`, `lazygit`, `stylua`
 
 ## Installation
@@ -46,7 +47,7 @@ nvim
 | Tailwind CSS | Tailwind LSP | — | — |
 | Docker | Docker LSP | — | — |
 | JSON | JSON LSP | — | — |
-| Markdown | Marksman | — | — |
+| Markdown | Marksman | — | markdownlint |
 | TOML | Taplo | — | — |
 
 ## Keymap Namespaces
@@ -81,6 +82,12 @@ lua/
 ├── helpers/           # Shared utilities
 └── plugins/           # Plugin specs
 ```
+
+## Contributing
+
+See [AGENTS.md](AGENTS.md) for detailed conventions, formatting rules, and
+agent-specific guidelines. A project-local skill is also available at
+`.agents/skills/lazyvim-config/SKILL.md`.
 
 ## Useful Commands
 
