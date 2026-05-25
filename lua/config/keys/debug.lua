@@ -1,193 +1,177 @@
 local keymap = vim.keymap
 local wk = require("which-key")
 
+local function safe_dap_call(fn_name)
+  return function()
+    local ok, dap = pcall(require, "dap")
+    if not ok then
+      return vim.notify("nvim-dap is not installed", vim.log.levels.WARN)
+    end
+    dap[fn_name]()
+  end
+end
+
+local function safe_dapui_call(fn_name)
+  return function()
+    local ok, dapui = pcall(require, "dapui")
+    if not ok then
+      return vim.notify("nvim-dapui is not installed", vim.log.levels.WARN)
+    end
+    dapui[fn_name]()
+  end
+end
+
 -- Remove some default keymaps
-keymap.del("n", "<leader>dB")
-keymap.del("n", "<leader>db")
-keymap.del("n", "<leader>dc")
-keymap.del("n", "<leader>dC")
-keymap.del("n", "<leader>dg")
-keymap.del("n", "<leader>di")
-keymap.del("n", "<leader>dj")
-keymap.del("n", "<leader>dk")
-keymap.del("n", "<leader>dl")
-keymap.del("n", "<leader>do")
-keymap.del("n", "<leader>dO")
-keymap.del("n", "<leader>dP")
-keymap.del("n", "<leader>dt")
-keymap.del("n", "<leader>de")
+pcall(keymap.del, "n", "<leader>dB")
+pcall(keymap.del, "n", "<leader>db")
+pcall(keymap.del, "n", "<leader>dc")
+pcall(keymap.del, "n", "<leader>dC")
+pcall(keymap.del, "n", "<leader>dg")
+pcall(keymap.del, "n", "<leader>di")
+pcall(keymap.del, "n", "<leader>dj")
+pcall(keymap.del, "n", "<leader>dk")
+pcall(keymap.del, "n", "<leader>dl")
+pcall(keymap.del, "n", "<leader>do")
+pcall(keymap.del, "n", "<leader>dO")
+pcall(keymap.del, "n", "<leader>dP")
+pcall(keymap.del, "n", "<leader>dt")
+pcall(keymap.del, "n", "<leader>de")
 
 wk.add({
   mode = { "n" },
   {
     "<leader>db",
-    function()
-      require("dap").toggle_breakpoint()
-    end,
+    safe_dap_call("toggle_breakpoint"),
     desc = "[F9] Toggle Breakpoint",
   },
   {
     "<F9>",
-    function()
-      require("dap").toggle_breakpoint()
-    end,
+    safe_dap_call("toggle_breakpoint"),
   },
   {
     "<leader>dB",
     function()
-      require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
+      local ok, dap = pcall(require, "dap")
+      if not ok then
+        return vim.notify("nvim-dap is not installed", vim.log.levels.WARN)
+      end
+      dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
     end,
     desc = "[S-F9] Breakpoint Condition",
   },
   {
     "<F21>",
     function()
-      require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
+      local ok, dap = pcall(require, "dap")
+      if not ok then
+        return vim.notify("nvim-dap is not installed", vim.log.levels.WARN)
+      end
+      dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
     end,
   },
   {
     "<leader>dc",
-    function()
-      require("dap").continue()
-    end,
+    safe_dap_call("continue"),
     desc = "[F5] Run/Continue",
   },
   {
     "<F5>",
-    function()
-      require("dap").continue()
-    end,
+    safe_dap_call("continue"),
   },
   {
     "<leader>dC",
-    function()
-      require("dap").run_to_cursor()
-    end,
+    safe_dap_call("run_to_cursor"),
     desc = "[S-F5] Run to Cursor",
   },
   {
     "<F17>",
-    function()
-      require("dap").run_to_cursor()
-    end,
+    safe_dap_call("run_to_cursor"),
   },
   {
     "<leader>di",
-    function()
-      require("dap").step_into()
-    end,
+    safe_dap_call("step_into"),
     desc = "[F11] Step Into",
   },
   {
     "<F11>",
-    function()
-      require("dap").step_into()
-    end,
+    safe_dap_call("step_into"),
   },
   {
     "<leader>do",
-    function()
-      require("dap").step_out()
-    end,
+    safe_dap_call("step_out"),
     desc = "[S-F11] Step Out",
   },
   {
     "<F23>",
-    function()
-      require("dap").step_out()
-    end,
+    safe_dap_call("step_out"),
   },
   {
     "<leader>dO",
-    function()
-      require("dap").step_over()
-    end,
+    safe_dap_call("step_over"),
     desc = "[F10] Step Over",
   },
   {
     "<F10>",
-    function()
-      require("dap").step_over()
-    end,
+    safe_dap_call("step_over"),
   },
   {
     "<leader>dj",
-    function()
-      require("dap").down()
-    end,
+    safe_dap_call("down"),
     desc = "[F6] Down",
   },
   {
     "<F6>",
-    function()
-      require("dap").down()
-    end,
+    safe_dap_call("down"),
   },
   {
     "<leader>dk",
-    function()
-      require("dap").up()
-    end,
+    safe_dap_call("up"),
     desc = "[S-F6] Up",
   },
   {
     "<F18>",
-    function()
-      require("dap").up()
-    end,
+    safe_dap_call("up"),
   },
   {
     "<leader>dl",
-    function()
-      require("dap").run_last()
-    end,
+    safe_dap_call("run_last"),
     desc = "[C-F5] Run Last",
   },
   {
     "<F29>",
-    function()
-      require("dap").run_last()
-    end,
+    safe_dap_call("run_last"),
   },
   {
     "<leader>dP",
-    function()
-      require("dap").pause()
-    end,
+    safe_dap_call("pause"),
     desc = "[F7] Pause",
   },
   {
     "<F7>",
-    function()
-      require("dap").pause()
-    end,
+    safe_dap_call("pause"),
   },
   {
     "<leader>dt",
     function()
-      require("dapui").close()
-      require("dap").terminate()
+      safe_dapui_call("close")()
+      safe_dap_call("terminate")()
     end,
     desc = "[F8] Terminate",
   },
   {
     "<F8>",
     function()
-      require("dapui").close()
-      require("dap").terminate()
+      safe_dapui_call("close")()
+      safe_dap_call("terminate")()
     end,
   },
   {
     "<leader>de",
-    function()
-      require("dapui").eval()
-    end,
+    safe_dapui_call("eval"),
     desc = "[F12] Eval",
   },
   {
     "<F12>",
-    function()
-      require("dapui").eval()
-    end,
+    safe_dapui_call("eval"),
   },
 })
