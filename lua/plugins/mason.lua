@@ -20,5 +20,7 @@ return {
       "taplo",
       "vtsls",
     })
+
+    return opts
   end,
 }

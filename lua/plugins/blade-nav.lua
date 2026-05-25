@@ -25,6 +25,8 @@ return {
           close_tag_on_complete = true,
         },
       }
+
+      return opts
     end,
   },
 }
