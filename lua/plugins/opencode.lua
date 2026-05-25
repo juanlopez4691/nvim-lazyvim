@@ -190,6 +190,7 @@ return {
         function()
           return require("opencode").operator("@this ")
         end,
+        expr = true,
         mode = { "n", "x" },
         icon = "󰚩  ",
         desc = "Add range to Opencode",
@@ -199,6 +200,7 @@ return {
         function()
           return require("opencode").operator("@this ") .. "_"
         end,
+        expr = true,
         mode = "n",
         icon = "󰚩  ",
         desc = "Add line to Opencode",
