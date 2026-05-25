@@ -11,4 +11,7 @@ require("config.filetypes")
 
 local fs = require("helpers.filesystem")
 
-fs.require_dir("config/autocmds")
+local ok, err = pcall(fs.require_dir, "config/autocmds")
+if not ok then
+  vim.notify("Failed to load autocmds: " .. tostring(err), vim.log.levels.WARN)
+end
