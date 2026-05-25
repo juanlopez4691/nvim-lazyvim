@@ -12,7 +12,8 @@ description: >
 
 Load this skill when:
 - Creating or editing files under `lua/`
-- Modifying `stylua.toml`, `.luarc.json`, or plugin specs
+- Modifying `stylua.toml`, `.luarc.json`, plugin specs, or skill files
+- Editing `README.md`, `AGENTS.md`, or other markdown files in this repo
 - The user says "commit", "format", "lint", or "reload" in the context of
   this Neovim config
 
@@ -36,7 +37,7 @@ Load this skill when:
 
 ## Formatting
 
-- Run `stylua .` before any Lua change.
+- Run `stylua .` before submitting Lua changes.
 - Lua: 2-space indent, max width 120.
 - Prefer project-local binaries (`vendor/bin/...`) for PHP.
 
