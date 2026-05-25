@@ -9,5 +9,8 @@ if vim.loader then
   vim.loader.enable()
 end
 
+-- Register custom filetypes before any buffer is created
+require("config.filetypes")
+
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
