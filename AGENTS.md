@@ -7,10 +7,41 @@ this [LazyVim](https://github.com/LazyVim/LazyVim) based Neovim configuration.
 Covers reload, format/lint, "single tests," and local code
 style and structure conventions.
 
+## ⚠️ Agent Quick Reference
+
+Read this section first. These rules are non-negotiable regardless of how a
+task is phrased.
+
+### Before committing
+- One logical change per commit. A subject reading "do X and Y" MUST be
+  split into (at least) two commits.
+- Conventional Commits: `type: subject`. No scopes, no issue references in
+  subject.
+- No commit body unless the "why" is non-obvious.
+- Run `stylua .` before any Lua change.
+
+### Before formatting
+- Prefer project-local binaries (`vendor/bin/...`) for PHP.
+- Lua: 2-space indent, max width 120.
+
+### Unbreakable constraints
+- Do NOT manually `require` autoloaded config files (`config/options.lua`,
+  `config/keymaps.lua`, `config/autocmds.lua`, or files under `config/keys/`
+  and `config/autocmds/`).
+- Do NOT introduce new globals.
+
 ## Scope and Precedence
 
 - Scope: Entire repository unless a deeper AGENTS.md overrides it.
-- Precedence: Deeper files > this file; direct user/system instructions > all.
+- Precedence:
+  1. Deeper AGENTS.md files
+  2. This file
+  3. Direct user instructions that express **intent or preference**
+     (e.g., "use tabs instead of spaces")
+- **Routine commands do NOT override conventions.** When a user says "commit
+  this" or "fix that," apply commit conventions, formatting rules, and code
+  style automatically. Do not bundle unrelated changes into a single commit
+  just because the user mentioned them together.
 - Intent: Clarify how to work here without duplicating LazyVim docs.
 
 ## Build, Reload, and Health
@@ -25,13 +56,25 @@ style and structure conventions.
 
 ## Commit Conventions
 
-- Follow [Conventional Commits](https://www.conventionalcommits.org/): `type: subject`.
+- Follow [Conventional Commits](https://www.conventionalcommits.org/):
+  `type: subject`.
 - No scope or context suffix (e.g., no `(fixes #123)` or issue references)
   appended to the subject.
 - No commit body unless absolutely necessary to explain the "why." Prefer a
   self-contained subject that makes the body redundant.
 - One logical change per commit. Never mix unrelated topics. A commit subject
   that reads "do X and Y" must be split into (at least) two commits.
+
+### Examples
+
+- ❌ `docs: fix markdownlint in README and AGENTS`
+  → Two unrelated files; split into two commits.
+- ✅ `docs: fix markdownlint errors in README`
+  → Single topic, self-contained.
+- ✅ `docs: fix markdownlint line-length`
+  → Single topic, no body needed.
+- ❌ `feat: add linter and update keymaps`
+  → "and" signals two changes; must be split.
 
 ## Formatting
 
@@ -121,7 +164,8 @@ style and structure conventions.
 
 - Wrap risky calls with `pcall` or guard checks (for example, binaries).
 - Fail fast on hard misconfigurations; fallback gracefully for optional tools.
-- Notify via `vim.notify` or `vim.notify_once` with levels from `vim.log.levels`.
+- Notify via `vim.notify` or `vim.notify_once` with levels from
+  `vim.log.levels`.
 - Use `vim.schedule` for notifications from callbacks or async contexts.
 - Prefer Neovim diagnostics and `vim.notify` over printing to stdout/stderr.
 
@@ -154,7 +198,7 @@ style and structure conventions.
 - No Copilot instructions found: `.github/copilot-instructions.md` not present.
 - If added later, summarize constraints here and link to their locations.
 
-## Do and Do Not (Quick Reference)
+## Do and Do Not
 
 - Do: run `stylua .` before submitting changes.
 - Do: prefer project-local binaries (`vendor/bin/...`) for PHP.
