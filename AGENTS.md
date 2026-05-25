@@ -23,6 +23,15 @@ style and structure conventions.
 - Headless quick load (sanity): `nvim --headless +qa` (does not cover
   lazy-loaded paths).
 
+## Commit Conventions
+
+- Follow [Conventional Commits](https://www.conventionalcommits.org/): `type: subject`.
+- No scope or context suffix (e.g., no `(fixes #123)` or issue references) appended to the subject.
+- No commit body unless absolutely necessary to explain the "why." Prefer a
+  self-contained subject that makes the body redundant.
+- One logical change per commit. Never mix unrelated topics. A commit subject
+  that reads "do X and Y" must be split into (at least) two commits.
+
 ## Formatting
 
 - Lua via Stylua (see `stylua.toml`): 2-space indent, width 120.
