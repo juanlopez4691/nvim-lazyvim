@@ -76,10 +76,6 @@ This repository contains **Lua, Markdown, JSON, and TOML** files.
 
 - Inspect formatter setup: `:ConformInfo`.
 
-Note: The Conform config (`lua/plugins/conform.lua`) defines formatters for
-PHP, JavaScript, Python, and Blade for use in other projects. Those file types
-do not exist in this repository.
-
 ## Linting
 
 - Uses `mfussenegger/nvim-lint` (see `lua/plugins/nvim-lint.lua`). Triggers on
