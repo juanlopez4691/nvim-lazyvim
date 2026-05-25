@@ -1,12 +1,19 @@
 # 💤 LazyVim
 
-A Neovim configuration based on [LazyVim](https://github.com/LazyVim/LazyVim), tailored for PHP, Laravel, and web development.
+A Neovim configuration based on
+[LazyVim](https://github.com/LazyVim/LazyVim), tailored for PHP, Laravel,
+and web development.
 
-In Catalonia, we have a proverb: "Qui no té feina, el gat pentina", which translates to "Those who have no work, brush the cat". This means that when someone is idle or has nothing to do, they may engage in trivial or unnecessary tasks, similar to the idea of "idle hands are the devil's workshop."
+In Catalonia, we have a proverb: "Qui no té feina, el gat pentina",
+which translates to "Those who have no work, brush the cat". This
+means that when someone is idle or has nothing to do, they may engage
+in trivial or unnecessary tasks, similar to the idea of "idle hands
+are the devil's workshop."
 
 I guess sometimes Neovim is like my cat to brush.
 
-Refer to the [LazyVim documentation](https://lazyvim.github.io/installation) to learn how to start brushing your own feline.
+Refer to the [LazyVim documentation](https://lazyvim.github.io/installation)
+to learn how to start brushing your own feline.
 
 ## Prerequisites
 
@@ -30,7 +37,7 @@ nvim
 ## Language Support
 
 | Language | LSP | Formatter | Linter |
-|----------|-----|-----------|--------|
+| ---------- | ----- | ----------- | -------- |
 | PHP | Intelephense | Pint, PHPCBF | PHPStan, PHPCS |
 | Blade | blade-nav | blade-formatter | — |
 | Twig | Twiggy LSP | — | — |
@@ -45,7 +52,7 @@ nvim
 ## Keymap Namespaces
 
 | Prefix | Purpose |
-|--------|---------|
+| -------- | --------- |
 | `<leader>a` | AI assistants |
 | `<leader>c` | Code (lint, symbols) |
 | `<leader>d` | Debug (DAP) |
@@ -61,7 +68,7 @@ nvim
 
 ## Project Structure
 
-```
+```text
 lua/
 ├── config/
 │   ├── autocmds/      # Autocommands by category
@@ -78,7 +85,7 @@ lua/
 ## Useful Commands
 
 | Command | Description |
-|---------|-------------|
+| --------- | ------------- |
 | `:checkhealth` | Run Neovim health checks |
 | `:ConformInfo` | Inspect formatter resolution |
 | `:Lint` | Run linter on current buffer |
