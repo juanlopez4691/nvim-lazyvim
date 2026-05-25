@@ -2,33 +2,16 @@
 
 ## Purpose
 
-Practical, repo-specific guidance for agents contributing to
+Practical, repo-specific guidance for agents and human contributors working on
 this [LazyVim](https://github.com/LazyVim/LazyVim) based Neovim configuration.
 Covers reload, format/lint, "single tests," and local code
 style and structure conventions.
 
-## ⚠️ Agent Quick Reference
+## For AI Agents
 
-Read this section first. These rules are non-negotiable regardless of how a
-task is phrased.
-
-### Before committing
-- One logical change per commit. A subject reading "do X and Y" MUST be
-  split into (at least) two commits.
-- Conventional Commits: `type: subject`. No scopes, no issue references in
-  subject.
-- No commit body unless the "why" is non-obvious.
-- Run `stylua .` before any Lua change.
-
-### Before formatting
-- Prefer project-local binaries (`vendor/bin/...`) for PHP.
-- Lua: 2-space indent, max width 120.
-
-### Unbreakable constraints
-- Do NOT manually `require` autoloaded config files (`config/options.lua`,
-  `config/keymaps.lua`, `config/autocmds.lua`, or files under `config/keys/`
-  and `config/autocmds/`).
-- Do NOT introduce new globals.
+This file is the comprehensive reference. Critical rules are also available as
+an auto-loaded skill at `.agents/skills/lazyvim-config/SKILL.md`.
+Agents should prefer the skill when available; fall back to this file.
 
 ## Scope and Precedence
 
@@ -56,8 +39,9 @@ task is phrased.
 
 ## Commit Conventions
 
-- Follow [Conventional Commits](https://www.conventionalcommits.org/):
-  `type: subject`.
+Follow [Conventional Commits](https://www.conventionalcommits.org/):
+`type: subject`.
+
 - No scope or context suffix (e.g., no `(fixes #123)` or issue references)
   appended to the subject.
 - No commit body unless absolutely necessary to explain the "why." Prefer a
@@ -191,6 +175,7 @@ task is phrased.
 - Formatting adapters: `lua/plugins/conform.lua`.
 - LSP setup: `lua/plugins/nvim-lspconfig.lua`.
 - Helpers reference: `lua/helpers/filesystem.lua`.
+- Project skill: `.agents/skills/lazyvim-config/SKILL.md`
 
 ## Cursor and Copilot Rules
 
