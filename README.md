@@ -87,8 +87,8 @@ lua/
 ## Contributing
 
 See [AGENTS.md](AGENTS.md) for detailed conventions, formatting rules, and
-agent-specific guidelines. A project-local skill is also available at
-`.agents/skills/lazyvim-config/SKILL.md`.
+agent-specific guidelines. Project-local skills are available under
+`.agents/skills/`.
 
 ## Useful Commands
 

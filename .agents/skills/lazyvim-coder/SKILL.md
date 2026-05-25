@@ -1,12 +1,13 @@
 ---
-name: lazyvim-config
+name: lazyvim-coder
 description: >
-  LazyVim Neovim configuration conventions. Use when editing Lua files,
+  LazyVim configuration coding conventions. Use when editing Lua files,
   plugin specs, keymaps, or options in this LazyVim-based Neovim config.
+  Covers hard constraints, code patterns, naming, and verification.
   For full details see AGENTS.md in the repository root.
 ---
 
-# LazyVim Config Conventions
+# LazyVim Coding Conventions
 
 ## Hard Constraints (NEVER violate)
 
@@ -17,15 +18,6 @@ description: >
   (see `.luarc.json`).
 - Don't bundle unrelated changes in a single commit.
 
-## Before Committing Lua
-
-Run `stylua .`. Lua uses 2-space indent, column width 120 (see `stylua.toml`).
-
-## Commits
-
-`type: subject`. No scopes. No body unless "why" isn't obvious. One logical
-change per commit. Split anything that reads "X and Y". See AGENTS.md.
-
 ## Code Patterns
 
 - Plugin specs: `lua/plugins/<name>.lua`, extend with
@@ -33,7 +25,7 @@ change per commit. Split anything that reads "X and Y". See AGENTS.md.
 - Helpers: `lua/helpers/`, require as `require("helpers.<module>")`.
 - Init in setup functions, not at require time.
 
-## Verify
+## Verify Code
 
 ```text
 :source %      # Reload current file
@@ -41,14 +33,9 @@ change per commit. Split anything that reads "X and Y". See AGENTS.md.
 :checkhealth   # LSP/linter diagnostics
 ```
 
-Format: `:ConformInfo` or:
-
-```lua
-require("conform").format({ async = false, lsp_fallback = true })
-```
-
-Lint: `:Lint`
-
 ## Naming
 
-Locals/fields: `snake_case`. Functions: `verb_noun`. Files: lowercase, hyphens.
+- Locals/fields: `snake_case`.
+- Functions: `verb_noun`.
+- Files: lowercase, hyphens.
+- Modules/plugins: follow upstream names (e.g. `Snacks`) or `snake_case`.

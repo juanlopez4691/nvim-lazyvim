@@ -10,8 +10,9 @@ style and structure conventions.
 ## For AI Agents
 
 This file is the comprehensive reference. Critical rules are also available as
-an auto-loaded skill at `.agents/skills/lazyvim-config/SKILL.md`.
-Agents should prefer the skill when available; fall back to this file.
+auto-loaded skills under `.agents/skills/`:
+`lazyvim-coder`, `lazyvim-formatter`, `lazyvim-linter`, `lazyvim-commiter`.
+Agents should prefer the specific skill when available; fall back to this file.
 
 ## Scope and Precedence
 
@@ -61,13 +62,12 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 
 ## Formatting
 
-- Lua via Stylua (see `stylua.toml`): 2-space indent, width 120.
+This repository contains **Lua, Markdown, JSON, and TOML** files.
+
+- **Lua** via Stylua (see `stylua.toml`): 2-space indent, width 120.
   - Format all Lua: `stylua .`
-- Other languages via Conform (`stevearc/conform.nvim`):
-  - PHP: `pint`, `phpcbf`, `php-cs-fixer` (stop after first available)
-  - JavaScript: `prettierd`, `prettier`
-  - Python: `isort`, `black`
-  - Blade: `blade-formatter`
+- **Markdown, JSON, TOML**: handled by LSP and editor defaults. No manual CLI
+  formatter steps required.
 - In Neovim, format buffer:
 
   ```lua
@@ -76,22 +76,17 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 
 - Inspect formatter setup: `:ConformInfo`.
 
+Note: The Conform config (`lua/plugins/conform.lua`) defines formatters for
+PHP, JavaScript, Python, and Blade for use in other projects. Those file types
+do not exist in this repository.
+
 ## Linting
 
 - Uses `mfussenegger/nvim-lint` (see `lua/plugins/nvim-lint.lua`). Triggers on
   `BufWritePost`, `BufReadPost`, `InsertLeave`. Run on demand: `:Lint`.
-- PHP dynamic selection (per project):
-  - If `phpstan.neon` (or `.dist` variants) exists -> enable `phpstan`.
-  - If `vendor/bin/pint` exists -> skip `phpcs`.
-  - Else -> enable `phpcs`.
-- PHPCS resolution: prefers `./vendor/bin/phpcs`, falls back to `phpcs` in PATH.
-- Manual CLI single-file checks:
-  - PHPStan: `vendor/bin/phpstan analyse <file|dir>`
-  - PHPCS: `vendor/bin/phpcs <file>` (or `phpcs`)
-  - Pint: `vendor/bin/pint <file>`
-  - JavaScript: `npx prettier --check <file>`
-  - Python: `isort --check-only <file>`; `black --check <file>`
-  - Blade: `npx blade-formatter --check <file>`
+- For this repository, linting/diagnostics are provided by LSP servers for Lua
+  and JSON. Markdown navigation is handled by `marksman` (links, references),
+  but no markdown linter is configured.
 
 ## Validation
 
@@ -99,8 +94,6 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
   - `:source %` or restart; confirm no errors in `:messages` and
     `:checkhealth`.
   - Run a linter or formatter in check mode against a single file.
-- For PHP projects using this config: prefer project-local binaries
-  (`vendor/bin/...`) to match CI behavior.
 
 ## Code Structure and Imports
 
@@ -140,7 +133,7 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 - Modules/plugins: follow upstream names (for example, `Snacks`) or
   `snake_case`.
 - Files: lowercase with hyphens/underscores where appropriate.
-- Functions: verb_noun (for example, `parse_diagnostics_from_phpcs`).
+- Functions: verb_noun (for example, `file_exists`).
 - Globals: only `vim`, `LazyVim`, `Snacks`, `Laravel` (see `.luarc.json`).
 
 ## Error Handling and Logging
@@ -160,26 +153,22 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 - Options: configure in `lua/config/options.lua` and let LazyVim autoload.
 - LSP servers (see `lua/plugins/nvim-lspconfig.lua`):
   - `lua_ls` (LuaJIT; globals include `vim`, `LazyVim`)
-  - `vtsls` (JavaScript/TypeScript)
-  - `intelephense` (PHP/Blade; stubs via `config/intelephense/stubs.lua`)
-  - `laravel_ls` (PHP/Laravel)
-  - `tailwindcss` (CSS frameworks, including Blade/Twig)
-  - `antlersls` (Antlers/HTML)
-  - `twiggy_language_server` (Twig)
-  - `marksman` (Markdown)
+  - `jsonls` (JSON)
+  - `marksman` (Markdown navigation)
 - Treesitter and Mason: `lua/plugins/treesitter.lua`, `lua/plugins/mason.lua`.
 - Conform (formatting): event `BufWritePre`; see `:ConformInfo` for resolution.
-- nvim-lint (linting): dynamic PHP rules above; use `:Lint`.
+- nvim-lint (linting): see `lua/plugins/nvim-lint.lua`; use `:Lint`.
 
 ## Repo Notes and File Map
 
 - Stylua: `stylua.toml` (2-space indent, width 120).
 - Lua LS globals: `.luarc.json` (`vim`, `LazyVim`, `Snacks`, `Laravel`).
-- PHP linting logic: `lua/plugins/nvim-lint.lua`.
-- Formatting adapters: `lua/plugins/conform.lua`.
+- Linting config: `lua/plugins/nvim-lint.lua`.
+- Formatting config: `lua/plugins/conform.lua`.
 - LSP setup: `lua/plugins/nvim-lspconfig.lua`.
 - Helpers reference: `lua/helpers/` (filesystem, keymap, list, snacks, split).
-- Project skill: `.agents/skills/lazyvim-config/SKILL.md`
+- Project skills: `.agents/skills/lazyvim-coder`, `.agents/skills/lazyvim-formatter`,
+  `.agents/skills/lazyvim-linter`, `.agents/skills/lazyvim-commiter`.
 
 ## Cursor and Copilot Rules
 
@@ -190,7 +179,6 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 ## Do and Do Not
 
 - Do: run `stylua .` before submitting changes.
-- Do: prefer project-local binaries (`vendor/bin/...`) for PHP.
 - Do: use Neovim APIs (`vim.*`) instead of shelling out when possible.
 - Do not: manually require autoloaded config files.
 - Do not: introduce new globals; keep modules explicit.
@@ -198,12 +186,6 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 ## Useful Commands (Cheat Sheet)
 
 - Format Lua: `stylua .`
-- PHP style (one file): `vendor/bin/pint <file>` or `vendor/bin/phpcbf <file>`
-- PHP lint (one file): `vendor/bin/phpcs <file>` or `phpcs <file>`
-- PHP static analysis: `vendor/bin/phpstan analyse <file|dir>`
-- JavaScript check: `npx prettier --check <file>`
-- Python check: `isort --check-only <file>`; `black --check <file>`
-- Blade check: `npx blade-formatter --check <file>`
 - In Neovim: `:source %`, `:checkhealth`, `:ConformInfo`, `:Lint`, `:messages`
 
 ## Resources
