@@ -17,6 +17,8 @@ formatting (see `lazyvim-formatter`), or linting (see `lazyvim-linter`).
 Follow [Conventional Commits](https://www.conventionalcommits.org/):
 `type: subject`.
 
+- Commit subjects should explain WHY the change is made — what problem it solves or
+  what feature it adds. Do NOT explain WHAT or HOW; the code already does that.
 - No scope or context suffix (e.g., no `(fixes #123)` or issue references)
   appended to the subject.
 - No commit body unless absolutely necessary to explain the "why." Prefer a
