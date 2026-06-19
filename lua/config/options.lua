@@ -7,6 +7,7 @@ vim.opt.clipboard = ""
 
 -- Set the backup directory, create it if it doesn't exist
 local backup_dir = vim.fn.expand("~/.nvim/backupdir")
+---@cast backup_dir string
 
 if vim.fn.isdirectory(backup_dir) == 0 then
   local ok = vim.fn.mkdir(backup_dir, "p")
