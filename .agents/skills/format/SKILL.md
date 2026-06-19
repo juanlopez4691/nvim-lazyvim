@@ -5,6 +5,7 @@ description: >
   LazyVim configuration formatting conventions. Use when formatting files in
   this LazyVim-based Neovim config repository. Covers Stylua for Lua and
   format verification. For full details see AGENTS.md in the repository root.
+context: fork
 ---
 
 # LazyVim Formatting Conventions (This Repo)
