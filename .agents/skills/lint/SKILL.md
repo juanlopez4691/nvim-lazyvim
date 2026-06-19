@@ -1,5 +1,5 @@
 ---
-name: lazyvim-linter
+name: lint
 description: >
   LazyVim configuration linting conventions. Use when linting files in this
   LazyVim-based Neovim config repository. Covers LSP diagnostics. For full
@@ -11,8 +11,8 @@ description: >
 ## Scope
 
 This skill covers **linting/diagnostics only** — checking for errors via LSP.
-It does NOT cover formatting (see `lazyvim-formatter`) or code changes (see
-`lazyvim-coder`). Do NOT run `stylua` unless explicitly asked.
+It does NOT cover formatting (see `/format`) or code changes (see
+`/code`). Do NOT run `stylua` unless explicitly asked.
 
 ## LSP Diagnostics
 

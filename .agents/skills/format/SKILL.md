@@ -1,5 +1,5 @@
 ---
-name: lazyvim-formatter
+name: format
 description: >
   LazyVim configuration formatting conventions. Use when formatting files in
   this LazyVim-based Neovim config repository. Covers Stylua for Lua and

@@ -1,5 +1,5 @@
 ---
-name: lazyvim-commiter
+name: commit
 description: >
   LazyVim configuration commit conventions. Use when committing changes in
   this LazyVim-based Neovim config. Covers Conventional Commits style specific
@@ -11,8 +11,8 @@ description: >
 ## Scope
 
 This skill covers **commits and branching only** — commit message style and
-branch workflow. It does NOT cover code patterns (see `lazyvim-coder`),
-formatting (see `lazyvim-formatter`), or linting (see `lazyvim-linter`).
+branch workflow. It does NOT cover code patterns (see `/code`),
+formatting (see `/format`), or linting (see `/lint`).
 
 Follow [Conventional Commits](https://www.conventionalcommits.org/):
 `type: subject`. This skill mirrors the key rules from AGENTS.md for quick

@@ -1,5 +1,5 @@
 ---
-name: lazyvim-coder
+name: code
 description: >
   LazyVim configuration coding conventions. Use when editing Lua files,
   plugin specs, keymaps, or options in this LazyVim-based Neovim config.
@@ -12,8 +12,8 @@ description: >
 ## Scope
 
 This skill covers **code changes only** — writing and editing Lua in this repo.
-It does NOT cover formatting (see `lazyvim-formatter`), linting (see
-`lazyvim-linter`), or commit style (see `lazyvim-commiter`).
+It does NOT cover formatting (see `/format`), linting (see
+`/lint`), or commit style (see `/commit`).
 
 ## Hard Constraints (NEVER violate)
 
