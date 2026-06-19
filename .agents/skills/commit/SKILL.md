@@ -25,6 +25,19 @@ Key rules:
 - No body unless necessary.
 - One logical change per commit. Never bundle unrelated changes.
 - `docs:` type for `.md` file changes.
+- No `Co-Authored-By` trailers.
+
+## Commit Command
+
+Always use a plain string literal:
+
+```bash
+git commit -m "type: subject"
+```
+
+Never use heredocs or `$(...)` subshell expansion for the message — in this
+environment delta/highlight processes subshell output and embeds ANSI escape
+codes into the stored commit message.
 
 ## Branching
 
