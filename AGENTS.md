@@ -10,7 +10,7 @@ style and structure conventions.
 ## For AI Agents
 
 This file is the comprehensive reference. Critical rules are also available as
-auto-loaded skills under `.agents/skills/`:
+invokable skills under `.agents/skills/`:
 `lazyvim-coder`, `lazyvim-formatter`, `lazyvim-linter`, `lazyvim-commiter`.
 Agents should prefer the specific skill when available; fall back to this file.
 
@@ -109,6 +109,12 @@ This repository contains **Lua, Markdown, JSON, and TOML** files.
 
 - Inspect formatter setup: `:ConformInfo`.
 
+### Formatting Rules (Project-wide)
+
+- Indentation: 2 spaces; max width: 120. (Enforced by `stylua.toml`.)
+- Keep tables and function signatures readable; break long lines.
+- No trailing whitespace; ensure a final newline.
+
 ## Linting
 
 - Uses `mfussenegger/nvim-lint` (see `lua/plugins/nvim-lint.lua`). Triggers on
@@ -135,12 +141,6 @@ This repository contains **Lua, Markdown, JSON, and TOML** files.
   `require("helpers.<module>")`.
 - Keep modules light on side effects; initialize in setup functions where
   possible, not at require time.
-
-## Formatting Rules (Project-wide)
-
-- Indentation: 2 spaces; max width: 120.
-- Keep tables and function signatures readable; break long lines.
-- No trailing whitespace; ensure a final newline.
 
 ## Types and Documentation
 
@@ -198,12 +198,6 @@ This repository contains **Lua, Markdown, JSON, and TOML** files.
 - Helpers reference: `lua/helpers/` (filesystem, keymap, list, snacks, split).
 - Project skills: `.agents/skills/lazyvim-coder`, `.agents/skills/lazyvim-formatter`,
   `.agents/skills/lazyvim-linter`, `.agents/skills/lazyvim-commiter`.
-
-## Cursor and Copilot Rules
-
-- No Cursor rules found: `.cursor/rules/`, `.cursorrules` not present.
-- No Copilot instructions found: `.github/copilot-instructions.md` not present.
-- If added later, summarize constraints here and link to their locations.
 
 ## Do and Do Not
 

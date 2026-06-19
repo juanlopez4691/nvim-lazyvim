@@ -29,4 +29,5 @@ for diagnostic errors.
 
 ## nvim-lint
 
-`:Lint` is available but has no effect on the file types in this repo.
+No linters beyond LSP are configured for this repo's file types — `:Lint` is a
+no-op here.

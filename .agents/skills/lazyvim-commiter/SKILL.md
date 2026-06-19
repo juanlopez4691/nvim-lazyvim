@@ -15,15 +15,15 @@ branch workflow. It does NOT cover code patterns (see `lazyvim-coder`),
 formatting (see `lazyvim-formatter`), or linting (see `lazyvim-linter`).
 
 Follow [Conventional Commits](https://www.conventionalcommits.org/):
-`type: subject`. The core commit rules live in AGENTS.md — this skill adds
-workflow-specific extras on top.
+`type: subject`. This skill mirrors the key rules from AGENTS.md for quick
+reference — see AGENTS.md for full context and examples.
 
-Key rules at a glance (mirror AGENTS.md; see there for full context):
+Key rules:
 
 - Explain WHY, not WHAT or HOW.
 - No scope or context suffix.
 - No body unless necessary.
-- One logical change per commit.
+- One logical change per commit. Never bundle unrelated changes.
 - `docs:` type for `.md` file changes.
 
 ## Branching
