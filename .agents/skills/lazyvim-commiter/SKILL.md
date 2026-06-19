@@ -15,17 +15,16 @@ branch workflow. It does NOT cover code patterns (see `lazyvim-coder`),
 formatting (see `lazyvim-formatter`), or linting (see `lazyvim-linter`).
 
 Follow [Conventional Commits](https://www.conventionalcommits.org/):
-`type: subject`.
+`type: subject`. The core commit rules live in AGENTS.md — this skill adds
+workflow-specific extras on top.
 
-- Commit subjects should explain WHY the change is made — what problem it solves or
-  what feature it adds. Do NOT explain WHAT or HOW; the code already does that.
-- No scope or context suffix (e.g., no `(fixes #123)` or issue references)
-  appended to the subject.
-- No commit body unless absolutely necessary to explain the "why." Prefer a
-  self-contained subject that makes the body redundant.
-- One logical change per commit. Never mix unrelated topics. A commit subject
-  that reads "do X and Y" must be split into (at least) two commits.
-- Changes to `.md` files (README, AGENTS.md, skills) must use `docs:` type.
+Key rules at a glance (mirror AGENTS.md; see there for full context):
+
+- Explain WHY, not WHAT or HOW.
+- No scope or context suffix.
+- No body unless necessary.
+- One logical change per commit.
+- `docs:` type for `.md` file changes.
 
 ## Branching
 
@@ -56,13 +55,4 @@ Maintain a **linear history**. Avoid merge commits.
 - Never use `git merge --no-ff`.
 - Never merge `main` into a feature branch; always rebase.
 
-## Examples
-
-- ❌ `docs: fix markdownlint in README and AGENTS`
-  → Two unrelated files; split into two commits.
-- ✅ `docs: fix markdownlint errors in README`
-  → Single topic, self-contained.
-- ✅ `docs: fix markdownlint line-length`
-  → Single topic, no body needed.
-- ❌ `feat: add linter and update keymaps`
-  → "and" signals two changes; must be split.
+See AGENTS.md for commit message examples.

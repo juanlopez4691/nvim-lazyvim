@@ -42,12 +42,16 @@ Agents should prefer the specific skill when available; fall back to this file.
 Follow [Conventional Commits](https://www.conventionalcommits.org/):
 `type: subject`.
 
+- Commit subjects should explain WHY the change is made — what problem it
+  solves or what feature it adds. Do NOT explain WHAT or HOW; the code already
+  does that.
 - No scope or context suffix (e.g., no `(fixes #123)` or issue references)
   appended to the subject.
 - No commit body unless absolutely necessary to explain the "why." Prefer a
   self-contained subject that makes the body redundant.
 - One logical change per commit. Never mix unrelated topics. A commit subject
   that reads "do X and Y" must be split into (at least) two commits.
+- Changes to `.md` files (README, AGENTS.md, skills) must use `docs:` type.
 
 ### Examples
 
@@ -59,6 +63,35 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
   → Single topic, no body needed.
 - ❌ `feat: add linter and update keymaps`
   → "and" signals two changes; must be split.
+
+## Branching
+
+For non-trivial or risky changes, create a dedicated branch:
+
+```bash
+git checkout -b <type>/<brief-description>
+```
+
+Examples: `feat/remove-avante`, `fix/keymap-typo`, `docs/update-readme`.
+
+Keep branches focused on a single logical change. Merge via PR or fast-forward
+after review and validation.
+
+## Git History
+
+Maintain a **linear history**. Avoid merge commits.
+
+- Rebase feature branches onto `main` before merging:
+
+  ```bash
+  git checkout feat/my-branch
+  git rebase main
+  git checkout main
+  git merge --ff-only feat/my-branch
+  ```
+
+- Never use `git merge --no-ff`.
+- Never merge `main` into a feature branch; always rebase.
 
 ## Formatting
 
