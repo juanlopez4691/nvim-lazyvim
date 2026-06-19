@@ -20,7 +20,7 @@ local skip_filetypes = {}
 ---@param respect_number? boolean  If true, skip when vim.wo.number is already false.
 local function should_manage_window(respect_number)
   -- Heuristic 1: plugin UI buffers (sidebar, picker, terminal, help, etc.)
-  if ui_buftypes[vim.bo.buftype] then
+  if ui_buftypes[vim.bo.buftype] ~= nil then
     return false
   end
 
