@@ -11,7 +11,7 @@ style and structure conventions.
 
 This file is the comprehensive reference. Critical rules are also available as
 invokable skills under `.agents/skills/`:
-`lazyvim-coder`, `lazyvim-formatter`, `lazyvim-linter`, `lazyvim-commiter`.
+`/code`, `/format`, `/lint`, `/commit`.
 Agents should prefer the specific skill when available; fall back to this file.
 
 ## Scope and Precedence
@@ -196,8 +196,8 @@ This repository contains **Lua, Markdown, JSON, and TOML** files.
 - Formatting config: `lua/plugins/conform.lua`.
 - LSP setup: `lua/plugins/nvim-lspconfig.lua`.
 - Helpers reference: `lua/helpers/` (filesystem, keymap, list, snacks, split).
-- Project skills: `.agents/skills/lazyvim-coder`, `.agents/skills/lazyvim-formatter`,
-  `.agents/skills/lazyvim-linter`, `.agents/skills/lazyvim-commiter`.
+- Project skills: `.agents/skills/code`, `.agents/skills/format`,
+  `.agents/skills/lint`, `.agents/skills/commit`.
 
 ## Do and Do Not
 
