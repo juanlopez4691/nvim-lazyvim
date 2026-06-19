@@ -5,6 +5,7 @@ description: >
   LazyVim configuration linting conventions. Use when linting files in this
   LazyVim-based Neovim config repository. Covers LSP diagnostics. For full
   details see AGENTS.md in the repository root.
+context: fork
 ---
 
 # LazyVim Linting Conventions (This Repo)
