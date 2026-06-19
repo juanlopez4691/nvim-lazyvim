@@ -5,6 +5,7 @@ description: >
   this LazyVim-based Neovim config. Covers Conventional Commits style specific
   to this repository. For full details see AGENTS.md in the repository root.
 user-invocable: false
+context: fork
 ---
 
 # LazyVim Commit Conventions
