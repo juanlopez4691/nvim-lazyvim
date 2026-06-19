@@ -1,5 +1,6 @@
 ---
 name: code
+user-invocable: false
 description: >
   LazyVim configuration coding conventions. Use when editing Lua files,
   plugin specs, keymaps, or options in this LazyVim-based Neovim config.

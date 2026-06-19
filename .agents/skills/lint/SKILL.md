@@ -1,5 +1,6 @@
 ---
 name: lint
+user-invocable: false
 description: >
   LazyVim configuration linting conventions. Use when linting files in this
   LazyVim-based Neovim config repository. Covers LSP diagnostics. For full
