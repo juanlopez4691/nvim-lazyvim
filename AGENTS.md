@@ -53,6 +53,17 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
   that reads "do X and Y" must be split into (at least) two commits.
 - Changes to `.md` files (README, AGENTS.md, skills) must use `docs:` type.
 
+### Commit Command
+
+Always use a plain string literal — no heredocs or subshell expansion:
+
+```bash
+git commit -m "type: subject"
+```
+
+Heredocs and `$(...)` in this environment cause delta/highlight to embed ANSI
+codes into the stored commit message. No `Co-Authored-By` trailers.
+
 ### Examples
 
 - ❌ `docs: fix markdownlint in README and AGENTS`
