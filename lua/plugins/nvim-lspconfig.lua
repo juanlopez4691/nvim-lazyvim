@@ -97,7 +97,7 @@ return {
           intelephense = {
             files = {
               exclude = { "**/node_modules/**", "**/.git/**", "**/.svn/**", "**/.hg/**" },
-              associations = { "*.php", "*.blade.php", "*.twig" },
+              associations = { "*.php", "*.blade.php" },
               maxSize = 1000000,
             },
             environment = {
