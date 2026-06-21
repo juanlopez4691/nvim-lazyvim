@@ -1,5 +1,27 @@
 local fs = require("helpers.filesystem")
 
+--- Resolve the phpcs binary to an absolute path.
+--- Prefers the project-local binary, then the Mason-managed one, then PATH.
+--- An absolute path is required so the linter works regardless of nvim's cwd.
+--- @param buf integer Buffer handle
+--- @return string Absolute path to phpcs, or "phpcs" as a PATH fallback
+local function resolve_phpcs(buf)
+  local root = vim.fs.root(buf, { "composer.json", ".git" })
+  if root then
+    local local_bin = root .. "/vendor/bin/phpcs"
+    if fs.file_exists(local_bin) then
+      return local_bin
+    end
+  end
+
+  local mason_bin = vim.fn.stdpath("data") .. "/mason/bin/phpcs"
+  if fs.file_exists(mason_bin) then
+    return mason_bin
+  end
+
+  return "phpcs"
+end
+
 --- Determine which PHP linters to enable based on project setup.
 --- @param buf integer Buffer handle
 --- @return table Linter names for PHP files
@@ -78,36 +100,38 @@ return {
   opts = function(_, opts)
     local lint = require("lint")
 
-    -- Detect local vs global phpcs
-    local phpcs_cmd = "./vendor/bin/phpcs"
-    if vim.fn.executable(phpcs_cmd) == 0 then
-      phpcs_cmd = "phpcs"
+    -- Define custom phpcs linter. Wrapped in a function so cmd and cwd are
+    -- resolved per lint invocation (nvim-lint reads `cwd` literally, not as a
+    -- function).
+    lint.linters.phpcs = function()
+      return {
+        cmd = resolve_phpcs(0),
+        -- Run from the project root so phpcs discovers the project ruleset
+        -- (phpcs.xml/.dist); phpcs locates rulesets by walking up from cwd,
+        -- not from --stdin-path.
+        cwd = vim.fs.root(0, { "composer.json", ".git" }) or vim.fn.getcwd(),
+        args = {
+          "--report=json",
+          "-q",
+          "--stdin-path=" .. vim.api.nvim_buf_get_name(0),
+          "-",
+        },
+        stdin = true,
+        stream = "stdout",
+        ignore_exitcode = true,
+        parser = function(output)
+          -- phpcs may emit PHP deprecation/warning lines before the JSON payload;
+          -- discard anything ahead of the first opening brace before decoding.
+          local brace = output:find("{", 1, true)
+          if brace then
+            output = output:sub(brace)
+          end
+
+          local decoded = decode_phpcs_output(output)
+          return parse_diagnostics_from_phpcs(decoded)
+        end,
+      }
     end
-
-    -- Define custom phpcs linter
-    lint.linters.phpcs = {
-      cmd = "php",
-      args = {
-        "-d",
-        "error_reporting=E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED",
-        phpcs_cmd,
-        "--report=json",
-        "-q",
-        "--stdin-path=$FILENAME",
-      },
-      stdin = true,
-      stream = "stdout",
-      ignore_exitcode = true,
-      parser = function(output)
-        -- Clean up stray PHP warnings/deprecations before decoding
-        output = output:gsub("^[^\n]*Deprecated:[^\n]*\n", "")
-        output = output:gsub("^[^\n]*Warning:[^\n]*\n", "")
-        output = output:gsub("^[^\n]*Notice:[^\n]*\n", "")
-
-        local decoded = decode_phpcs_output(output)
-        return parse_diagnostics_from_phpcs(decoded)
-      end,
-    }
 
     -- Dynamically assign linters for PHP per buffer
     vim.api.nvim_create_autocmd("FileType", {
