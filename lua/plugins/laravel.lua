@@ -19,7 +19,6 @@ return {
     "nvim-neotest/nvim-nio",
   },
   ft = { "php", "blade" },
-  event = { "BufEnter composer.json" },
   -- stylua: ignore
   keys = {
     { "<leader>l", "", desc = "+laravel" },
