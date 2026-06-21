@@ -141,6 +141,13 @@ return {
       end,
     })
 
+    -- FileType fires before this plugin loads (on BufReadPost), so the autocmd
+    -- above misses the buffer that triggered the load. Select for it eagerly.
+    local buf = vim.api.nvim_get_current_buf()
+    if vim.bo[buf].filetype == "php" then
+      lint.linters_by_ft.php = get_php_linters(buf)
+    end
+
     return opts
   end,
 }
