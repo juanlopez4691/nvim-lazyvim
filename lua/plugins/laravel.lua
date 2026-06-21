@@ -1,3 +1,16 @@
+--- Pick the Laravel environment for the current project.
+--- Sail-based projects run artisan/composer through Sail; everything else
+--- (Herd, Valet, native) should run them locally.
+--- @return string "sail" when Sail is detected, otherwise "local"
+local function laravel_default_env()
+  local root = vim.fs.root(0, { "composer.json", ".git" }) or vim.fn.getcwd()
+  if vim.fn.filereadable(root .. "/vendor/bin/sail") == 1 then
+    return "sail"
+  end
+
+  return "local"
+end
+
 return {
   "adalessa/laravel.nvim",
   dependencies = {
@@ -37,15 +50,17 @@ return {
       noremap = true,
     },
   },
-  opts = {
-    features = {
-      pickers = {
-        provider = "snacks",
+  opts = function(_, opts)
+    return vim.tbl_deep_extend("force", opts or {}, {
+      features = {
+        pickers = {
+          provider = "snacks",
+        },
       },
-    },
-    environments = {
-      default = "sail",
-      ask_on_boot = true,
-    },
-  },
+      environments = {
+        default = laravel_default_env(),
+        ask_on_boot = false,
+      },
+    })
+  end,
 }
