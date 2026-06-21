@@ -10,6 +10,7 @@ return {
       "json-lsp",
       "lua-language-server",
       "marksman",
+      "php-cs-fixer",
       "php-debug-adapter",
       "phpcbf",
       "phpcs",
