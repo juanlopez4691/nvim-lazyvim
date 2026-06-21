@@ -26,7 +26,7 @@ end
 --- @param buf integer Buffer handle
 --- @return table Linter names for PHP files
 local function get_php_linters(buf)
-  local root = vim.fs.root(buf, { "composer.json", ".git" }) or vim.fn.expand("%:p:h")
+  local root = vim.fs.root(buf, { "composer.json", ".git" }) or vim.fs.dirname(vim.api.nvim_buf_get_name(buf))
   local vendor_dir = root .. "/vendor"
   local linters = {}
 
