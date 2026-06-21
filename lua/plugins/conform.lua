@@ -6,7 +6,7 @@ return {
     return vim.tbl_deep_extend("force", opts or {}, {
       formatters_by_ft = {
         javascript = { "prettierd", "prettier", stop_after_first = true },
-        php = { "pint", "phpcbf", "php-cs-fixer", stop_after_first = true },
+        php = { "pint", "phpcbf", "php_cs_fixer", stop_after_first = true },
         python = { "isort", "black", stop_after_first = true },
         blade = { "blade-formatter" },
       },
