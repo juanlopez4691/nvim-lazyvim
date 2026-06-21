@@ -1,8 +1,23 @@
+local fs = require("helpers.filesystem")
+
 return {
   "neovim/nvim-lspconfig",
   opts = function(_, opts)
     opts = opts or {}
     opts.servers = opts.servers or {}
+
+    -- Only point intelephense at php-stubs directories that actually exist.
+    -- Composer may live under the legacy ~/.composer or the XDG ~/.config path.
+    local stub_paths = {}
+    for _, path in ipairs({
+      "~/.composer/vendor/php-stubs/",
+      "~/.config/composer/vendor/php-stubs/",
+    }) do
+      local expanded = vim.fn.expand(path)
+      if fs.dir_exists(expanded) then
+        table.insert(stub_paths, expanded)
+      end
+    end
 
     local tailwind_filetypes = {
       "php",
@@ -86,7 +101,7 @@ return {
               maxSize = 1000000,
             },
             environment = {
-              includePaths = { vim.fn.expand("~/.composer/vendor/php-stubs/") },
+              includePaths = stub_paths,
             },
             stubs = require("config.intelephense.stubs"),
           },
