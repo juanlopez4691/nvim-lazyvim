@@ -8,11 +8,17 @@ return {
         {
           type = "php",
           request = "launch",
-          name = "Listen for Xdebug",
+          name = "Listen for Xdebug (Docker/Sail)",
           port = 9003,
           pathMappings = {
             ["/var/www/html"] = "${workspaceFolder}",
           },
+        },
+        {
+          type = "php",
+          request = "launch",
+          name = "Listen for Xdebug (local)",
+          port = 9003,
         },
       }
     end
