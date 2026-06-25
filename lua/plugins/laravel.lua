@@ -3,7 +3,7 @@
 --- (Herd, Valet, native) should run them locally.
 --- @return string "sail" when Sail is detected, otherwise "local"
 local function laravel_default_env()
-  local root = vim.fs.root(0, { "composer.json", ".git" }) or vim.fn.getcwd()
+  local root = vim.fs.root(vim.fn.getcwd(), { "composer.json", ".git" }) or vim.fn.getcwd()
   if vim.fn.filereadable(root .. "/vendor/bin/sail") == 1 then
     return "sail"
   end
