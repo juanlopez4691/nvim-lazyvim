@@ -52,6 +52,15 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 - One logical change per commit. Never mix unrelated topics. A commit subject
   that reads "do X and Y" must be split into (at least) two commits.
 - Changes to `.md` files (README, AGENTS.md, skills) must use `docs:` type.
+- Use `fix:` when correcting something already broken or behaving incorrectly.
+  Use `feat:` when adding protection, robustness, or new behaviour — including
+  proactively preventing a class of error. Verbs like "avoid", "prevent",
+  "guard", "protect" signal `feat:`, not `fix:`.
+- Omit context the reader can derive from git blame, the file list, or the repo
+  name. If it goes without saying, leave it out.
+- Prefer the shortest subject that preserves full meaning. Drop qualifiers,
+  redundant context, and implementation detail. Concise beats verbose; clarity
+  beats brevity only when something would otherwise be ambiguous.
 
 ### Commit Command
 
@@ -74,6 +83,16 @@ codes into the stored commit message. No `Co-Authored-By` trailers.
   → Single topic, no body needed.
 - ❌ `feat: add linter and update keymaps`
   → "and" signals two changes; must be split.
+- ❌ `fix: pass cwd to vim.fs.root so project root resolves correctly`
+  → Explains WHAT (pass cwd) and HOW (via vim.fs.root), not WHY. Also wrong
+    type: the change prevents a latent bug, so `feat:` applies.
+- ✅ `feat: avoid wrong laravel env due to buffer-sensitive root detection`
+  → Names the consequence avoided and the root cause; type matches intent.
+- ❌ `feat: add pragmatic-code-reviewer agent definition for this neovim config`
+  → "for this neovim config" is obvious from the repo; "definition" is
+    redundant when the file list already shows a new file was added.
+- ✅ `feat: add pragmatic-code-reviewer agent`
+  → Concise; the diff tells the rest.
 
 ## Branching
 
