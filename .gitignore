@@ -9,3 +9,4 @@ data
 *.cache
 cache/
 node_modules/
+.claude/agent-memory/
