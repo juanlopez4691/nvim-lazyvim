@@ -19,6 +19,7 @@ return {
           request = "launch",
           name = "Listen for Xdebug (local)",
           port = 9003,
+          -- No pathMappings: source paths match the workspace directly.
         },
       }
     end
