@@ -14,6 +14,8 @@ return {
       "~/.config/composer/vendor/php-stubs/",
     }) do
       local expanded = vim.fn.expand(path)
+      ---@cast expanded string
+
       if fs.dir_exists(expanded) then
         table.insert(stub_paths, expanded)
       end
