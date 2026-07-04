@@ -237,7 +237,7 @@ return {
       {
         "<leader>ot",
         function()
-          require("opencode").toggle()
+          require("snacks.terminal").toggle(opencode_cmd, snacks_terminal_opts)
         end,
         mode = { "n", "t" },
         icon = "󰚩  ",
@@ -246,7 +246,10 @@ return {
       {
         "<leader>oq",
         function()
-          require("opencode").stop()
+          local win = require("snacks.terminal").get(opencode_cmd, { create = false })
+          if win then
+            win:close()
+          end
         end,
         mode = { "n", "t" },
         icon = "󰚩  ",
