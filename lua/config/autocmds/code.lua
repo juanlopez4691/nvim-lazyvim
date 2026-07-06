@@ -8,3 +8,11 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.iskeyword:append("$")
   end,
 })
+
+-- No auto continue comments on new line
+vim.api.nvim_create_autocmd("FileType", {
+  group = group,
+  callback = function()
+    vim.opt_local.formatoptions:remove({ "c", "r", "o" })
+  end,
+})
