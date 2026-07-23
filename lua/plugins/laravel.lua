@@ -12,13 +12,15 @@ local function laravel_default_env()
 end
 
 return {
-  "adalessa/laravel.nvim",
+  dir = "~/Projects/personal/laravel.nvim",
+  -- "adalessa/laravel.nvim",
   dependencies = {
     "MunifTanjim/nui.nvim",
     "nvim-lua/plenary.nvim",
     "nvim-neotest/nvim-nio",
   },
   ft = { "php", "blade" },
+  event = { "BufEnter composer.json" },
   -- stylua: ignore
   keys = {
     { "<leader>l", "", desc = "+laravel" },
