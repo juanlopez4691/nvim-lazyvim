@@ -27,7 +27,6 @@ return {
             return {
               CursorLine = { bg = u.lighten(colors.mantle, 0.40, colors.base) },
               WinSeparator = { fg = "#809dc2" },
-              CopilotSuggestion = { fg = "#809dc2" },
               SnacksIndentScope = { fg = "#5e5e87" },
               Normal = { bg = colors.crust },
               NormalNC = { bg = colors.mantle },
@@ -54,7 +53,6 @@ return {
       lualine_bold = true,
       on_highlights = function(hl, colors)
         hl.WinSeparator = { fg = "#4b6f9e", bg = colors.bg_dark }
-        hl.CopilotSuggestion = { fg = "#4b6f9e", bg = colors.bg_dark }
       end,
     },
   },

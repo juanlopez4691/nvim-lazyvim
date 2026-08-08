@@ -1,28 +1,3 @@
-local copilot_suggestion
-
---[[
-  Gets copilot suggestions.
-
-  Prevents loading the copilot.suggestion module until
-  it's needed, and caches the result.
-]]
-local function get_copilot_suggestion()
-  if copilot_suggestion == false then
-    return nil
-  end
-
-  if not copilot_suggestion then
-    local ok, suggestion = pcall(require, "copilot.suggestion")
-    if not ok then
-      copilot_suggestion = false
-      return nil
-    end
-    copilot_suggestion = suggestion
-  end
-
-  return copilot_suggestion
-end
-
 return {
   "saghen/blink.cmp",
   dependencies = {
@@ -41,12 +16,6 @@ return {
             return true
           end
 
-          local suggestion = get_copilot_suggestion()
-          if suggestion and suggestion.is_visible() then
-            suggestion.accept()
-            return true
-          end
-
           return false
         end,
         "fallback",
@@ -55,12 +24,6 @@ return {
         function(cmp)
           if cmp.is_visible() then
             cmp.select_next()
-            return true
-          end
-
-          local suggestion = get_copilot_suggestion()
-          if suggestion and suggestion.is_visible() then
-            suggestion.next()
             return true
           end
 
@@ -75,12 +38,6 @@ return {
             return true
           end
 
-          local suggestion = get_copilot_suggestion()
-          if suggestion and suggestion.is_visible() then
-            suggestion.prev()
-            return true
-          end
-
           return false
         end,
         "fallback",
@@ -89,12 +46,6 @@ return {
         function(cmp)
           if cmp.is_visible() then
             cmp.cancel()
-            return true
-          end
-
-          local suggestion = get_copilot_suggestion()
-          if suggestion and suggestion.is_visible() then
-            suggestion.dismiss()
             return true
           end
 
