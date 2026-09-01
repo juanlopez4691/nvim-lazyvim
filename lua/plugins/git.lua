@@ -5,9 +5,7 @@ return {
       "sindrets/diffview.nvim",
     },
     event = "VeryLazy",
-    config = function()
-      require("gitlineage").setup({})
-    end,
+    opts = {},
   },
   {
     "sindrets/diffview.nvim",
