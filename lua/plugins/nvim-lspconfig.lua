@@ -54,21 +54,12 @@ return {
             postcss = "css",
           },
         },
-        on_new_config = function(new_config)
-          new_config.filetypes = tailwind_filetypes
-        end,
       },
       twiggy_language_server = {
         filetypes = { "twig" },
-        on_new_config = function(new_config)
-          new_config.filetypes = { "twig" }
-        end,
       },
       vtsls = {
         filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-        on_new_config = function(new_config)
-          new_config.filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" }
-        end,
       },
       lua_ls = {
         settings = {
