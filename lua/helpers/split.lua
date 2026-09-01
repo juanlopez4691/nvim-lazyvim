@@ -94,8 +94,6 @@ local function jump_split_with_wrap(direction, opposite)
 end
 
 return {
-  is_rightmost = is_rightmost,
-  is_bottommost = is_bottommost,
   resize = resize,
   jump_split_with_wrap = jump_split_with_wrap,
 }
