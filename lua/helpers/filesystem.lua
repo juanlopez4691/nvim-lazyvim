@@ -6,7 +6,6 @@
   Features:
     - Directory scanning using vim.fs.dir
     - Error aggregation and summary reporting
-    - Deduplication of required modules
     - Relative path support
 ]]
 
@@ -21,26 +20,16 @@ local function require_dir(directory)
     return
   end
 
-  local files = {}
-  for name in vim.fs.dir(target_dir) do
-    if name:match("%.lua$") then
-      table.insert(files, target_dir .. "/" .. name)
-    end
-  end
-
-  local required = {}
   local errors = {}
 
-  for _, file in ipairs(files) do
-    local module_name = file:match("^.+/lua/(.+)%.lua$"):gsub("/", ".")
-
-    if not required[module_name] then
+  for name in vim.fs.dir(target_dir) do
+    if name:match("%.lua$") then
+      local module_name = directory:gsub("/", ".") .. "." .. name:gsub("%.lua$", "")
       local success, err = pcall(require, module_name)
 
       if not success then
         table.insert(errors, { module = module_name, error = err })
       end
-      required[module_name] = true
     end
   end
 
