@@ -1,5 +1,3 @@
-local fs = require("helpers.filesystem")
-
 --- Nearest WordPress root for a buffer, or nil if none.
 ---@param bufnr integer
 ---@return string?
@@ -27,7 +25,7 @@ return {
       local expanded = vim.fn.expand(path)
       ---@cast expanded string
 
-      if fs.dir_exists(expanded) then
+      if vim.fn.isdirectory(expanded) == 1 then
         table.insert(stub_paths, expanded)
       end
     end

@@ -1,5 +1,3 @@
-local fs = require("helpers.filesystem")
-
 --- Resolve the phpcs binary to an absolute path.
 --- Prefers the project-local binary, then the Mason-managed one, then PATH.
 --- An absolute path is required so the linter works regardless of nvim's cwd.
@@ -9,13 +7,13 @@ local function resolve_phpcs(buf)
   local root = vim.fs.root(buf, { "composer.json", ".git" })
   if root then
     local local_bin = root .. "/vendor/bin/phpcs"
-    if fs.file_exists(local_bin) then
+    if vim.fn.filereadable(local_bin) == 1 then
       return local_bin
     end
   end
 
   local mason_bin = vim.fn.stdpath("data") .. "/mason/bin/phpcs"
-  if fs.file_exists(mason_bin) then
+  if vim.fn.filereadable(mason_bin) == 1 then
     return mason_bin
   end
 
@@ -32,15 +30,15 @@ local function get_php_linters(buf)
 
   -- Add phpstan if config file exists
   if
-    fs.file_exists(root .. "/phpstan.neon")
-    or fs.file_exists(root .. "/phpstan.neon.dist")
-    or fs.file_exists(root .. "/phpstan.dist.neon")
+    vim.fn.filereadable(root .. "/phpstan.neon") == 1
+    or vim.fn.filereadable(root .. "/phpstan.neon.dist") == 1
+    or vim.fn.filereadable(root .. "/phpstan.dist.neon") == 1
   then
     table.insert(linters, "phpstan")
   end
 
   -- Skip phpcs if Laravel Pint is present
-  if fs.file_exists(vendor_dir .. "/bin/pint") then
+  if vim.fn.filereadable(vendor_dir .. "/bin/pint") == 1 then
     return linters
   end
 

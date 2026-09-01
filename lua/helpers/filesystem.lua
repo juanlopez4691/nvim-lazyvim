@@ -54,26 +54,6 @@ local function require_dir(directory)
   end
 end
 
---[[
--- Function to check if a file exists
---
--- @param file The file to check
---
--- @return boolean
---]]
-local function file_exists(file)
-  return vim.fn.filereadable(file) == 1
-end
-
---- Check if a directory exists
----@param path string
----@return boolean
-local function dir_exists(path)
-  return vim.fn.isdirectory(path) == 1
-end
-
 return {
   require_dir = require_dir,
-  file_exists = file_exists,
-  dir_exists = dir_exists,
 }
