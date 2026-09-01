@@ -91,11 +91,6 @@ return {
           },
         },
       },
-      laravel_ls = {
-        filetypes = { "php" },
-        single_file_support = false,
-        root_dir = require("lspconfig.util").root_pattern("composer.json", ".git"),
-      },
       antlersls = {
         filetypes = { "antlers", "html" },
         root_dir = function(bufnr, on_dir)
