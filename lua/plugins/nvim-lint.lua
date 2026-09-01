@@ -29,12 +29,11 @@ local function get_php_linters(buf)
   local linters = {}
 
   -- Add phpstan if config file exists
-  if
-    vim.fn.filereadable(root .. "/phpstan.neon") == 1
-    or vim.fn.filereadable(root .. "/phpstan.neon.dist") == 1
-    or vim.fn.filereadable(root .. "/phpstan.dist.neon") == 1
-  then
-    table.insert(linters, "phpstan")
+  for _, name in ipairs({ "phpstan.neon", "phpstan.neon.dist", "phpstan.dist.neon" }) do
+    if vim.fn.filereadable(root .. "/" .. name) == 1 then
+      table.insert(linters, "phpstan")
+      break
+    end
   end
 
   -- Skip phpcs if Laravel Pint is present
