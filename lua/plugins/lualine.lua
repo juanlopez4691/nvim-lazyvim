@@ -1,3 +1,21 @@
+local lsp_icons = {
+  lua_ls = "",
+  pyright = "",
+  tsserver = "",
+  gopls = "",
+  rust_analyzer = "",
+  clangd = "",
+  intelephense = "",
+  jsonls = "",
+  tailwindcss = "󱏿",
+  dockerls = "",
+  taplo = "",
+  marksman = "",
+  vtsls = "",
+  cssls = "",
+  html = "",
+}
+
 -- Display attached LSP clients in the status line
 local function lsp_clients()
   local clients = vim.lsp.get_clients({ bufnr = 0 })
@@ -6,24 +24,7 @@ local function lsp_clients()
   end
   return table.concat(
     vim.tbl_map(function(client)
-      local icons = {
-        lua_ls = "",
-        pyright = "",
-        tsserver = "",
-        gopls = "",
-        rust_analyzer = "",
-        clangd = "",
-        intelephense = "",
-        jsonls = "",
-        tailwindcss = "󱏿",
-        dockerls = "",
-        taplo = "",
-        marksman = "",
-        vtsls = "",
-        cssls = "",
-        html = "",
-      }
-      local icon = icons[client.name] or ""
+      local icon = lsp_icons[client.name] or ""
       return string.format("%s %s", icon, client.name)
     end, clients),
     ", "
