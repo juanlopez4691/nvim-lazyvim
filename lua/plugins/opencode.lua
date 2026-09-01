@@ -36,143 +36,45 @@ return {
     vim.o.autoread = true
 
     local wk = require("which-key")
-    wk.add({
+    local icon = "󰚩  "
+
+    -- Prompts sent with `ask`; all share the same mode, icon and options.
+    local prompts = {
+      { "oB", "@buffers: ", "Ask Opencode (buffers)…" },
+      { "ob", "@buffer: ", "Ask Opencode (buffer)…" },
+      { "od", "@diff ", "Ask Opencode (diff)…" },
+      { "om", "@marks ", "Ask Opencode (marks)…" },
+      { "ov", "@visible ", "Ask about visible text" },
+      { "ox", "@quickfix ", "Ask Opencode (quickfix)…" },
+      { "oi", "", "Ask Opencode (empty)" },
+      { "oI", "@this: ", "Ask Opencode (context)…" },
+      { "of", "@this fix: ", "Fix with Opencode" },
+      { "oe", "@this explain: ", "Explain with Opencode" },
+      { "or", "@this review: ", "Review with Opencode" },
+      { "oo", "@this optimize: ", "Optimize with Opencode" },
+      { "os", "@this test: ", "Test with Opencode" },
+      { "oD", "@this diagnose: ", "Diagnose with Opencode" },
+    }
+
+    -- Session commands driven by `command`.
+    local commands = {
+      { "oc", "session.close", "Close session", { "n" } },
+      { "on", "session.new", "New session", { "n" } },
+      { "ou", "session.half.page.up", "Scroll Opencode up", "n" },
+      { "oj", "session.half.page.down", "Scroll Opencode down", "n" },
+    }
+
+    local spec = {
       { "<leader>o", group = "opencode", desc = "OpenCode", icon = "󰚩 " },
 
-      {
-        "<leader>oB",
-        function()
-          require("opencode").ask("@buffers: ", { submit = true, focus = false })
-        end,
-        mode = { "n", "x" },
-        icon = "󰚩  ",
-        desc = "Ask Opencode (buffers)…",
-      },
-      {
-        "<leader>ob",
-        function()
-          require("opencode").ask("@buffer: ", { submit = true, focus = false })
-        end,
-        mode = { "n", "x" },
-        icon = "󰚩  ",
-        desc = "Ask Opencode (buffer)…",
-      },
       {
         "<leader>oa",
         function()
           require("opencode").ask("@this: ", { submit = true })
         end,
         mode = { "n", "x" },
-        icon = "󰚩  ",
+        icon = icon,
         desc = "Ask Opencode…",
-      },
-      {
-        "<leader>od",
-        function()
-          require("opencode").ask("@diff ", { submit = true, focus = false })
-        end,
-        mode = { "n", "x" },
-        icon = "󰚩  ",
-        desc = "Ask Opencode (diff)…",
-      },
-      {
-        "<leader>om",
-        function()
-          require("opencode").ask("@marks ", { submit = true, focus = false })
-        end,
-        mode = { "n", "x" },
-        icon = "󰚩  ",
-        desc = "Ask Opencode (marks)…",
-      },
-      {
-        "<leader>ov",
-        function()
-          require("opencode").ask("@visible ", { submit = true, focus = false })
-        end,
-        mode = { "n", "x" },
-        icon = "󰚩  ",
-        desc = "Ask about visible text",
-      },
-      {
-        "<leader>ox",
-        function()
-          require("opencode").ask("@quickfix ", { submit = true, focus = false })
-        end,
-        mode = { "n", "x" },
-        icon = "󰚩  ",
-        desc = "Ask Opencode (quickfix)…",
-      },
-      {
-        "<leader>oi",
-        function()
-          require("opencode").ask("", { submit = true, focus = false })
-        end,
-        mode = { "n", "x" },
-        icon = "󰚩  ",
-        desc = "Ask Opencode (empty)",
-      },
-      {
-        "<leader>oI",
-        function()
-          require("opencode").ask("@this: ", { submit = true, focus = false })
-        end,
-        mode = { "n", "x" },
-        icon = "󰚩  ",
-        desc = "Ask Opencode (context)…",
-      },
-      {
-        "<leader>of",
-        function()
-          require("opencode").ask("@this fix: ", { submit = true, focus = false })
-        end,
-        mode = { "n", "x" },
-        icon = "󰚩  ",
-        desc = "Fix with Opencode",
-      },
-      {
-        "<leader>oe",
-        function()
-          require("opencode").ask("@this explain: ", { submit = true, focus = false })
-        end,
-        mode = { "n", "x" },
-        icon = "󰚩  ",
-        desc = "Explain with Opencode",
-      },
-      {
-        "<leader>or",
-        function()
-          require("opencode").ask("@this review: ", { submit = true, focus = false })
-        end,
-        mode = { "n", "x" },
-        icon = "󰚩  ",
-        desc = "Review with Opencode",
-      },
-      {
-        "<leader>oo",
-        function()
-          require("opencode").ask("@this optimize: ", { submit = true, focus = false })
-        end,
-        mode = { "n", "x" },
-        icon = "󰚩  ",
-        desc = "Optimize with Opencode",
-      },
-      {
-        "<leader>os",
-        function()
-          require("opencode").ask("@this test: ", { submit = true, focus = false })
-        end,
-        mode = { "n", "x" },
-        icon = "󰚩  ",
-        desc = "Test with Opencode",
-      },
-      {
-        "<leader>oD",
-        function()
-          require("opencode").ask("@this diagnose: ", { submit = true, focus = false })
-        end,
-        mode = { "n", "x" },
-        icon = "󰚩  ",
-        desc = "Diagnose with Opencode",
       },
 
       {
@@ -182,7 +84,7 @@ return {
         end,
         expr = true,
         mode = { "n", "x" },
-        icon = "󰚩  ",
+        icon = icon,
         desc = "Add range to Opencode",
       },
       {
@@ -192,7 +94,7 @@ return {
         end,
         expr = true,
         mode = "n",
-        icon = "󰚩  ",
+        icon = icon,
         desc = "Add line to Opencode",
       },
       {
@@ -202,7 +104,7 @@ return {
         end,
         expr = true,
         mode = { "n", "x" },
-        icon = "󰚩  ",
+        icon = icon,
         desc = "Add range to Opencode (operator)",
       },
       {
@@ -216,31 +118,12 @@ return {
       },
 
       {
-        "<leader>oc",
-        function()
-          require("opencode").command("session.close")
-        end,
-        mode = { "n" },
-        icon = "󰚩  ",
-        desc = "Close session",
-      },
-      {
-        "<leader>on",
-        function()
-          require("opencode").command("session.new")
-        end,
-        mode = { "n" },
-        icon = "󰚩  ",
-        desc = "New session",
-      },
-
-      {
         "<leader>ot",
         function()
           require("snacks.terminal").toggle(opencode_cmd, snacks_terminal_opts)
         end,
         mode = { "n", "t" },
-        icon = "󰚩  ",
+        icon = icon,
         desc = "Toggle Opencode",
       },
       {
@@ -252,7 +135,7 @@ return {
           end
         end,
         mode = { "n", "t" },
-        icon = "󰚩  ",
+        icon = icon,
         desc = "Stop/Close OpenCode",
       },
       -- Action/Selection
@@ -262,29 +145,38 @@ return {
           require("opencode").select()
         end,
         mode = { "n", "x" },
-        icon = "󰚩  ",
+        icon = icon,
         desc = "Execute Opencode action…",
       },
+    }
 
-      {
-        "<leader>ou",
+    for _, prompt in ipairs(prompts) do
+      local text = prompt[2]
+      table.insert(spec, {
+        "<leader>" .. prompt[1],
         function()
-          require("opencode").command("session.half.page.up")
+          require("opencode").ask(text, { submit = true, focus = false })
         end,
-        mode = "n",
-        icon = "󰚩  ",
-        desc = "Scroll Opencode up",
-      },
-      {
-        "<leader>oj",
+        mode = { "n", "x" },
+        icon = icon,
+        desc = prompt[3],
+      })
+    end
+
+    for _, command in ipairs(commands) do
+      local name = command[2]
+      table.insert(spec, {
+        "<leader>" .. command[1],
         function()
-          require("opencode").command("session.half.page.down")
+          require("opencode").command(name)
         end,
-        mode = "n",
-        icon = "󰚩  ",
-        desc = "Scroll Opencode down",
-      },
-    })
+        mode = command[4],
+        icon = icon,
+        desc = command[3],
+      })
+    end
+
+    wk.add(spec)
     ---@diagnostic enable: undefined-field
   end,
 }
