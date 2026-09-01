@@ -69,25 +69,19 @@ local toggleWorkspaceSymbols = function()
 end
 
 -- Override original mapping for LSP symbols
-keymap.set("n", "gO", function()
-  toggleDocumentSymbols()
-end, { desc = "Symbols in document" })
+keymap.set("n", "gO", toggleDocumentSymbols, { desc = "Symbols in document" })
 
 wk.add({
   {
     mode = "n",
     "<leader>cs",
-    function()
-      toggleDocumentSymbols()
-    end,
+    toggleDocumentSymbols,
     desc = "Symbols in document",
   },
   {
     mode = "n",
     "<leader>cS",
-    function()
-      toggleWorkspaceSymbols()
-    end,
+    toggleWorkspaceSymbols,
     desc = "Symbols in workspace",
   },
 })
