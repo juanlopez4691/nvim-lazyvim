@@ -1,5 +1,16 @@
 local fs = require("helpers.filesystem")
 
+--- Nearest WordPress root for a buffer, or nil if none.
+---@param bufnr integer
+---@return string?
+local function wp_root(bufnr)
+  local hits = vim.fs.find({ "wp-config.php", "wp-content", "wp-includes" }, {
+    upward = true,
+    path = vim.fs.dirname(vim.api.nvim_buf_get_name(bufnr)),
+  })
+  return hits[1] and vim.fs.dirname(hits[1]) or nil
+end
+
 return {
   "neovim/nvim-lspconfig",
   opts = function(_, opts)
@@ -93,6 +104,13 @@ return {
       },
       intelephense = {
         filetypes = { "php" },
+        -- WordPress only; phpantom below covers everything else.
+        root_dir = function(bufnr, on_dir)
+          local wp = wp_root(bufnr)
+          if wp then
+            on_dir(vim.fs.root(bufnr, { "composer.json", ".git" }) or wp)
+          end
+        end,
         settings = {
           intelephense = {
             files = {
@@ -106,6 +124,14 @@ return {
             stubs = require("config.intelephense.stubs"),
           },
         },
+      },
+      phpantom_lsp = {
+        -- Laravel/general PHP; WordPress goes to intelephense above.
+        root_dir = function(bufnr, on_dir)
+          if not wp_root(bufnr) then
+            on_dir(nil) -- nil defers to the root_markers lspconfig ships
+          end
+        end,
       },
       marksman = {
         filetypes = { "markdown" },

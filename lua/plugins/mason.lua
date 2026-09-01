@@ -12,6 +12,7 @@ return {
       "marksman",
       "php-cs-fixer",
       "php-debug-adapter",
+      "phpantom_lsp",
       "phpcbf",
       "phpcs",
       "phpstan",
