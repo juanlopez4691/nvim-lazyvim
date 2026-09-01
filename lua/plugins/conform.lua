@@ -13,10 +13,6 @@ return {
       formatters = {
         injected = { options = { ignore_errors = true } },
         pint = {
-          meta = {
-            url = "https://github.com/laravel/pint",
-            description = "Laravel Pint is an opinionated PHP code style fixer for minimalists. Pint is built on top of PHP-CS-Fixer and makes it simple to ensure that your code style stays clean and consistent.",
-          },
           command = require("conform.util").find_executable({
             "vendor/bin/pint", -- Project-local first
             vim.fn.stdpath("data") .. "/mason/bin/pint", -- Mason second
