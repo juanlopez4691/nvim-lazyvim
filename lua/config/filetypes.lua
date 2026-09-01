@@ -11,7 +11,6 @@ vim.filetype.add({
   },
   pattern = {
     [".*%.blade%.php"] = "blade",
-    [".*%.twig"] = "twig",
     [".*%.antlers%.html"] = "antlers",
     [".*%.antlers%.php"] = "antlers",
     ["docker%-compose%.ya?ml"] = "yaml",
