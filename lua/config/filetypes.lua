@@ -19,9 +19,6 @@ vim.filetype.add({
 
 pcall(function()
   vim.treesitter.language.register("html", "blade")
-end)
-
-pcall(function()
   vim.treesitter.language.register("html", "antlers")
 end)
 
