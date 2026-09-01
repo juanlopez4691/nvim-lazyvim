@@ -11,11 +11,6 @@ local ui_buftypes = {
   terminal = true,
 }
 
--- Fallback filetype list for edge cases where a plugin uses buftype="" (normal)
--- in a non-floating window but still should not show line numbers or cursorline.
--- Only add a filetype here if the heuristics fail to catch it in practice.
-local skip_filetypes = {}
-
 --- Returns false for windows that should not be touched by our toggles.
 ---@param respect_number? boolean  If true, skip when vim.wo.number is already false.
 local function should_manage_window(respect_number)
@@ -34,11 +29,6 @@ local function should_manage_window(respect_number)
   -- Not applied to cursorline because we toggle it ourselves in WinLeave,
   -- which would make the check self-defeating.
   if respect_number and not vim.wo.number then
-    return false
-  end
-
-  -- Fallback: filetypes that escape heuristics 1-3
-  if skip_filetypes[vim.bo.filetype] then
     return false
   end
 
