@@ -5,6 +5,7 @@ return {
     require("tiny-inline-diagnostic").setup({
       preset = "powerline",
       options = {
+        override_open_float = true,
         show_all_diags_on_cursorline = true,
         use_icons_from_diagnostic = true,
         add_messages = {
