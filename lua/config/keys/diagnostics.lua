@@ -1,20 +1,25 @@
-local wk = require("which-key")
+-- Toggles for tiny-inline-diagnostic, which replaces native virtual text.
 
---- Run a TinyInlineDiag subcommand, keeping native virtual text off.
----@param sub string
----@return fun()
-local function tiny_inline_diag(sub)
-  return function()
-    vim.cmd("TinyInlineDiag " .. sub)
+local tiny = "tiny-inline-diagnostic"
+
+Snacks.toggle({
+  name = "Inline Diagnostics",
+  get = function()
+    return require(tiny .. ".state").user_toggle_state
+  end,
+  set = function(enabled)
+    require(tiny)[enabled and "enable" or "disable"]()
+    -- Keep native virtual text off, even while inline diagnostics are hidden.
     vim.diagnostic.config({ virtual_text = false })
-  end
-end
+  end,
+}):map("<leader>uv")
 
-wk.add({
-  { mode = "n", "<leader>D", group = "inline diagnostics", icon = { icon = "󰴅", color = "purple" } },
-  { mode = "n", "<leader>De", tiny_inline_diag("enable"), desc = "Enable diagnostics" },
-  { mode = "n", "<leader>Dd", tiny_inline_diag("disable"), desc = "Disable diagnostics" },
-  { mode = "n", "<leader>Dt", tiny_inline_diag("toggle"), desc = "Toggle diagnostics" },
-  { mode = "n", "<leader>Dc", tiny_inline_diag("toggle_cursor_only"), desc = "Toggle cursor-only diagnostics" },
-  { mode = "n", "<leader>Dr", tiny_inline_diag("reset"), desc = "Reset diagnostic options" },
-})
+Snacks.toggle({
+  name = "Inline Diagnostics (Cursor Only)",
+  get = function()
+    return require(tiny).config.options.show_diags_only_under_cursor
+  end,
+  set = function()
+    require(tiny).toggle_cursor_only()
+  end,
+}):map("<leader>uV")
