@@ -20,17 +20,6 @@ pcall(keymap.del, "n", "<C-Left>")
 pcall(keymap.del, "n", "<C-Right>")
 
 -- Resize window splits
-local skip_filetypes = {
-  "lazy",
-  "neo-tree",
-  "noice",
-  "snacks_dashboard",
-  "snacks_picker_input",
-  "snacks_picker_list",
-  "snacks_picker_preview",
-  "TelescopePrompt",
-}
-
 for direction, keys in pairs({
   right = { "<A-right>", "<C-A-l>" },
   left = { "<A-left>", "<C-A-h>" },
@@ -39,9 +28,6 @@ for direction, keys in pairs({
 }) do
   for _, key in ipairs(keys) do
     keymap.set("n", key, function()
-      if vim.tbl_contains(skip_filetypes, vim.bo.filetype) then
-        return
-      end
       split.resize(direction)
     end, { silent = true })
   end
